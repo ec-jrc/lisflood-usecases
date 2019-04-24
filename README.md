@@ -9,16 +9,9 @@
 
 ### <a id="usecase1"></a>Use Case 1 Description
 
-Description of use case 1 goes here.
-bla bla
-bla
-bla
-bla
+Description of use case 1.
+
 
 ### <a id="usecase2"></a>Use Case 2 Description
 
-Description of use case 2 goes here.
-bla bla
-bla
-bla
-bla
+Description of use case 2.
