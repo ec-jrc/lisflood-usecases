@@ -19,12 +19,15 @@ Other useful resources
 
 ### Guide
 
-[First use case](#usecase1)
+[Canadian use case](#usecase1)
 
 [Second use case](#usecase2)
 
 
-#### <a id="usecase1"></a>Use Case 1 Description
+#### <a id="usecase1"></a> Fraser River, British Columbia, Canada
+
+
+
 
 Description of use case 1.
 
