@@ -26,7 +26,7 @@ Other useful resources
 
 #### <a id="usecase1"></a> Fraser River, British Columbia, Canada
 
-
+![](../doc/FraserRiver.png)
 
 
 Description of use case 1.
