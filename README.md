@@ -3,7 +3,7 @@
 This repository hosts usecases for LISFLOOD model.
 Go to [Lisflood OS page](https://ec-jrc.github.io/lisflood/) for more information.
 
-**Other useful resources
+**Other useful resources**
 
 | **Project**         | **Documentation**                                         | **Source code**                                               |
 | ------------------- | --------------------------------------------------------- | ------------------------------------------------------------- |
