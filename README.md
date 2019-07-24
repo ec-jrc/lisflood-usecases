@@ -40,6 +40,9 @@ xxx
 ## Use case 2: Po River, Italy <a id="usecase2"></a>
 
 ### Short description 
+The second use case is located in North Italy, in the Po River Basin. Its spring is at Monte Viso in Piemonte (Italy) at about 3,700 m; from there it flows 652 km eastwards till it flows into the Adriatic Sea close to Venice. The whole basin covers about 74,000 km², of which 70,000 km² are on Italian territory, and the remaining are shared between France and Switzerland. The average annual discharge at the river mouth is about 1,540 m³/s, whereas the maximum is about double of that.
+
+![](doc/PoRiver.png)
 
 Description of use case 2.
 
