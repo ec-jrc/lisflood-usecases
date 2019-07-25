@@ -1,20 +1,8 @@
 # Lisflood use cases
 
-This repository hosts two use cases for the LISFLOOD model. The purpose of those use cases is for you to get kick-started with LISFLOOD as well as to give you the opportunity to verify that the model is running correctly on your PC. For you to be able to do that we have prepared for each of the two use cases all the static input maps, the meteorological forcings and the LISFLOOD setting files. Once you have downloaded and installed the LISFLOOD model on your own PC, we recommend you to download also one (or both) of the use cases and run as a test on your PC. In order for you to know that everything has worked correctly we also uploaded the reference output file that you should compare against your own output file; if everything has worked correctly both files will be identical.
+This repository hosts two use cases for the LISFLOOD model. The purpose of those use cases is for you to get kick-started with LISFLOOD as well as to give you the opportunity to verify that the model is running correctly on your PC. For you to be able to do that we have prepared for each of the two use cases all the static input maps, the meteorological forcings and the LISFLOOD setting files. Once you have downloaded and installed the LISFLOOD model on your own PC, we recommend you to download also one (or both) of the use cases and run as a test on your PC. In order for you to know that everything has worked correctly we have uploaded the reference output file. If everything has worked correctly your output file is identical to the reference one.
 
-Before getting started with the description and instruction on the use cases, here again some useful links to the [Lisflood OS page](https://ec-jrc.github.io/lisflood/) for more information on the model and affiliated tools.
-
-**Other useful resources**
-
-| **Project**         | **Documentation**                                         | **Source code**                                               |
-| ------------------- | --------------------------------------------------------- | ------------------------------------------------------------- |
-| Lisflood            | [Model docs](https://ec-jrc.github.io/lisflood-model/)    | https://github.com/ec-jrc/lisflood-code                       |
-|                     | [User guide](https://ec-jrc.github.io/lisflood-code/)     |                                                               |
-| Lisvap              | [Docs](https://ec-jrc.github.io/lisflood-lisvap/)         | https://github.com/ec-jrc/lisflood-lisvap                     |
-| Calibration tool    | [Docs](https://ec-jrc.github.io/lisflood-calibration/)    | https://github.com/ec-jrc/lisflood-calibration                |
-| Lisflood Utilities  |                                                           | https://github.com/ec-jrc/lisflood-utilities                  |
-| Lisflood Usecases   |                                                           | https://github.com/ec-jrc/lisflood-usecases (this repository) |
-
+Before getting started with the description and instruction on the use cases, here again the link to the [Lisflood OS landing page](https://ec-jrc.github.io/lisflood/) for more information on the model and affiliated tools.
 
 
 ## Use case 1: Fraser River, British Columbia, Canada <a id="usecase1"></a> 
