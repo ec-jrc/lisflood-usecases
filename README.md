@@ -18,11 +18,14 @@ As this is a use case from our global setup, all input maps are in the geographi
 
 
 ### How to get it running
-There are several important components of this use case that you can find in the parent folder:
-- [pre edited LISFLOOD settings files](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase): two files: *settings_LF_CUT-PreRun000758494230.xml* for the warm up and *settings_LF_CUT-Run000758494230.xml* for the actual running
+
+First of all, let's have a look at the inventory of files belonging to the Fraser use case. You can find them in the [parent folder](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase):
+- [two pre-edited LISFLOOD settings files](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase):
+  - *settings_LF_CUT-PreRun000758494230.xml* for the warm up and 
+  - *settings_LF_CUT-Run000758494230.xml* for the actual running
 - [static maps of the Fraser river subsection](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/maps), with everything included e.g. soil-, landuse-, topography-, etc. related information
-- meteorological input data from 02.01.1986 till 01.01.2018
-- [reference output](https://github.com/ec-jrc/lisflood-usecases/blob/master/LF_lat_lon_UseCase/streamflow_simulated_best.csv), to check that everything went correctly
+- meteorological input data. Contains maps of daily precipitation, average temperature and evapotranspiration from 02.01.1986 till 01.01.2018
+- [reference output](https://github.com/ec-jrc/lisflood-usecases/blob/master/LF_lat_lon_UseCase/streamflow_simulated_best.csv). Use this file to compare against your own run and verify that everything went correctly.
 
 ## Use case 2: Po River, Italy <a id="usecase2"></a>
 
