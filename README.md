@@ -28,8 +28,8 @@ Before of getting started, let's have a look at the inventory of files belonging
 For general information on LISFLOOD input files see [here](https://ec-jrc.github.io/lisflood-code/4_annex_input-files/)
 - [*streamflow_simulated_best.csv*](https://github.com/ec-jrc/lisflood-usecases/blob/master/LF_lat_lon_UseCase/streamflow_simulated_best.csv). Is the reference output file. Use this file to compare against your own model simulation, if they are ideantical you are sure that LISFLOOD is running correctly on your PC.
 
-Okay let's get started. 
-**1)** If you haven't installed LISFLOOD yet, please do that first. You find the model [here](https://github.com/ec-jrc/lisflood-code) and also the [installation instructions](https://ec-jrc.github.io/lisflood-code/3_step2_installation/). Note: if possible, please install it on a LINUX system as it has shown to work more reliable on that system
+Okay let's get started. \
+**1)** If you haven't installed LISFLOOD yet, please do that first. You find the model [here](https://github.com/ec-jrc/lisflood-code) and also the [installation instructions](https://ec-jrc.github.io/lisflood-code/3_step2_installation/). Note: if possible, please install it on a LINUX system as it has shown to work more reliable on that system \
 **2)** Once you have completed step 1, download all the [files belonging to the Fraser use case](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase) to your local drive, please keep the folder structure as it is in the Github repository as LISFLOOD will expect them like that. 
 **3)** Open the LISFLOOD settings files on your local conputer and adapt the path names (so they fit to your local dirves): *PathRoot*, *MaskMap*, *PathRoot*, *PathParams*, *PathTables* and *PathRoot*. Please remember to do that for both settings files as else you will run into problems very soon.
 **4)** Create a folder called *out* in the same parent folder on your local drive, to provide LISFLOOD with a designated space to save your model output
