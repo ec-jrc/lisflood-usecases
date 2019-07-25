@@ -5,7 +5,7 @@ This repository hosts two use cases for the LISFLOOD model. The purpose of those
 Before getting started with the description and instruction on the use cases, here again the link to the [Lisflood OS landing page](https://ec-jrc.github.io/lisflood/) for more information on the model and affiliated tools.
 
 
-## [Use case 1: Fraser River, British Columbia, Canada](#canada)
+## Use case 1: Fraser River, British Columbia, Canada  <a id="usecase1"></a>
 
 ### Short description 
 The first use case is located in West Canada, in a basin called Fraser. The Fraser River rises at Fraser Pass near Blackrock Mountain in the Rocky Mountains and discharges into the Pacific Ocean at the city of Vancouver. With its 1,375 km length, it is the longest river within British Columbia and the 11<sup>th</sup> longest river in Canada. The basin size is about 220,000 km<sup>2</sup>, while the annual discharge at its mouth is 3,550 m<sup>3</sup>.
