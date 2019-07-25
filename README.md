@@ -24,8 +24,6 @@ There are several important components of this use case that you can find in the
 - meteorological input data from 02.01.1986 till 01.01.2018
 - [reference output](https://github.com/ec-jrc/lisflood-usecases/blob/master/LF_lat_lon_UseCase/streamflow_simulated_best.csv), to check that everything went correctly
 
-xxx DOMENICO please take over from here
-
 ## Use case 2: Po River, Italy <a id="usecase2"></a>
 
 ### Short description 
