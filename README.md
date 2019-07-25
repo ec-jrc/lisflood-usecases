@@ -28,16 +28,15 @@ Before of getting started, let's have a look at the inventory of files belonging
 For general information on LISFLOOD input files see [here](https://ec-jrc.github.io/lisflood-code/4_annex_input-files/)
 - [*streamflow_simulated_best.csv*](https://github.com/ec-jrc/lisflood-usecases/blob/master/LF_lat_lon_UseCase/streamflow_simulated_best.csv). Is the reference output file. Use this file to compare against your own model simulation, if they are ideantical you are sure that LISFLOOD is running correctly on your PC.
 
-Okay let's get started.
+Okay let's get started. Follow the steps below to execute the use case on your PC: 
 1. If you haven't installed LISFLOOD yet, please do that first. You find the model [here](https://github.com/ec-jrc/lisflood-code) and also the [installation instructions](https://ec-jrc.github.io/lisflood-code/3_step2_installation/). Note: if possible, please install it on a LINUX system as it has shown to work more reliable on that system 
 2. Once you have completed step 1, download all the [files belonging to the Fraser use case](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase) to your local drive, please keep the folder structure as it is in the Github repository as LISFLOOD will expect them like that. 
 3. Open the LISFLOOD settings files on your local conputer and adapt the path names (so they fit to your local dirves): *PathRoot*, *MaskMap*, *PathRoot*, *PathParams*, *PathTables* and *PathRoot*. Please remember to do that for both settings files as else you will run into problems very soon.
 4. Create a folder called *out* in the same parent folder on your local drive, to provide LISFLOOD with a designated space to save your model output
-5. Open a command window and execute LISFLOOD. First you have to do the pre-run to initialize the model for that you have to execute LISFLOOD with the following settings file: *settings_LF_CUT-PreRun000758494230.xml*. Once that is completed, check the *out* folder, you should find a file called lzavin in there. If that's the case you can launch the actual LISFLOOD run by execting LISFLOOD with the *settings_LF_CUT-Run000758494230.xml* settings file. This should produce a file called *dis.tss* in your *out* folder. The *dis.tss* contains the modeled discharge at the outlet point.
+5. Open a command window and execute LISFLOOD. First you have to do the pre-run to initialize the model for that you have to execute LISFLOOD with the following settings file: *settings_LF_CUT-PreRun000758494230.xml*. Once that is completed, check the *out* folder, you should find a file called lzavin in there. If that's the case you can launch the actual LISFLOOD run by execting LISFLOOD with the *settings_LF_CUT-Run000758494230.xml* settings file. This should produce a file called *dis.tss* in your *out* folder. The *dis.tss* contains the simulated discharge at the outlet point.
 6. Compare the *dis.tss* with the *streamflow_simulated_best.csv* to verify the correct installation and running of LISFLOOD.
 
-
-
+[What's next?](#next)
 
 
 ## Use case 2: Po River, Italy <a id="usecase2"></a>
@@ -53,9 +52,27 @@ As this use case is from our European setup, all the input maps are in the SPIRE
 
 
 ### How to get it running
-There are several important components of this use case that you can find in the parent folder:
-- [pre edited LISFLOOD settings files](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase): two files: *settings_LF_CUT-PreRun009026175600.xml* for the warm up and *settings_LF_CUT-Run009026175600.xml* for the actual running
-- [static maps of the Po river subsection](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase/maps), with everything included e.g. soil-, landuse-, topography-, etc. related information
-- meteorological input data from 02.01.1990 till 31.12.2017
-- [reference output](https://github.com/ec-jrc/lisflood-usecases/blob/master/LF_ETRS89_UseCase/streamflow_simulated_best.csv), to check that everything went correctly
 
+This section is pretty much a repetition of the one on the top for the Frasers river, but adapted for the use case on the Po river basin. We are going to repeat it here as the links to the files are different and also because you might not have done the one on the Fraser river.
+
+Before of getting started, let's have a look at the inventory of files belonging to the Fraser use case. You can find them in the [parent folder](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase):
+- [two pre-edited LISFLOOD settings files](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase):
+  - *settings_LF_CUT-PreRun009026175600.xml* for the warm up, i.e. initialization of the hydrological model and 
+  - *settings_LF_CUT-Run009026175600.xml* for the actual simulation.
+- [folder: *maps*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase/maps). Includes all static maps of the Fraser river subsection, with information on soil, landuse, topography, channel geometry, etc. 
+- [folder: *meteo*](). Contains all the meteorological input data, such as daily precipitation, average temperature and evapotranspiration from 02.01.1990 till 31.12.2017. 
+For general information on LISFLOOD input files see [here](https://ec-jrc.github.io/lisflood-code/4_annex_input-files/)
+- [*streamflow_simulated_best.csv*](https://github.com/ec-jrc/lisflood-usecases/blob/master/LF_ETRS89_UseCase/streamflow_simulated_best.csv). Is the reference output file. Use this file to compare against your own model simulation, if they are ideantical you are sure that LISFLOOD is running correctly on your PC.
+
+Okay let's get started. Follow the steps below to execute the use case on your PC: 
+1. If you haven't installed LISFLOOD yet, please do that first. You find the model [here](https://github.com/ec-jrc/lisflood-code) and also the [installation instructions](https://ec-jrc.github.io/lisflood-code/3_step2_installation/). Note: if possible, please install it on a LINUX system as it has shown to work more reliable on that system 
+2. Once you have completed step 1, download all the [files belonging to the Po use case](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase) to your local drive, please keep the folder structure as it is in the Github repository as LISFLOOD will expect them like that. 
+3. Open the LISFLOOD settings files on your local conputer and adapt the path names (so they fit to your local dirves): *PathRoot*, *MaskMap*, *PathRoot*, *PathParams*, *PathTables* and *PathRoot*. Please remember to do that for both settings files as else you will run into problems very soon.
+4. Create a folder called *out* in the same parent folder on your local drive, to provide LISFLOOD with a designated space to save your model output
+5. Open a command window and execute LISFLOOD. First you have to do the pre-run to initialize the model for that you have to execute LISFLOOD with the following settings file: *settings_LF_CUT-PreRun009026175600.xml*. Once that is completed, check the *out* folder, you should find a file called lzavin in there. If that's the case you can launch the actual LISFLOOD run by execting LISFLOOD with the *settings_LF_CUT-Run009026175600.xml* settings file. This should produce a file called *dis.tss* in your *out* folder. The *dis.tss* contains the simulated discharge at the outlet point.
+6. Compare the *dis.tss* with the *streamflow_simulated_best.csv* to verify the correct installation and running of LISFLOOD.
+
+
+## What's next? <a id="next"></a>
+
+If everything went alright you can be sure that the LISFLOOD runs correctly on your PC and you are ready to set it up for your own area. By the number of input maps you can tell that this is not going to be an easy exercise as LISFLOOD is quite complex and requires lot's of input information. By making available those two use cases we hope to facilitate you to understand how LISFLOOD works and what input information it requires. We recommend you to read carefully the documentation on the input data, so that you can prepare them for your own area. As a good practice we recommend you to replace one map at a time and see if LISFLOOD is still running as that will help you to understand where things went wrong in the case that the model has stopped working.
