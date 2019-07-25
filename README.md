@@ -1,7 +1,8 @@
 # Lisflood use cases
 
-This repository hosts usecases for LISFLOOD model.
-Go to [Lisflood OS page](https://ec-jrc.github.io/lisflood/) for more information.
+This repository hosts two use cases for the LISFLOOD model. The purpose of those use cases is for you to get kick-started with LISFLOOD as well as to give you the opportunity to verify that the model is running correctly on your PC. For you to be able to do that we have prepared for each of the two use cases all the static input maps, the meteorological forcings and the LISFLOOD setting files. Once you have downloaded and installed the LISFLOOD model on your own PC, we recommend you to download also one (or both) of the use cases and run as a test on your PC. In order for you to know that everything has worked correctly we also uploaded the reference output file that you should compare against your own output file; if everything has worked correctly both files will be identical.
+
+Before getting started with the description and instruction on the use cases, here again some useful links to the [Lisflood OS page](https://ec-jrc.github.io/lisflood/) for more information on the model and affiliated tools.
 
 **Other useful resources**
 
