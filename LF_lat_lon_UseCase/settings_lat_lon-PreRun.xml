@@ -415,7 +415,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/landusechange">
+            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/landuse">
                 <comment>
                     Maps for transient land use changes
                     rcp85_20062125
@@ -3994,7 +3994,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
 
                 </comment>
 
-                <textvar name="SoilDepth1" value="$(PathRoot)/maps/soildepth1_o">
+                <textvar name="SoilDepth1" value="$(PathSoilHyd)/soildepth1_o">
                     <comment>
                         Soil depth for 1st layer
                         Minimum Soil Depth [mm] for upper soil layer
@@ -4003,21 +4003,21 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="SoilDepth2" value="$(PathRoot)/maps/soildepth2_o">
+                <textvar name="SoilDepth2" value="$(PathSoilHyd)/soildepth2_o">
                     <comment>
                         Soil depth for 2nd layer
                         Minimum Soil Depth [mm] for second soil layer
                     </comment>
                 </textvar>
 
-                <textvar name="SoilDepth3" value="$(PathRoot)/maps/soildepth3_o">
+                <textvar name="SoilDepth3" value="$(PathSoilHyd)/soildepth3_o">
                     <comment>
                         Soil depth for 2nd layer
                         Minimum Soil Depth [mm] for second soil layer
                     </comment>
                 </textvar>
 
-                <textvar name="SoilDepth1Forest" value="$(PathRoot)/maps/soildepth1_f">
+                <textvar name="SoilDepth1Forest" value="$(PathSoilHyd)/soildepth1_f">
                     <comment>
                         Soil depth for 1st layer
                         Minimum Soil Depth [mm] for upper soil layer
@@ -4026,14 +4026,14 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="SoilDepth2Forest" value="$(PathRoot)/maps/soildepth2_f">
+                <textvar name="SoilDepth2Forest" value="$(PathSoilHyd)/soildepth2_f">
                     <comment>
                         Soil depth for 2nd layer
                         Minimum Soil Depth [mm] for lower soil layer
                     </comment>
                 </textvar>
 
-                <textvar name="SoilDepth3Forest" value="$(PathRoot)/maps/soildepth3_f">
+                <textvar name="SoilDepth3Forest" value="$(PathSoilHyd)/soildepth3_f">
                     <comment>
                         Soil depth for 2nd layer
                         Minimum Soil Depth [mm] for lower soil layer 300
@@ -4050,69 +4050,69 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     **************************************************************
                 </comment>
 
-                <textvar name="DirectRunoffFraction" value="$(PathRoot)/maps//fracsealed">
+                <textvar name="DirectRunoffFraction" value="$(PathMapsLanduse)/fracsealed">
                     <comment>
                         $(PathMapsLanduse)/fracsealed.map
                         urban area (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="DirectRunoffFractionMaps" value="$(PathRoot)/maps/fracsealed">
+                <textvar name="DirectRunoffFractionMaps" value="$(PathMapsLandUseChange)/fracsealed">
                     <comment>
                         stack of Direct Runoff fraction maps (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="ForestFraction" value="$(PathRoot)/maps/fracforest">
+                <textvar name="ForestFraction" value="$(PathMapsLanduse)/fracforest">
                     <comment>
                         $(PathMapsLanduse)/fracforest.map
                         forest fraction of a pixel (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="ForestFractionMaps" value="$(PathRoot)/maps/fracforest">
+                <textvar name="ForestFractionMaps" value="$(PathMapsLandUseChange)/fracforest">
                     <comment>
                         $(PathMapsLandUseChange)/
                         stack of forest fraction maps (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="WaterFraction" value="$(PathRoot)/maps/fracwater">
+                <textvar name="WaterFraction" value="$(PathMapsLanduse)/fracwater">
                     <comment>
                         $(PathMapsLanduse)/fracwater.map
                         forest fraction of a pixel (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="WaterFractionMaps" value="$(PathRoot)/maps/fracwater">
+                <textvar name="WaterFractionMaps" value="$(PathMapsLandUseChange)/fracwater">
                     <comment>
                         $(PathMapsLandUseChange)/
                         stack of water fraction maps (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="OtherFraction" value="$(PathRoot)/maps/fracother">
+                <textvar name="OtherFraction" value="$(PathMapsLanduse)/fracother">
                     <comment>
                         $(PathMapsLanduse)/fracother.map
                         forest fraction of a pixel (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="OtherFractionMaps" value="$(PathRoot)/maps/fracother">
+                <textvar name="OtherFractionMaps" value="$(PathMapsLandUseChange)/fracother">
                     <comment>
                         $(PathMapsLandUseChange)/
                         stack of other fraction maps (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="IrrigationFraction" value="$(PathRoot)/maps/fracirrigated">
+                <textvar name="IrrigationFraction" value="$(PathMapsLanduse)/fracirrigated">
                     <comment>
                         $(PathMapsLanduse)/fracirrigated.map
                         irrigated area fraction of a pixel (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="IrrigationFractionMaps" value="$(PathRoot)/maps/fracirrigated">
+                <textvar name="IrrigationFractionMaps" value="$(PathMapsLandUseChange)/fracirrigated">
                     <comment>
                         $(PathMapsLandUseChange)/
                         stack of Irrigation fraction maps (0-1)
@@ -4126,25 +4126,25 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="RiceFraction" value="$(PathRoot)/maps/fracrice">
+                <textvar name="RiceFraction" value="$(PathMapsLanduse)/fracrice">
                     <comment>
                         rice fraction of a pixel (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="RiceFractionMaps" value="$(PathRoot)/maps/fracrice">
+                <textvar name="RiceFractionMaps" value="$(PathMapsLandUseChange)/fracrice">
                     <comment>
                         stack of rice fraction maps (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="FractionGroundwaterUsed" value="$(PathRoot)/maps/fracgwused">
+                <textvar name="FractionGroundwaterUsed" value="$(PathMapsLanduse)/fracgwused">
                     <comment>
                         groundwater used fraction of a pixel (0-1)
                     </comment>
                 </textvar>
 
-                <textvar name="FractionNonConventionalWaterUsed" value="$(PathRoot)/maps/fracncused">
+                <textvar name="FractionNonConventionalWaterUsed" value="$(PathMapsLandUseChange)/fracncused">
                     <comment>
                         NonConventionalWaterUsed (0-1)
                     </comment>
@@ -4164,7 +4164,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="MapCropCoef" value="$(PathRoot)/maps//cropcoef_o.map">
+                <textvar name="MapCropCoef" value="$(PathRoot)/maps/cropcoef_o.map">
                     <comment>
                         table with crop coefficient for each land use; values ranging from 0.75 to 1.25;
                         source: Supit, p.83 CFET

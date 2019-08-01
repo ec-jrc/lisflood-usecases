@@ -434,51 +434,51 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsTables" value="$(PathRoot)/maps">
+            <textvar name="PathMapsTables" value="$(PathRoot)/mapstables">
                 <comment>
                     Maps instead tables path
                 </comment>
             </textvar>
 
-            <textvar name="PathSoilHyd" value="$(PathRoot)/maps">
+            <textvar name="PathSoilHyd" value="$(PathRoot)/soilhyd">
                 <comment>
                     Maps instead tables for soil hydraulics path
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/maps">
+            <textvar name="PathMapsLanduseChange" value="$(PathRoot)/landusechange">
                 <comment>
                     Maps for transient land use changes
                     rcp85_20062125
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsLanduse" value="$(PathRoot)/maps">
+            <textvar name="PathMapsLanduse" value="$(PathRoot)/landuse">
                 <comment>
                     Maps for land use fractions and related land use maps
                 </comment>
             </textvar>
 
-            <textvar name="PathWaterUse" value="$(PathRoot)/maps">
+            <textvar name="PathWaterUse" value="$(PathRoot)/wateruse">
                 <comment>
                     Water use maps path
                 </comment>
             </textvar>
 
-            <textvar name="PathMeteo" value="$(PathRoot)/maps">
+            <textvar name="PathMeteo" value="$(PathRoot)/meteo">
                 <comment>
                     ./meteoWatch
                     Meteo path
                 </comment>
             </textvar>
 
-            <textvar name="PathLAI" value="$(PathRoot)/maps">
+            <textvar name="PathLAI" value="$(PathRoot)/lai">
                 <comment>
                     Leaf Area Index maps path
                 </comment>
             </textvar>
 
-            <textvar name="PathVarWaterfraction" value="$(PathRoot)/maps">
+            <textvar name="PathVarWaterfraction" value="$(PathRoot)/waterfraction">
                 <comment>
                     variable water fraction maps path
                 </comment>
@@ -4150,7 +4150,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="DirectRunoffFractionMaps" value="$(PathMapsLandUseChange)/fracsealed">
+                <textvar name="DirectRunoffFractionMaps" value="$(PathMapsLanduse)/fracsealed">
                     <comment>
                         stack of Direct Runoff fraction maps (0-1)
                     </comment>
@@ -4162,7 +4162,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="ForestFractionMaps" value="$(PathMapsLandUseChange)/fracforest">
+                <textvar name="ForestFractionMaps" value="$(PathMapsLanduseChange)/fracforest">
                     <comment>
                         stack of forest fraction maps (0-1)
                     </comment>
@@ -4174,7 +4174,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="WaterFractionMaps" value="$(PathMapsLandUseChange)/fracwater">
+                <textvar name="WaterFractionMaps" value="$(PathMapsLanduseChange)/fracwater">
                     <comment>
                         stack of water fraction maps (0-1)
                     </comment>
@@ -4186,7 +4186,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="OtherFractionMaps" value="$(PathMapsLandUseChange)/fracother">
+                <textvar name="OtherFractionMaps" value="$(PathMapsLanduseChange)/fracother">
                     <comment>
                         stack of other fraction maps (0-1)
                     </comment>
@@ -4198,7 +4198,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="IrrigationFractionMaps" value="$(PathMapsLandUseChange)/fracirrigated">
+                <textvar name="IrrigationFractionMaps" value="$(PathMapsLanduseChange)/fracirrigated">
                     <comment>
                         stack of Irrigation fraction maps (0-1)
                     </comment>
@@ -4216,7 +4216,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="RiceFractionMaps" value="$(PathMapsLandUseChange)/fracrice">
+                <textvar name="RiceFractionMaps" value="$(PathMapsLanduseChange)/fracrice">
                     <comment>
                         stack of rice fraction maps (0-1)
                     </comment>
