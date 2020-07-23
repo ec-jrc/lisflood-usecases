@@ -434,13 +434,13 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsTables" value="$(PathRoot)/mapstables">
+            <textvar name="PathMapsTables" value="$(PathRoot)/maps">
                 <comment>
                     Maps instead tables path
                 </comment>
             </textvar>
 
-            <textvar name="PathSoilHyd" value="$(PathRoot)/soilhyd">
+            <textvar name="PathSoilHyd" value="$(PathRoot)/maps">
                 <comment>
                     Maps instead tables for soil hydraulics path
                 </comment>
@@ -472,7 +472,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathLAI" value="$(PathRoot)/lai">
+            <textvar name="PathLAI" value="$(PathRoot)/maps">
                 <comment>
                     Leaf Area Index maps path
                 </comment>
