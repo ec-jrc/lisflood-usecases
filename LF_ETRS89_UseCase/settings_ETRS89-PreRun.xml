@@ -459,7 +459,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathWaterUse" value="$(PathRoot)/wateruse">
+            <textvar name="PathWaterUse" value="$(PathRoot)/maps">
                 <comment>
                     Water use maps path
                 </comment>
@@ -1475,6 +1475,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
 **************************************************************
 **************************************************************
 -->
+        <textvar name="numCPUs_parallelKinematicWave" value="$(numCPUs_parallelKinematicWave)"/>
         <textvar name="MaskMap" value="$(MaskMap)">
             <comment>
                 Clone map
