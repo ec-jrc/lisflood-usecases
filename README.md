@@ -21,7 +21,7 @@ As this is a use case from our global setup, all input maps are in the geographi
 
 Before of getting started, let's have a look at the inventory of files belonging to the Fraser use case. You can find them in the [parent folder](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase):
 - [two pre-edited LISFLOOD settings files](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase):
-  - *settings_lat_lon-PreRun.xml for the warm up, i.e. initialization of the hydrological model and 
+  - *settings_lat_lon-PreRun.xml* for the warm up, i.e. initialization of the hydrological model and 
   - *settings_lat_lon-Run.xml* for the actual simulation.
 - [folder: *maps*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/maps), [folder: *landuse*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/landuse) include the static maps of the Fraser river subsection, with information on soil, topography, channel geometry,landuse, etc. 
 - [folder: *meteo*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/meteo) contains all the meteorological input data, such as daily precipitation, average temperature and evapotranspiration from 02.01.1986 till 01.01.2018; [folder: *meteo*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/inflow) contains the discharge time series of the four input points, from 02.01.1986 to 01.01.2018.
