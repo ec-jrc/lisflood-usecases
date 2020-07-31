@@ -55,7 +55,7 @@ As this use case is from our European setup, all the input maps are in the SPIRE
 
 This section is pretty much a repetition of the one on the top for the Frasers river, but adapted for the use case on the Po river basin. We are going to repeat it here as the links to the files are different and also because you might not have done the one on the Fraser river.
 
-Before of getting started, let's have a look at the inventory of files belonging to the Fraser use case. You can find them in the [parent folder](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase):
+Before of getting started, let's have a look at the inventory of files belonging to the Po use case. You can find them in the [parent folder](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase):
 - [two pre-edited LISFLOOD settings files](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_ETRS89_UseCase):
   - *settings_ETRS89-PreRun.xml* for the warm up, i.e. initialization of the hydrological model and 
   - *settings_ETRS89-Run.xml* for the actual simulation.
