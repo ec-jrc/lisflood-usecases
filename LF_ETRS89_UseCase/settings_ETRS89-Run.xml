@@ -183,8 +183,10 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                     latitude map to be used for snow/ice modelling
                 </comment>
             </textvar>
+             <textvar name="proj4_params" value="+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs">
+            </textvar>
 
-
+          
             <comment>
                 **************************************************************
                 TIME-RELATED CONSTANTS
@@ -463,13 +465,13 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsTables" value="$(PathRoot)/mapstables">
+            <textvar name="PathMapsTables" value="$(PathRoot)/maps">
                 <comment>
                     Maps instead tables path
                 </comment>
             </textvar>
 
-            <textvar name="PathSoilHyd" value="$(PathRoot)/soilhyd">
+            <textvar name="PathSoilHyd" value="$(PathRoot)/maps">
                 <comment>
                     Maps instead tables for soil hydraulics path
                 </comment>
@@ -501,13 +503,13 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathLAI" value="$(PathRoot)/lai">
+            <textvar name="PathLAI" value="$(PathRoot)/maps">
                 <comment>
                     Leaf Area Index maps path
                 </comment>
             </textvar>
 
-            <textvar name="PathVarWaterfraction" value="$(PathRoot)/waterfraction">
+            <textvar name="PathVarWaterfraction" value="$(PathRoot)/maps">
                 <comment>
                     variable water fraction maps path
                 </comment>
@@ -846,25 +848,25 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PrefixWaterUseDomestic" value="dom_1990-2018">
+            <textvar name="PrefixWaterUseDomestic" value="dom_1990-2019">
                 <comment>
                     prefix domestic water use maps
                 </comment>
             </textvar>
 
-            <textvar name="PrefixWaterUseLivestock" value="liv_1990-2018">
+            <textvar name="PrefixWaterUseLivestock" value="liv_1990-2019">
                 <comment>
                     prefix livestock water use maps
                 </comment>
             </textvar>
 
-            <textvar name="PrefixWaterUseEnergy" value="ene_1990-2018">
+            <textvar name="PrefixWaterUseEnergy" value="ene_1990-2019">
                 <comment>
                     prefix energy water use maps
                 </comment>
             </textvar>
 
-            <textvar name="PrefixWaterUseIndustry" value="ind_1990-2018">
+            <textvar name="PrefixWaterUseIndustry" value="ind_1990-2019">
                 <comment>
                     prefix industry water use maps
                 </comment>
@@ -1543,6 +1545,8 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     e.g. 1st of January: 1; 1st of June 151 (or 152 in leap year)
                     Needed to read out LAI tables correctly
                 </comment>
+            </textvar>
+             <textvar name="proj4_params" value="$(proj4_params)">
             </textvar>
 
             <textvar name="DtSec" value="$(DtSec)">
