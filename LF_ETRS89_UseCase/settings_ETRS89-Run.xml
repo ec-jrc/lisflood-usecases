@@ -5396,7 +5396,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     <textvar name="AreatotalIrrigationUseM3" value="$(PathOut)/ATIrgUse">
                         <comment>
                             AreatotalIrrigationUseM3
-                        </comment>
+                        </comment> 
                     </textvar>
 
                     <textvar name="FractionAbstractedFromChannels" value="$(PathOut)/FrChan">
