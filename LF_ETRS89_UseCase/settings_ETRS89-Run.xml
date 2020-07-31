@@ -1982,20 +1982,15 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 **************************************************************
             </comment>
 
-            <textvar name="LZAvInflowMap" value="$(PathOut)/lzavin009026175600.end">
+            <textvar name="LZAvInflowMap" value="$(PathOut)/lzavin009026175600">
                 <comment>
-                    NOTE DD: The name of the lzavin files MUST contain a dot . because
-                    the add1.py/writenet function uses the dot to distinguish whether
-                    multiple time steps must be written out in netCDF, or if it's just
-                    the one plane that doesn't need the time variable to be added in
-                    the netCDF file.
                     $(PathInit)/lzavin.map
                     Reported map of average percolation rate from upper to
                     lower groundwater zone (reported for end of simulation)
                 </comment>
             </textvar>
 
-            <textvar name="AvgDis" value="$(PathOut)/avgdis009026175600.end">
+            <textvar name="AvgDis" value="$(PathOut)/avgdis009026175600">
                 <comment>
                     $(PathInit)/avgdis.map
                     CHANNEL split routing in two lines
