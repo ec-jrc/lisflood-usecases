@@ -1,0 +1,7 @@
+name: env_lisflood
+channels:
+  - conda-forge
+dependencies:
+  - pcraster
+  - pip:
+    - lisflood-model
