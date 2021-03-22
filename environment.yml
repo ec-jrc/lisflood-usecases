@@ -3,5 +3,6 @@ channels:
   - conda-forge
 dependencies:
   - pcraster
+  - pip
   - pip:
     - lisflood-model
