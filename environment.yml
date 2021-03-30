@@ -5,4 +5,5 @@ dependencies:
   - pcraster
   - pip
   - pip:
+    - ipyfilechooser
     - lisflood-model
