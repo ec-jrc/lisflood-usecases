@@ -2,6 +2,9 @@ name: env_lisflood
 channels:
   - conda-forge
 dependencies:
+  - altair
+  - cartopy
+  - matplotlib
   - pcraster
   - pip
   - pip:
