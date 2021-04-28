@@ -2,6 +2,7 @@ name: env_lisflood
 channels:
   - conda-forge
 dependencies:
+  - jupyter_contrib_nbextensions
   - altair
   - cartopy
   - matplotlib
