@@ -12,3 +12,4 @@ dependencies:
   - pip:
     - ipyfilechooser
     - lisflood-model
+    - ipympl
