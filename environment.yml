@@ -1,8 +1,14 @@
 name: lisflood
 channels:
   - conda-forge
-  - defaults
+  - default
 dependencies:
+  - jupyter_contrib_nbextensions
+  - ipyleaflet
+  - altair
+  - cartopy
+  - matplotlib
+  - ipyfilechooser
   - pcraster
   - pip
   - pip:
