@@ -6,10 +6,13 @@ This repository hosts two use cases for the LISFLOOD model. The purpose of those
 
 Before getting started with the description and instruction on the use cases, here again the link to the [Lisflood OS landing page](https://ec-jrc.github.io/lisflood/) for more information on the model and affiliated tools.
 
+Moreover, a Jupyter Notebook has been developed to show the functioning of LISFLOOD without the need of installing anything on the users’ computer. A description of the Jupyter notebook is proveded below.
 
-## Use case 1: Fraser River, British Columbia, Canada  <a id="usecase1"></a>
+## Running LISFLOOD-OS on your PC
 
-### Short description 
+### Use case 1: Fraser River, British Columbia, Canada  <a id="usecase1"></a>
+
+#### Short description 
 The first use case is located in West Canada, in a basin called Fraser. The Fraser River rises at Fraser Pass near Blackrock Mountain in the Rocky Mountains and discharges into the Pacific Ocean at the city of Vancouver. With its 1,375 km length, it is the longest river within British Columbia and the 11<sup>th</sup> longest river in Canada. The basin size is about 220,000 km<sup>2</sup>, while the annual discharge at its mouth is 3,550 m<sup>3</sup>.
 
 ![](doc/FraserRiver.png)
@@ -19,7 +22,7 @@ For testing the LISFLOOD code we prepared all the required input (maps) for a su
 As this is a use case from our global setup, all input maps are in the geographical system WGS84, with latitude and longitude. The map extent is 52.6<sup>o</sup> to 54<sup>o</sup> North and -121.4<sup>o</sup> to -124.5<sup>o</sup> West, with a horizontal resolution of 0.1 degree. The standard map format is netCDF.
 
 
-### How to get it running
+#### How to get it running
 
 Before of getting started, let's have a look at the inventory of files belonging to the Fraser use case. You can find them in the [parent folder](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase):
 - [two pre-edited LISFLOOD settings files](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase):
@@ -41,7 +44,7 @@ Okay let's get started. Follow the steps below to execute the use case on your P
 [What's next?](#next)
 
 
-## Use case 2: Po River, Italy <a id="usecase2"></a>
+### Use case 2: Po River, Italy <a id="usecase2"></a>
 
 ### Short description 
 The second use case is located in North Italy, in the Po River Basin. Its source is at Monte Viso in Piemonte (Italy) at about 3,700 m; from there it flows 652 km eastwards till it flows into the Adriatic Sea close to Venice. The whole basin covers about 74,000 km², of which 70,000 km² are on Italian territory, and the remaining are shared between France and Switzerland. The average annual discharge at the river mouth is about 1,540 m³/s, whereas the maximum is about double of that.
@@ -53,7 +56,7 @@ Also for this use case we have selected only a portion of the whole river basin.
 As this use case is from our European setup, all the input maps are in the SPIRE compliant ETRS89 Lambert Azimuthal Equal Area Coordinate Reference System (ETRS-LAEA). The extent of the prepared input maps for this use case is 2535000 (top), 4095000 (left), 4230000 (right) and 2380000 (bottom). The horizontal resolution is 5 km and the standard map format is netCDF.
 
 
-### How to get it running
+#### How to get it running
 
 This section is pretty much a repetition of the one on the top for the Frasers river, but adapted for the use case on the Po river basin. We are going to repeat it here as the links to the files are different and also because you might not have done the one on the Fraser river.
 
@@ -77,6 +80,18 @@ Okay let's get started. Follow the steps below to execute the use case on your P
 6. Compare the *dis.tss* with the *streamflow_simulated_ETRS89.csv* to verify the correct installation and running of LISFLOOD.
 
 
-## What's next? <a id="next"></a>
+### What's next? <a id="next"></a>
 
 If everything went alright you can be sure that the LISFLOOD runs correctly on your PC and you are ready to set it up for your own area. By the number of input maps you can tell that this is not going to be an easy exercise as LISFLOOD is quite complex and requires several input information. By making available those two use cases we hope to facilitate you to understand how LISFLOOD works and what input information it requires. We recommend you to read carefully the documentation on the input data, so that you can prepare them for your own area. As a good practice we recommend you to replace one map at a time and see if LISFLOOD is still running as that will help you to understand where things went wrong in the case that the model has stopped working.
+
+
+## Jupyter notebook
+
+A Jupyter Notebook was developed to show the functioning of LISFLOOD without the need of installing anything on the users’ computer. The Jupyter notebook can be accessed by simply clicking on the button  “launch binder” on top of the README. It allows the user to familiarize with LISFLOOD settings, parameters, processing protocol, and output variables by simply interacting with the graphic interface of the notebook.
+When opening the notebook with Binder, the code cells are folded. Conversely, the code can be visualized by clicking on the respective small arrow on the left. The users can test the functioning of LISFLOOD by clicking the using the standard Jupyter Notebook commands.
+The Processing code cell creates an interactive interface where the users can select the settings files, the temporal interval for the simulation, the hydrological modules, the values of the parameters, and the output variables. The simulation can then be performed by simply clicking on the “Start processing” button. The results are visualized by the Outputs code cell. The notebook can also be used for data visualization of previous LISFLOOD runs. When running the Outputs code cell, the notebook checks whether the Processing code cell has been executed before. If yes, it opens the output files coming from this LISFLOOD run. If not, it opens another file chooser where you can choose the output folder that you would like to visualize.
+
+*Note*: *the users are recommended to test the functioning of the notebook by running the LF_lat_lon usecase*
+
+**Acknowledgement**: the Jupyter Notebook was developed by Victor Hertel.
+
