@@ -6,7 +6,7 @@ This repository hosts two use cases for the LISFLOOD model. The purpose of those
 
 Before getting started with the description and instruction on the use cases, here again the link to the [Lisflood OS landing page](https://ec-jrc.github.io/lisflood/) for more information on the model and affiliated tools.
 
-Moreover, a Jupyter Notebook has been developed to show the functioning of LISFLOOD without the need of installing anything on the users’ computer. A description of the Jupyter notebook is proveded below.
+Moreover, a Jupyter Notebook has been developed to show the functioning of LISFLOOD without the need of installing anything on the users’ computer. A description of the Jupyter notebook is provided [below](#jupyter-notebook).
 
 ## Running LISFLOOD-OS on your PC
 
@@ -91,7 +91,9 @@ A Jupyter Notebook was developed to show the functioning of LISFLOOD without the
 When opening the notebook with Binder, the code cells are folded. Conversely, the code can be visualized by clicking on the respective small arrow on the left. The users can test the functioning of LISFLOOD by clicking the using the standard Jupyter Notebook commands.
 The Processing code cell creates an interactive interface where the users can select the settings files, the temporal interval for the simulation, the hydrological modules, the values of the parameters, and the output variables. The simulation can then be performed by simply clicking on the “Start processing” button. The results are visualized by the Outputs code cell. The notebook can also be used for data visualization of previous LISFLOOD runs. When running the Outputs code cell, the notebook checks whether the Processing code cell has been executed before. If yes, it opens the output files coming from this LISFLOOD run. If not, it opens another file chooser where you can choose the output folder that you would like to visualize.
 
-*Note*: *the users are recommended to test the functioning of the notebook by running the LF_lat_lon usecase*
+*Note*: *the users are recommended to test the functioning of the Jupiter notebook by running the LF_lat_lon usecase.
+//Prerun settings: lisfloodSettings_reference_PreRun.xml
+//Run settings: lisfloodSettings_reference_Run_v3.xml*
 
 **Acknowledgement**: the Jupyter Notebook was developed by Victor Hertel.
 
