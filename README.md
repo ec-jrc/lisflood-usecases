@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vhertel/lisflood-usecases/HEAD)  
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/tree/jupyter_notebook/branch)
 
 # Lisflood use cases
 
