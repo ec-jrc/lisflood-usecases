@@ -87,13 +87,16 @@ If everything went alright you can be sure that the LISFLOOD runs correctly on y
 
 ## Jupyter notebook
 
-A Jupyter Notebook was developed to show the functioning of LISFLOOD without the need of installing anything on the users’ computer. The Jupyter notebook can be accessed by simply clicking on the button  “launch binder” on top of the README. It allows the user to familiarize with LISFLOOD settings, parameters, processing protocol, and output variables by simply interacting with the graphic interface of the notebook.
-When opening the notebook with Binder, the code cells are folded. Conversely, the code can be visualized by clicking on the respective small arrow on the left. The users can test the functioning of LISFLOOD by clicking the using the standard Jupyter Notebook commands.
-The Processing code cell creates an interactive interface where the users can select the settings files, the temporal interval for the simulation, the hydrological modules, the values of the parameters, and the output variables. The simulation can then be performed by simply clicking on the “Start processing” button. The results are visualized by the Outputs code cell. The notebook can also be used for data visualization of previous LISFLOOD runs. When running the Outputs code cell, the notebook checks whether the Processing code cell has been executed before. If yes, it opens the output files coming from this LISFLOOD run. If not, it opens another file chooser where you can choose the output folder that you would like to visualize.
+A Jupyter Notebook was developed to show the functioning of LISFLOOD without the need of installing anything on the users’ computer. The Jupyter notebook can be accessed by simply clicking on the button  “launch binder” on top of the README. It allows the user to familiarize with LISFLOOD settings, parameters, processing protocol, and output variables by simply interacting with the graphic interface of the notebook.<br>
+When opening the notebook with Binder, the code cells are folded. Conversely, the code can be visualized by clicking on the respective small arrow on the left. The users can test the functioning of LISFLOOD by clicking the using the standard Jupyter Notebook commands.<br>
+The Processing code cell creates an interactive interface where the users can select (i) the settings files, (ii) the temporal interval for the simulation, (iii) the hydrological modules, (iv) the values of the parameters, and (v) the output variables. <br>
+The simulation can then be performed by simply clicking on the “Start processing” button. <br>
+The results are visualized by the Outputs code cell. <br>
+The notebook can also be used for data visualization of previous LISFLOOD runs. When running the Outputs code cell, the notebook checks whether the Processing code cell has been executed before. If yes, it opens the output files coming from this LISFLOOD run. If not, it opens another file chooser where you can choose the output folder that you would like to visualize.
 
-*Note*: *the users are recommended to test the functioning of the Jupiter notebook by running the LF_lat_lon usecase.
-//Prerun settings: lisfloodSettings_reference_PreRun.xml
-//Run settings: lisfloodSettings_reference_Run_v3.xml*
+*Note*: *the users are recommended to test the functioning of the Jupiter notebook by running the LF_lat_lon usecase.*<br>
+Prerun settings: lisfloodSettings_reference_PreRun.xml<br>
+Run settings: lisfloodSettings_reference_Run_v3.xml<br>
 
 **Acknowledgement**: the Jupyter Notebook was developed by Victor Hertel.
 
