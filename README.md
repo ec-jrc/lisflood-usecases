@@ -92,7 +92,7 @@ When opening the notebook with Binder, the code cells are folded. Conversely, th
 The Processing code cell creates an interactive interface where the users can select (i) the settings files, (ii) the temporal interval for the simulation, (iii) the hydrological modules, (iv) the values of the parameters, and (v) the output variables. <br>
 The simulation can then be performed by simply clicking on the “Start processing” button. <br>
 The results are visualized by the Outputs code cell. <br>
-The notebook can also be used for data visualization of previous LISFLOOD runs. When running the Outputs code cell, the notebook checks whether the Processing code cell has been executed before. If yes, it opens the output files coming from this LISFLOOD run. If not, it opens another file chooser where you can choose the output folder that you would like to visualize.
+The notebook can also be used for data visualization of previous LISFLOOD runs. When running the Outputs code cell, the notebook checks whether the Processing code cell has been executed before. If yes, it opens the output files coming from this LISFLOOD run. If not, it opens another file chooser where the users can choose the output folder that they would like to visualize.
 
 *Note*: *the users are recommended to test the functioning of the Jupiter notebook by running the LF_lat_lon usecase.*<br>
 Prerun settings: lisfloodSettings_reference_PreRun.xml<br>
