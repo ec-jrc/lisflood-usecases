@@ -28,7 +28,7 @@ Before of getting started, let's have a look at the inventory of files belonging
 - [folder: *maps*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/maps), [folder: *landuse*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/landuse) include the static maps of the Fraser river subsection, with information on soil, topography, channel geometry,landuse, etc. 
 - [folder: *meteo*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/meteo) contains all the meteorological input data, such as daily precipitation, average temperature and evapotranspiration from 02.01.1986 till 01.01.2018; [folder: *inflow*](https://github.com/ec-jrc/lisflood-usecases/tree/master/LF_lat_lon_UseCase/inflow) contains the discharge time series of the four input points, from 02.01.1986 to 01.01.2018.
 For general information on LISFLOOD input files see [here](https://ec-jrc.github.io/lisflood-code/4_annex_input-files/)
-- [*streamflow_simulated_lat_lon.csv*](https://github.com/ec-jrc/lisflood-usecases/blob/master/LF_lat_lon_UseCase/streamflow_simulated_lat_lon.csv) is the reference output file. Use this file to compare against your own model simulation, if they are identical you are sure that LISFLOOD is running correctly on your PC.
+- *dis_reference_LF_lat_lon.tss* is the reference output file. Use this file to compare against your own model simulation, if they are identical you are sure that LISFLOOD is running correctly on your PC.
 
 Okay let's get started. Follow the steps below to execute the use case on your PC: 
 1. If you haven't installed LISFLOOD yet, please do that first. You find the model [here](https://github.com/ec-jrc/lisflood-code) and also the [installation instructions](https://ec-jrc.github.io/lisflood-code/3_step2_installation/). Note: if possible, please install it on a LINUX system as it has shown to work more reliable on that system. 
@@ -36,8 +36,8 @@ Okay let's get started. Follow the steps below to execute the use case on your P
 3. Open the LISFLOOD settings files on your local conputer and adapt the path names (so they fit to your local dirves): *PathRoot*, *MaskMap*, *PathRoot*, *PathParams*, and *PathTables*. Please remember to do that for both settings files as else you will run into problems very soon.
 TIP:  You can use *$(ProjectDir)* or *$(ProjectPath)* as built-in variable to use in this XML settings, to refer the project folder.
 4. Create a folder called *out* in the same parent folder on your local drive, to provide LISFLOOD with a designated space to save your model output
-5. Open a command window and execute LISFLOOD. First you have to do the pre-run to initialize the model for that you have to execute LISFLOOD with the following settings file: *settings_lat_lon-PreRun.xml*. Once that is completed, check the *out* folder, you should find a file called lzavin in there. If that's the case you can launch the actual LISFLOOD run by execting LISFLOOD with the *settings_lat_lon-Run.xml* settings file. This should produce a file called *dis.tss* in your *out* folder. The *dis.tss* contains the simulated discharge at the outlet point.
-6. Compare the *dis.tss* with the *streamflow_simulated_lat_lon.csv* to verify the correct installation and running of LISFLOOD.
+5. Open a command window and execute LISFLOOD. First you have to do the pre-run to initialize the model for that you have to execute LISFLOOD with the following settings file: *settings_lat_lon-PreRun.xml*. Once that is completed, check the *out* folder, you should find a file called lzavin in there. If that's the case you can launch the actual LISFLOOD run by execting LISFLOOD with the *settings_lat_lon-Run.xml* settings file. This should produce a file called *dis.tss* in your *out* folder. The *dis_run.tss* contains the simulated discharge at the outlet point.
+6. Compare the *dis_run.tss* with the *dis_reference_LF_lat_lon.tss* to verify the correct installation and running of LISFLOOD.
 
 [What's next?](#next)
 
@@ -45,7 +45,7 @@ TIP:  You can use *$(ProjectDir)* or *$(ProjectPath)* as built-in variable to us
 ## Use case 2: Po River, Italy <a id="usecase2"></a>
 
 ### Short description 
-The second use case is located in North Italy, in the Po River Basin. Its source is at Monte Viso in Piemonte (Italy) at about 3,700 m; from there it flows 652 km eastwards till it flows into the Adriatic Sea close to Venice. The whole basin covers about 74,000 km², of which 70,000 km² are on Italian territory, and the remaining are shared between France and Switzerland. The average annual discharge at the river mouth is about 1,540 m³/s, whereas the maximum is about double of that.
+The second use case is located in North Italy, in the Po River Basin. Its source is at Monte Viso in Piemonte (Italy) at about 3,700 m; from there it flows 652 km eastwards till it flows into the Adriatic Sea close to Venice. The whole basin covers about 74,000 km², of which 70,000 km² are on Italian territory, and the remaining are shared between France and Switzerland. 
 
 ![](doc/PoRiver.png)
 
