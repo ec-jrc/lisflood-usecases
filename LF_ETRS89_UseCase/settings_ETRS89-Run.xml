@@ -21,6 +21,7 @@
         # modelling and reporting options
         #-----------------------------------------------------------
         # options to turn hydrological modules on/off
+        <setoption choice="0" name="cropsEPIC"/>
 
         <setoption choice="1" name="wateruse"/>
         <setoption choice="1" name="TransientWaterDemandChange"/>
@@ -114,6 +115,9 @@
 
         <group>
 
+            **************************************************************
+            PARALLELIZED KINEMATIC ROUTING
+            **************************************************************
             <!-- Parallelisation of the kinematic wave routing (via openMP multi-threading).
 The option "numberParallelThreadsKinematicWave" may take the following values:
     - "0"           : auto-detection of the machine/node's number of CPUs
@@ -122,7 +126,22 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
     - "2", "3", ... : manual setting of the number of parallel threads.
                       (if exceeding the number of CPUs, the option is set to "0") -->
             <textvar name="numCPUs_parallelKinematicWave" value="0"/>
-
+            
+            <comment>
+            **************************************************************
+            PARALLELISATION WITH NUMBA (USED IN SOILLOOP)
+            **************************************************************
+            </comment>
+            
+            !-- Parallelisation of using Numba runtime compiled library .
+            The option "numCPUs_parallelNumba" may take the following values:
+                - "0"           : set to NUMBA_NUM_THREADS Environment Variable 
+                                  (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
+                - "1"           : serial execution (not parallel)
+                - "2", "3", ... : manual setting of the number of parallel threads.
+                                  (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
+            <textvar name="numCPUs_parallelNumba" value="0"/>
+            
             <comment>
                 **************************************************************
                 AREA AND OUTLETS
@@ -1054,6 +1073,18 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
+            <textvar name="IrrigationWaterReUseM3" value="0.0">           
+                <comment>           
+                    Annual amount (m3) of treated wastewater reused for irrigation                  
+                </comment>    
+            </textvar>
+            
+           <textvar name="IrrigationWaterReUseNumDays" value="143">          
+               <comment>           
+               Number of days over which the annual amount of treated wastewater for irrigation is used                
+               </comment>           
+           </textvar>                
+
             <textvar name="LivestockConsumptiveUseFraction" value="0.15">
                 <comment>
                     Consumptive Use (1-Recycling ratio) for livestock water use (0-1)
@@ -1524,6 +1555,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
 **************************************************************
 -->
         <textvar name="numCPUs_parallelKinematicWave" value="$(numCPUs_parallelKinematicWave)"/>
+        <textvar name="numCPUs_parallelNumba" value="$(numCPUs_parallelNumba)"/>
         <textvar name="MaskMap" value="$(MaskMap)">
             <comment>
                 Clone map
@@ -2012,7 +2044,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 **************************************************************
             </comment>
 
-            <textvar name="LZAvInflowMap" value="$(PathOut)/lzavin009026175600">
+            <textvar name="LZAvInflowMap" value="$(PathOut)/lzavin">
                 <comment>
                     $(PathInit)/lzavin.map
                     Reported map of average percolation rate from upper to
@@ -2020,7 +2052,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 </comment>
             </textvar>
 
-            <textvar name="AvgDis" value="$(PathOut)/avgdis009026175600">
+            <textvar name="AvgDis" value="$(PathOut)/avgdis">
                 <comment>
                     $(PathInit)/avgdis.map
                     CHANNEL split routing in two lines
@@ -2468,6 +2500,18 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     More than the transpiration is added e.g to prevent salinisation
                 </comment>
             </textvar>
+            
+            <textvar name="IrrigationWaterReUseM3" value="$(IrrigationWaterReUseM3)">           
+                <comment>           
+                Annual amount (m3) of treated wastewater reused for irrigation                  
+                </comment>    
+            </textvar>
+               
+            <textvar name="IrrigationWaterReUseNumDays" value="$(IrrigationWaterReUseNumDays)">      
+                <comment>
+                Number of days over which the annual amount of treated wastewater for irrigation is used                
+                </comment>          
+            </textvar>                
 
             <textvar name="MapIrrigationCropCoef" value="$(MapIrrigationCropCoef)">
                 <comment>
@@ -3601,7 +3645,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 **************************************************************
             </comment>
 
-            <textvar name="DisTS" value="$(PathOut)/dis009026175600.tss">
+            <textvar name="DisTS" value="$(PathOut)/dis.tss">
                 <comment>
                     Reported discharge [cu m/s]
                 </comment>
