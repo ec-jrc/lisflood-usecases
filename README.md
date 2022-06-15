@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/jupyter_notebook)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/jupyter_notebook?urlpath=lab/tree/lisflood-notebook.ipynb)
 
 # Lisflood use cases
 
@@ -96,7 +96,7 @@ The notebook can also be used for data visualization of previous LISFLOOD runs. 
 
 *Note*: *the users are recommended to test the functioning of the Jupiter notebook by running the LF_lat_lon usecase.*<br>
 Prerun settings: lisfloodSettings_reference_PreRun.xml<br>
-Run settings: lisfloodSettings_reference_Run_v3.xml<br>
+Run settings: lisfloodSettings_reference_Run.xml<br>
 
 **Acknowledgement**: the Jupyter Notebook was developed by Victor Hertel.
 

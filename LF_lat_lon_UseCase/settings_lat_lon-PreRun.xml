@@ -33,6 +33,7 @@
 
         <setoption choice="0" name="TransientLandUseChange"/>
         <setoption choice="0" name="TransientWaterDemandChange"/>
+        <setoption choice="0" name="useWaterDemandAveYear"/>
         <setoption choice="1" name="useWateqrDemandAveYear"/>
         <setoption choice="1" name="openwaterevapo"/>
 
@@ -44,10 +45,12 @@
         <setoption choice="1" name="InitLisflood"/>
         <setoption choice="0" name="InitLisfloodwithoutSplit"/>
 
+        <setoption choice="0" name="repStateMaps"/>
         <setoption choice="0" name="repEndMaps"/>
         <setoption choice="0" name="repTopSoilMoistureMaps"/>
         <setoption choice="0" name="repSurfaceSoilMoistureMaps"/>
         <setoption choice="0" name="repDischargeMaps"/>
+        <setoption choice="0" name="repSurfaceRunoffMaps"/>
         <setoption choice="0" name="repsimulateLakes"/>
         <setoption choice="0" name="repsimulateReservoirs"/>
 
@@ -56,8 +59,10 @@
         <setoption choice="0" name="repRainMaps"/>
         <setoption choice="0" name="repSnowMeltMaps"/>
         <setoption choice="0" name="repPFMaps"/>
+        <setoption choice="0" name="repPFForestMaps"/>
         <setoption choice="0" name="repThetaMaps"/>
-        <setoption choice="0" name="repThetaForestMaps"/>
+        <setoption choice="1" name="repThetaForestMaps"/>
+        <setoption choice="0" name="repThetaIrrigationMaps"/>
         <setoption choice="0" name="repLZMaps"/>
         <setoption choice="0" name="repUZMaps"/>
         <setoption choice="0" name="repGwPercUZLZMaps"/>
@@ -77,6 +82,8 @@
         <setoption choice="0" name="repTotalAbs"/>
         <setoption choice="0" name="repTotalWUse"/>
         <setoption choice="0" name="repWIndex"/>
+
+        <setoption choice="1" name="repDischargeTs"/>
 
 
     </lfoptions>

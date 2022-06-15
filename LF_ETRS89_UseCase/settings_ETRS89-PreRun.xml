@@ -92,6 +92,7 @@
         <setoption choice="0" name="repRainMaps"/>
         <setoption choice="0" name="repSnowMeltMaps"/>
         <setoption choice="0" name="repPFMaps"/>
+        <setoption choice="0" name="repPFForestMaps"/>
         <setoption choice="0" name="repThetaMaps"/>
         <setoption choice="0" name="repThetaForestMaps"/>
         <setoption choice="0" name="repThetaIrrigationMaps"/>
@@ -107,6 +108,8 @@
         <setoption choice="0" name="repTotalAbs"/>
         <setoption choice="0" name="repTotalWUse"/>
         <setoption choice="0" name="repWIndex"/>
+
+        <setoption choice="1" name="repDischargeTs" />
 
 
     </lfoptions>
