@@ -1565,7 +1565,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
         </textvar>
         
         <textvar name="NetCDFTimeChunks" value="auto">
-        <comment>
+           <comment>
                 Chunking in time dimension used when reading NetCDF forcings (or other NetCDF temporal inputs).
                 Special values:
                  "auto": recommended, uses default XArray chunking (depends on the size and type of the array)
@@ -1578,8 +1578,8 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 Option designed for the calibration. All the static maps and forcings will be stored in a cache so that they don't have to be loaded by each lisflood instance. 
                 This option sets the value of NetCDFTimeChunks to -1, meaning that the whole time series in the NetCDF inputs is loaded into memory.
             </comment>       
-        </textvar> 
-
+        </textvar>         
+        
         <textvar name="netCDFtemplate" value="$(netCDFtemplate)">
             <comment>
                 netcdf template used to copy metadata information for writing netcdf
