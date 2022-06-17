@@ -196,7 +196,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
             </textvar>
             <textvar name="StepEnd" value="01/01/2018 00:00"/>
 
-            <textvar name="ReportSteps" value="99999">
+            <textvar name="ReportSteps" value="1..99999">
                 <comment>
                     Time steps at which to write model state maps (i.e. only
                     those maps that would be needed to define initial conditions
@@ -613,6 +613,20 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 <comment>
                     Initial lake level [m]
                     -9999 sets initial value to steady-state level
+                </comment>
+            </textvar>
+
+            <textvar name="LakePrevInflowValue" value="-9999">
+                 <comment>
+                     Lake inflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
+                     -9999 sets initial value equal to PrevDischarge (ChanQ(t))
+                 </comment>
+            </textvar>
+
+            <textvar name="LakePrevOutflowValue" value="-9999">
+                <comment>
+                     Lake outflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
+                     -9999 sets initial value
                 </comment>
             </textvar>
 

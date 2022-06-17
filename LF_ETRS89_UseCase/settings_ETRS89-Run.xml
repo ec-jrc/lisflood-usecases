@@ -497,7 +497,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsLanduseChange" value="$(PathRoot)/landusechange">
+            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/landusechange">
                 <comment>
                     Maps for transient land use changes
                     rcp85_20062125
