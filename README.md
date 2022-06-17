@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/jupyter_notebook?urlpath=tree/lisflood-notebook.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/master?urlpath=tree/lisflood-notebook.ipynb)
 
 # Lisflood use cases
 
