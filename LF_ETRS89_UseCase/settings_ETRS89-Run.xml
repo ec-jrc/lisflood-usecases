@@ -93,8 +93,10 @@
         <setoption choice="0" name="repRainMaps"/>
         <setoption choice="0" name="repSnowMeltMaps"/>
         <setoption choice="0" name="repPFMaps"/>
+        <setoption choice="0" name="repPFForestMaps"/>
         <setoption choice="0" name="repThetaMaps"/>
         <setoption choice="0" name="repThetaForestMaps"/>
+        <setoption choice="0" name="repThetaIrrigationMaps"/>
         <setoption choice="0" name="repLZMaps"/>
         <setoption choice="0" name="repUZMaps"/>
         <setoption choice="0" name="repGwPercUZLZMaps"/>
@@ -107,7 +109,6 @@
         <setoption choice="0" name="repTotalAbs"/>
         <setoption choice="0" name="repTotalWUse"/>
         <setoption choice="0" name="repWIndex"/>
-
 
     </lfoptions>
 
@@ -472,7 +473,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathParams" value="$(PathRoot)/params">
+            <textvar name="PathParams" value="$(PathRoot)/maps">
                 <comment>
                     Calibration parameter path
                 </comment>
@@ -496,7 +497,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/landusechange">
+            <textvar name="PathMapsLanduseChange" value="$(PathRoot)/landusechange">
                 <comment>
                     Maps for transient land use changes
                     rcp85_20062125
@@ -1078,7 +1079,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                     Annual amount (m3) of treated wastewater reused for irrigation                  
                 </comment>    
             </textvar>
-            
+
            <textvar name="IrrigationWaterReUseNumDays" value="143">          
                <comment>           
                Number of days over which the annual amount of treated wastewater for irrigation is used                
@@ -1608,7 +1609,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     Needed to read out LAI tables correctly
                 </comment>
             </textvar>
-             <textvar name="proj4_params" value="$(proj4_params)">
+            <textvar name="proj4_params" value="$(proj4_params)">
             </textvar>
 
             <textvar name="DtSec" value="$(DtSec)">
@@ -2512,6 +2513,18 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 Number of days over which the annual amount of treated wastewater for irrigation is used                
                 </comment>          
             </textvar>                
+
+            <textvar name="IrrigationWaterReUseM3" value="$(IrrigationWaterReUseM3)">           
+                <comment>           
+                Annual amount (m3) of treated wastewater reused for irrigation                  
+                </comment>    
+            </textvar>
+
+            <textvar name="IrrigationWaterReUseNumDays" value="$(IrrigationWaterReUseNumDays)">      
+                <comment>
+                Number of days over which the annual amount of treated wastewater for irrigation is used                
+                </comment>          
+            </textvar>     
 
             <textvar name="MapIrrigationCropCoef" value="$(MapIrrigationCropCoef)">
                 <comment>
@@ -3651,11 +3664,10 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 </comment>
             </textvar>
 
-
             <textvar name="ChanqTS" value="$(PathOut)/chanqWin.tss">
                 <comment>
                     Reported discharge over last routing sub-step [cu m/s]
-                </comment>
+            </comment>
             </textvar>
 
             <textvar name="WaterLevelTS" value="$(PathOut)/waterLevel.tss">

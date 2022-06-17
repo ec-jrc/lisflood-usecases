@@ -17,6 +17,7 @@
 <lfsettings>
 
     <lfoptions>
+        <setoption choice="0" name="cropsEPIC"/>
 
         <setoption choice="0" name="TemperatureInKelvin"/>
         <setoption choice="1" name="gridSizeUserDefined"/>
@@ -29,11 +30,10 @@
         <setoption choice="1" name="drainedIrrigation"/>
         <setoption choice="1" name="riceIrrigation"/>
         <setoption choice="0" name="indicator"/>
-        <setoption choice="0" name="cropsEPIC"/>
 
         <setoption choice="0" name="TransientLandUseChange"/>
         <setoption choice="0" name="TransientWaterDemandChange"/>
-        <setoption choice="1" name="useWateqrDemandAveYear"/>
+        <setoption choice="0" name="useWaterDemandAveYear"/>
         <setoption choice="1" name="openwaterevapo"/>
         <setoption choice="0" name="varfractionwater"/>
 
@@ -45,11 +45,12 @@
         <setoption choice="0" name="InitLisflood"/>
         <setoption choice="0" name="InitLisfloodwithoutSplit"/>
 
-        <setoption choice="0" name="repEndMaps"/>
         <setoption choice="0" name="repStateMaps"/>
+        <setoption choice="0" name="repEndMaps"/>
         <setoption choice="0" name="repTopSoilMoistureMaps"/>
         <setoption choice="0" name="repSurfaceSoilMoistureMaps"/>
         <setoption choice="0" name="repDischargeMaps"/>
+        <setoption choice="0" name="repSurfaceRunoffMaps"/>
         <setoption choice="0" name="repsimulateLakes"/>
         <setoption choice="0" name="repsimulateReservoirs"/>
         <setoption choice="1" name="repDischargeTs"/>
@@ -59,8 +60,10 @@
         <setoption choice="0" name="repRainMaps"/>
         <setoption choice="0" name="repSnowMeltMaps"/>
         <setoption choice="0" name="repPFMaps"/>
+        <setoption choice="0" name="repPFForestMaps"/>
         <setoption choice="0" name="repThetaMaps"/>
         <setoption choice="0" name="repThetaForestMaps"/>
+        <setoption choice="0" name="repThetaIrrigationMaps"/>
         <setoption choice="0" name="repLZMaps"/>
         <setoption choice="0" name="repUZMaps"/>
         <setoption choice="0" name="repGwPercUZLZMaps"/>
@@ -87,6 +90,9 @@
     <lfuser>
 
         <group>
+            **************************************************************
+            PARALLELIZED KINEMATIC ROUTING
+            **************************************************************
 
             <!-- Parallelisation of the kinematic wave routing (via openMP multi-threading).
 The option "numberParallelThreadsKinematicWave" may take the following values:
@@ -97,13 +103,19 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                       (if exceeding the number of CPUs, the option is set to "0") -->
             <textvar name="numCPUs_parallelKinematicWave" value="0"/>
 
-            <!-- Parallelisation of using Numba runtime compiled library .
-The option "numCPUs_parallelNumba" may take the following values:
-    - "0"           : set to NUMBA_NUM_THREADS Environment Variable 
-                      (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
-    - "1"           : serial execution (not parallel)
-    - "2", "3", ... : manual setting of the number of parallel threads.
-                      (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
+            <comment>
+            **************************************************************
+            PARALLELISATION WITH NUMBA (USED IN SOILLOOP)
+            **************************************************************
+            </comment>
+
+            !-- Parallelisation of using Numba runtime compiled library .
+            The option "numCPUs_parallelNumba" may take the following values:
+                - "0"           : set to NUMBA_NUM_THREADS Environment Variable 
+                                  (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
+                - "1"           : serial execution (not parallel)
+                - "2", "3", ... : manual setting of the number of parallel threads.
+                                  (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
             <textvar name="numCPUs_parallelNumba" value="0"/>
 
             <comment>
@@ -118,6 +130,7 @@ The option "numCPUs_parallelNumba" may take the following values:
                     Root directory
                 </comment>
             </textvar>
+
             <textvar name="MaskMap" value="$(PathMaps)/masksmall.map"/>
 
             <textvar name="Gauges" value="-122.55 52.95"/>
@@ -1370,7 +1383,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
 
         <textvar name="numCPUs_parallelKinematicWave" value="$(numCPUs_parallelKinematicWave)"/>
         <textvar name="numCPUs_parallelNumba" value="$(numCPUs_parallelNumba)"/>
-        
+
         <textvar name="NetCDFTimeChunks" value="auto"/>
 
         <textvar name="MapsCaching" value="False"/>
@@ -2692,7 +2705,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="UZIrrigationState" value="$(PathOut)/uzi">">
+                <textvar name="UZIrrigationState" value="$(PathOut)/uzi">
                     <comment>
                         Reported storage in upper response box [mm]
                     </comment>

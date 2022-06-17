@@ -21,7 +21,7 @@
         #-----------------------------------------------------------
         # options to turn hydrological modules on/off
         <setoption choice="0" name="cropsEPIC"/>
-        
+
         <setoption choice="1" name="wateruse"/>
         <setoption choice="1" name="TransientWaterDemandChange"/>
         <setoption choice="0" name="useWaterDemandAveYear"/>
@@ -92,8 +92,10 @@
         <setoption choice="0" name="repRainMaps"/>
         <setoption choice="0" name="repSnowMeltMaps"/>
         <setoption choice="0" name="repPFMaps"/>
+        <setoption choice="0" name="repPFForestMaps"/>
         <setoption choice="0" name="repThetaMaps"/>
         <setoption choice="0" name="repThetaForestMaps"/>
+        <setoption choice="0" name="repThetaIrrigationMaps"/>
         <setoption choice="0" name="repLZMaps"/>
         <setoption choice="0" name="repUZMaps"/>
         <setoption choice="0" name="repGwPercUZLZMaps"/>
@@ -106,7 +108,6 @@
         <setoption choice="0" name="repTotalAbs"/>
         <setoption choice="0" name="repTotalWUse"/>
         <setoption choice="0" name="repWIndex"/>
-
 
     </lfoptions>
 
@@ -465,7 +466,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsLanduseChange" value="$(PathRoot)/landusechange">
+            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/landusechange">
                 <comment>
                     Maps for transient land use changes
                     rcp85_20062125
@@ -497,7 +498,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathVarWaterfraction" value="$(PathRoot)/waterfraction">
+            <textvar name="PathVarWaterfraction" value="$(PathRoot)/maps">
                 <comment>
                     variable water fraction maps path
                 </comment>
@@ -648,6 +649,20 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 <comment>
                     Initial lake level [m]
                     -9999 sets initial value to steady-state level
+                </comment>
+            </textvar>
+            
+            <textvar name="LakePrevInflowValue" value="-9999">
+                 <comment>
+                     Lake inflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
+                     -9999 sets initial value equal to PrevDischarge (ChanQ(t))
+                 </comment>
+            </textvar>
+
+            <textvar name="LakePrevOutflowValue" value="-9999">
+                <comment>
+                     Lake outflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
+                     -9999 sets initial value
                 </comment>
             </textvar>
 
@@ -2135,7 +2150,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
 
             <textvar name="PrevSideflowInitValue" value="$(PrevSideflowInitValue)">
                 <comment>
-                    initial channel crosssection for 2nd routing channel
+                    initial channel cross section for 2nd routing channel
                     -9999: use 0
                 </comment>
             </textvar>
@@ -2485,7 +2500,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 <comment>
                 Number of days over which the annual amount of treated wastewater for irrigation is used                
                 </comment>          
-            </textvar>           
+            </textvar>             
 
             <textvar name="MapIrrigationCropCoef" value="$(MapIrrigationCropCoef)">
                 <comment>
