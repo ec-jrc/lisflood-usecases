@@ -109,9 +109,6 @@
         <setoption choice="0" name="repTotalWUse"/>
         <setoption choice="0" name="repWIndex"/>
 
-        <setoption choice="1" name="repDischargeTs" />
-
-
     </lfoptions>
 
     <lfuser>
@@ -145,21 +142,6 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                                   (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
             <textvar name="numCPUs_parallelNumba" value="0"/>
             
-            <comment>
-            **************************************************************
-            PARALLELISATION WITH NUMBA (USED IN SOILLOOP)
-            **************************************************************
-            </comment>
-
-            !-- Parallelisation of using Numba runtime compiled library .
-            The option "numCPUs_parallelNumba" may take the following values:
-                - "0"           : set to NUMBA_NUM_THREADS Environment Variable 
-                                  (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
-                - "1"           : serial execution (not parallel)
-                - "2", "3", ... : manual setting of the number of parallel threads.
-                                  (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
-            <textvar name="numCPUs_parallelNumba" value="0"/>
-
             <comment>
                 **************************************************************
                 AREA AND OUTLETS
@@ -484,7 +466,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsLanduseChange" value="$(PathRoot)/landusechange">
+            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/landusechange">
                 <comment>
                     Maps for transient land use changes
                     rcp85_20062125
@@ -1069,18 +1051,6 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                Number of days over which the annual amount of treated wastewater for irrigation is used                
                </comment>           
            </textvar>            
-
-            <textvar name="IrrigationWaterReUseM3" value="0.0">           
-                <comment>           
-                    Annual amount (m3) of treated wastewater reused for irrigation                  
-                </comment>    
-            </textvar>
-
-           <textvar name="IrrigationWaterReUseNumDays" value="143">          
-               <comment>           
-               Number of days over which the annual amount of treated wastewater for irrigation is used                
-               </comment>           
-           </textvar>
 
             <textvar name="LivestockConsumptiveUseFraction" value="0.15">
                 <comment>
@@ -2180,7 +2150,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
 
             <textvar name="PrevSideflowInitValue" value="$(PrevSideflowInitValue)">
                 <comment>
-                    initial channel crosssection for 2nd routing channel
+                    initial channel cross section for 2nd routing channel
                     -9999: use 0
                 </comment>
             </textvar>
@@ -2530,19 +2500,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 <comment>
                 Number of days over which the annual amount of treated wastewater for irrigation is used                
                 </comment>          
-            </textvar>           
-
-            <textvar name="IrrigationWaterReUseM3" value="$(IrrigationWaterReUseM3)">           
-                <comment>           
-                Annual amount (m3) of treated wastewater reused for irrigation                  
-                </comment>    
-            </textvar>
-
-            <textvar name="IrrigationWaterReUseNumDays" value="$(IrrigationWaterReUseNumDays)">      
-                <comment>
-                Number of days over which the annual amount of treated wastewater for irrigation is used                
-                </comment>          
-            </textvar>     
+            </textvar>             
 
             <textvar name="MapIrrigationCropCoef" value="$(MapIrrigationCropCoef)">
                 <comment>
@@ -3734,12 +3692,6 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                         Soil moisture lower layer [cu mm / cu mm]
                     </comment>
                 </textvar>                
-
-                <textvar name="Theta3TS" value="$(PathOut)/th2.tss">
-                    <comment>
-                        Soil moisture lower layer [cu mm / cu mm]
-                    </comment>
-                </textvar>   
 
                 <textvar name="UZTS" value="$(PathOut)/uz.tss">
                     <comment>

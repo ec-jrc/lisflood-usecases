@@ -110,8 +110,6 @@
         <setoption choice="0" name="repTotalWUse"/>
         <setoption choice="0" name="repWIndex"/>
 
-        <setoption choice="1" name="repDischargeTs" />
-
     </lfoptions>
 
     <lfuser>
@@ -145,21 +143,6 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                                   (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
             <textvar name="numCPUs_parallelNumba" value="0"/>
             
-            <comment>
-            **************************************************************
-            PARALLELISATION WITH NUMBA (USED IN SOILLOOP)
-            **************************************************************
-            </comment>
-
-            !-- Parallelisation of using Numba runtime compiled library .
-            The option "numCPUs_parallelNumba" may take the following values:
-                - "0"           : set to NUMBA_NUM_THREADS Environment Variable 
-                                  (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
-                - "1"           : serial execution (not parallel)
-                - "2", "3", ... : manual setting of the number of parallel threads.
-                                  (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
-            <textvar name="numCPUs_parallelNumba" value="0"/>
-
             <comment>
                 **************************************************************
                 AREA AND OUTLETS
