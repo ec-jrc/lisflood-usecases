@@ -25,17 +25,19 @@
 
 
         <setoption choice="1" name="wateruse"/>
-        <setoption choice="1" name="groundwaterSmooth"/>
+        <setoption choice="0" name="groundwaterSmooth"/>
         <setoption choice="1" name="wateruseRegion"/>
         <setoption choice="1" name="drainedIrrigation"/>
         <setoption choice="1" name="riceIrrigation"/>
         <setoption choice="0" name="indicator"/>
+        <setoption choice="0" name="cropsEPIC"/>
 
         <setoption choice="0" name="TransientLandUseChange"/>
         <setoption choice="0" name="TransientWaterDemandChange"/>
         <setoption choice="0" name="useWaterDemandAveYear"/>
         <setoption choice="1" name="useWateqrDemandAveYear"/>
         <setoption choice="1" name="openwaterevapo"/>
+        <setoption choice="0" name="varfractionwater"/>
 
         <setoption choice="1" name="simulateLakes"/>
         <setoption choice="1" name="simulateReservoirs"/>
@@ -53,6 +55,7 @@
         <setoption choice="0" name="repSurfaceRunoffMaps"/>
         <setoption choice="0" name="repsimulateLakes"/>
         <setoption choice="0" name="repsimulateReservoirs"/>
+        <setoption choice="1" name="repDischargeTs"/>
 
         <setoption choice="0" name="repSnowMaps"/>
         <setoption choice="0" name="repSnowCoverMaps"/>
@@ -104,6 +107,15 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                       (if exceeding the number of CPUs, the option is set to "0") -->
             <textvar name="numCPUs_parallelKinematicWave" value="0"/>
 
+            <!-- Parallelisation of using Numba runtime compiled library .
+The option "numCPUs_parallelNumba" may take the following values:
+    - "0"           : set to NUMBA_NUM_THREADS Environment Variable 
+                      (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
+    - "1"           : serial execution (not parallel)
+    - "2", "3", ... : manual setting of the number of parallel threads.
+                      (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
+            <textvar name="numCPUs_parallelNumba" value="0"/>
+
             <comment>
             **************************************************************
             PARALLELISATION WITH NUMBA (USED IN SOILLOOP)
@@ -131,12 +143,9 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                     Root directory
                 </comment>
             </textvar>
+            <textvar name="MaskMap" value="$(PathMaps)/masksmall.map"/>
 
-            <textvar name="MaskMap" value="$(PathMaps)/masksmall.map">
-            </textvar>
-
-            <textvar name="Gauges" value="-122.55 52.95">
-            </textvar>
+            <textvar name="Gauges" value="-122.55 52.95"/>
 
             <textvar name="netCDFtemplate" value="$(PathMaps)/elvstd.nc">
                 <comment>
@@ -195,21 +204,10 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
 
             <textvar name="StepStart" value="02/01/1986 00:00">
                 <comment>
-                    Number of first time step in simulation
+                    Date of first time step in simulation
                 </comment>
             </textvar>
-
-            <textvar name="StepEnd" value="01/01/2018 00:00">
-                <comment>
-                    Reforecasts_2017 1/1/1996 1
-                    Reforecasts_2017 31/12/2009 5114
-                    Reforecasts_2017 1/1/2010 5115
-                    Reforecasts_2017 31/12/2015 7305
-                    Reforecasts_2017 31/12/2016 7671
-
-                    Number of last time step in simulation
-                </comment>
-            </textvar>
+            <textvar name="StepEnd" value="01/01/2018 00:00"/>
 
             <textvar name="ReportSteps" value="99999">
                 <comment>
@@ -416,12 +414,6 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathParams" value="$(PathRoot)/params">
-                <comment>
-                    Calibration parameter path
-                </comment>
-            </textvar>
-
             <textvar name="PathTables" value="$(PathRoot)/tables">
                 <comment>
                     Tables path
@@ -440,16 +432,15 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/landuse">
-                <comment>
-                    Maps for transient land use changes
-                    rcp85_20062125
-                </comment>
-            </textvar>
-
             <textvar name="PathMapsLanduse" value="$(PathRoot)/landuse">
                 <comment>
                     Maps for land use fractions and related land use maps
+                </comment>
+            </textvar>
+            <textvar name="PathMapsLandUseChange" value="$(PathRoot)/landuse">
+                <comment>
+                    Maps for transient land use changes
+                    We use same maps in this case
                 </comment>
             </textvar>
 
@@ -635,20 +626,6 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 <comment>
                     Initial lake level [m]
                     -9999 sets initial value to steady-state level
-                </comment>
-            </textvar>
-
-            <textvar name="LakePrevInflowValue" value="-9999">
-                <comment>
-                    Lake inflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
-                    -9999 sets initial value equal to PrevDischarge (ChanQ(t))
-                </comment>
-            </textvar>
-
-            <textvar name="LakePrevOutflowValue" value="-9999">
-                <comment>
-                    Lake outflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
-                    -9999 sets initial value
                 </comment>
             </textvar>
 
@@ -1028,6 +1005,18 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                     More than the transpiration is added e.g to prevent salinisation
                 </comment>
             </textvar>
+            
+            <textvar name="IrrigationWaterReUseM3" value="0.0">           
+                <comment>           
+                  Annual amount (m3) of treated wastewater reused for irrigation                 
+                </comment>           
+            </textvar>
+                       
+            <textvar name="IrrigationWaterReUseNumDays" value="143">          
+                <comment>           
+                  Number of days over which the annual amount of treated wastewater for irrigation is used                
+                </comment>           
+            </textvar>              
 
             <textvar name="IrrigationWaterReUseM3" value="0.0">           
                 <comment>           
@@ -1418,28 +1407,16 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
 
         <textvar name="numCPUs_parallelKinematicWave" value="$(numCPUs_parallelKinematicWave)"/>
         <textvar name="numCPUs_parallelNumba" value="$(numCPUs_parallelNumba)"/>
+
+        <textvar name="NetCDFTimeChunks" value="auto"/>
+
+        <textvar name="MapsCaching" value="False"/>
+
         <textvar name="MaskMap" value="$(MaskMap)">
             <comment>
                 Clone map
             </comment>
         </textvar>
-        
-        <textvar name="NetCDFTimeChunks" value="auto">
-           <comment>
-                Chunking in time dimension used when reading NetCDF forcings (or other NetCDF temporal inputs).
-                Special values:
-                 "auto": recommended, uses default XArray chunking (depends on the size and type of the array)
-                 "-1": load the whole time series in memory (fastest option but memory consuming)
-           </comment>
-        </textvar>
-      
-        <textvar name="MapsCaching" value="False">
-            <comment>
-                Option designed for the calibration. All the static maps and forcings will be stored in a cache so that they don't have to be loaded by each lisflood instance. 
-                This option sets the value of NetCDFTimeChunks to -1, meaning that the whole time series in the NetCDF inputs is loaded into memory.
-            </comment>       
-        </textvar>          
-        
 
         <textvar name="netCDFtemplate" value="$(netCDFtemplate)">
             <comment>
@@ -1905,8 +1882,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 **************************************************************
             </comment>
 
-            <textvar name="LZAvInflowMap"
-                     value="$(PathOut)/lzavin.map">
+            <textvar name="LZAvInflowMap" value="$(PathInit)/lzavin.map">
                 <comment>
                     $(PathInit)/lzavin.map
                     Reported map of average percolation rate from upper to
@@ -1914,7 +1890,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 </comment>
             </textvar>
 
-            <textvar name="AvgDis" value="$(PathOut)/avgdis.map">
+            <textvar name="AvgDis" value="$(PathInit)/avgdis.map">
                 <comment>
                     $(PathInit)/avgdis.map
                     CHANNEL split routing in two lines
@@ -2368,6 +2344,18 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     More than the transpiration is added e.g to prevent salinisation
                 </comment>
             </textvar>
+            
+            <textvar name="IrrigationWaterReUseM3" value="$(IrrigationWaterReUseM3)">           
+                 <comment>           
+                  Annual amount (m3) of treated wastewater reused for irrigation                  
+                 </comment>    
+            </textvar>
+                       
+            <textvar name="IrrigationWaterReUseNumDays" value="$(IrrigationWaterReUseNumDays)">      
+                 <comment>
+                  Number of days over which the annual amount of treated wastewater for irrigation is used                
+                 </comment>          
+            </textvar>             
 
             <textvar name="IrrigationWaterReUseM3" value="$(IrrigationWaterReUseM3)">           
                 <comment>           
@@ -3527,13 +3515,12 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 **************************************************************
             </comment>
 
-            <textvar name="DisTS" value="$(PathOut)/dis_prerun.tss">
+            <textvar name="DisTS" value="$(PathOut)/dis_run.tss">
                 <comment>
                     Reported discharge [cu m/s]
                 </comment>
             </textvar>
-
-
+            
             <textvar name="ChanqTS" value="$(PathOut)/chanqWin.tss">
                 <comment>
                     Reported discharge over last routing sub-step [cu m/s]
@@ -3569,15 +3556,21 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="Theta1TS" value="$(PathOut)/thTop.tss">
+                <textvar name="Theta1TS" value="$(PathOut)/th1a.tss">
                     <comment>
-                        Soil moisture upper layer [cu mm / cu mm]
+                        Soil moisture layer 1a [cu mm / cu mm]
                     </comment>
                 </textvar>
 
-                <textvar name="Theta2TS" value="$(PathOut)/thSub.tss">
+                <textvar name="Theta2TS" value="$(PathOut)/th1b.tss">
                     <comment>
-                        Soil moisture lower layer [cu mm / cu mm]
+                        Soil moisture layer 1b [cu mm / cu mm]
+                    </comment>
+                </textvar>
+
+                <textvar name="Theta3TS" value="$(PathOut)/th2.tss">
+                    <comment>
+                        Soil moisture layer 2 [cu mm / cu mm]
                     </comment>
                 </textvar>
 
@@ -4144,7 +4137,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="DirectRunoffFractionMaps" value="$(PathMapsLandUseChange)/fracsealed">
+                <textvar name="DirectRunoffFractionMaps" value="$(PathMapsLanduse)/fracsealed">
                     <comment>
                         stack of Direct Runoff fraction maps (0-1)
                     </comment>
@@ -4231,7 +4224,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="FractionNonConventionalWaterUsed" value="$(PathMapsLandUseChange)/fracncused">
+                <textvar name="FractionNonConventionalWaterUsed" value="$(PathMapsLanduse)/fracncused">
                     <comment>
                         NonConventionalWaterUsed (0-1)
                     </comment>
@@ -4251,7 +4244,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="MapCropCoef" value="$(PathRoot)/maps/cropcoef_o.map">
+                <textvar name="MapCropCoef" value="$(PathRoot)/maps//cropcoef_o.map">
                     <comment>
                         table with crop coefficient for each land use; values ranging from 0.75 to 1.25;
                         source: Supit, p.83 CFET

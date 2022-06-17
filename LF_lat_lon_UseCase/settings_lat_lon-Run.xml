@@ -25,17 +25,19 @@
 
 
         <setoption choice="1" name="wateruse"/>
-        <setoption choice="1" name="groundwaterSmooth"/>
+        <setoption choice="0" name="groundwaterSmooth"/>
         <setoption choice="1" name="wateruseRegion"/>
         <setoption choice="1" name="drainedIrrigation"/>
         <setoption choice="1" name="riceIrrigation"/>
         <setoption choice="0" name="indicator"/>
+        <setoption choice="0" name="cropsEPIC"/>
 
         <setoption choice="0" name="TransientLandUseChange"/>
         <setoption choice="0" name="TransientWaterDemandChange"/>
         <setoption choice="0" name="useWaterDemandAveYear"/>
         <setoption choice="1" name="useWateqrDemandAveYear"/>
         <setoption choice="1" name="openwaterevapo"/>
+        <setoption choice="0" name="varfractionwater"/>
 
         <setoption choice="1" name="simulateLakes"/>
         <setoption choice="1" name="simulateReservoirs"/>
@@ -47,12 +49,14 @@
 
         <setoption choice="0" name="repStateMaps"/>
         <setoption choice="0" name="repEndMaps"/>
+        <setoption choice="0" name="repStateMaps"/>
         <setoption choice="0" name="repTopSoilMoistureMaps"/>
         <setoption choice="0" name="repSurfaceSoilMoistureMaps"/>
         <setoption choice="0" name="repDischargeMaps"/>
         <setoption choice="0" name="repSurfaceRunoffMaps"/>
         <setoption choice="0" name="repsimulateLakes"/>
         <setoption choice="0" name="repsimulateReservoirs"/>
+        <setoption choice="1" name="repDischargeTs"/>
 
         <setoption choice="0" name="repSnowMaps"/>
         <setoption choice="0" name="repSnowCoverMaps"/>
@@ -70,8 +74,8 @@
         <setoption choice="0" name="repStressDays"/>
 
         <setoption choice="1" name="readNetcdfStack"/>
-        <setoption choice="0" name="writeNetcdfStack"/>
-        <setoption choice="0" name="writeNetcdf"/>
+        <setoption choice="1" name="writeNetcdfStack"/>
+        <setoption choice="1" name="writeNetcdf"/>
 
         <setoption choice="0" name="MonteCarlo"/>
         <setoption choice="0" name="EnKF"/>
@@ -102,6 +106,15 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
     - "2", "3", ... : manual setting of the number of parallel threads.
                       (if exceeding the number of CPUs, the option is set to "0") -->
             <textvar name="numCPUs_parallelKinematicWave" value="0"/>
+
+            <!-- Parallelisation of using Numba runtime compiled library .
+The option "numCPUs_parallelNumba" may take the following values:
+    - "0"           : set to NUMBA_NUM_THREADS Environment Variable 
+                      (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
+    - "1"           : serial execution (not parallel)
+    - "2", "3", ... : manual setting of the number of parallel threads.
+                      (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
+            <textvar name="numCPUs_parallelNumba" value="0"/>
 
             <comment>
             **************************************************************
@@ -197,7 +210,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
             </textvar>
             <textvar name="StepEnd" value="01/03/2017 00:00"/>
 
-            <textvar name="ReportSteps" value="99999">
+            <textvar name="ReportSteps" value="1..99999">
                 <comment>
                     Time steps at which to write model state maps (i.e. only
                     those maps that would be needed to define initial conditions
@@ -993,6 +1006,18 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                     More than the transpiration is added e.g to prevent salinisation
                 </comment>
             </textvar>
+            
+            <textvar name="IrrigationWaterReUseM3" value="0.0">           
+                <comment>           
+                  Annual amount (m3) of treated wastewater reused for irrigation                 
+                </comment>           
+            </textvar>
+                       
+            <textvar name="IrrigationWaterReUseNumDays" value="143">          
+                <comment>           
+                  Number of days over which the annual amount of treated wastewater for irrigation is used                
+                </comment>           
+            </textvar>              
 
             <textvar name="IrrigationWaterReUseM3" value="0.0">           
                 <comment>           
@@ -1383,27 +1408,17 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
 
         <textvar name="numCPUs_parallelKinematicWave" value="$(numCPUs_parallelKinematicWave)"/>
         <textvar name="numCPUs_parallelNumba" value="$(numCPUs_parallelNumba)"/>
+
+        <textvar name="NetCDFTimeChunks" value="auto"/>
+
+        <textvar name="MapsCaching" value="False"/>
+
         <textvar name="MaskMap" value="$(MaskMap)">
             <comment>
                 Clone map
             </comment>
         </textvar>
-        
-        <textvar name="NetCDFTimeChunks" value="auto">
-           <comment>
-                Chunking in time dimension used when reading NetCDF forcings (or other NetCDF temporal inputs).
-                Special values: "auto": recommended, uses default XArray chunking (depends on the size and type of the array)
-                 "-1": load the whole time series in memory (fastest option but memory consuming)
-           </comment>
-        </textvar>
-      
-        <textvar name="MapsCaching" value="False">
-            <comment>
-                Option designed for the calibration. All the static maps and forcings will be stored in a cache so that they don't have to be loaded by each lisflood instance. 
-                This option sets the value of NetCDFTimeChunks to -1, meaning that the whole time series in the NetCDF inputs is loaded into memory.
-            </comment>       
-        </textvar>          
-        
+
         <textvar name="netCDFtemplate" value="$(netCDFtemplate)">
             <comment>
                 netcdf template used to copy metadata information for writing netcdf
@@ -1868,7 +1883,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 **************************************************************
             </comment>
 
-            <textvar name="LZAvInflowMap" value="$(PathOut)/lzavin.map">
+            <textvar name="LZAvInflowMap" value="$(PathInit)/lzavin.map">
                 <comment>
                     $(PathInit)/lzavin.map
                     Reported map of average percolation rate from upper to
@@ -1876,7 +1891,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 </comment>
             </textvar>
 
-            <textvar name="AvgDis" value="$(PathOut)/avgdis.map">
+            <textvar name="AvgDis" value="$(PathInit)/avgdis.map">
                 <comment>
                     $(PathInit)/avgdis.map
                     CHANNEL split routing in two lines
@@ -2330,6 +2345,18 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     More than the transpiration is added e.g to prevent salinisation
                 </comment>
             </textvar>
+            
+            <textvar name="IrrigationWaterReUseM3" value="$(IrrigationWaterReUseM3)">           
+                 <comment>           
+                  Annual amount (m3) of treated wastewater reused for irrigation                  
+                 </comment>    
+            </textvar>
+                       
+            <textvar name="IrrigationWaterReUseNumDays" value="$(IrrigationWaterReUseNumDays)">      
+                 <comment>
+                  Number of days over which the annual amount of treated wastewater for irrigation is used                
+                 </comment>          
+            </textvar>             
 
             <textvar name="IrrigationWaterReUseM3" value="$(IrrigationWaterReUseM3)">           
                 <comment>           
@@ -3530,15 +3557,21 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                     </comment>
                 </textvar>
 
-                <textvar name="Theta1TS" value="$(PathOut)/thTop.tss">
+                <textvar name="Theta1TS" value="$(PathOut)/th1a.tss">
                     <comment>
-                        Soil moisture upper layer [cu mm / cu mm]
+                        Soil moisture layer 1a [cu mm / cu mm]
                     </comment>
                 </textvar>
 
-                <textvar name="Theta2TS" value="$(PathOut)/thSub.tss">
+                <textvar name="Theta2TS" value="$(PathOut)/th1b.tss">
                     <comment>
-                        Soil moisture lower layer [cu mm / cu mm]
+                        Soil moisture layer 1b [cu mm / cu mm]
+                    </comment>
+                </textvar>
+
+                <textvar name="Theta3TS" value="$(PathOut)/th2.tss">
+                    <comment>
+                        Soil moisture layer 2 [cu mm / cu mm]
                     </comment>
                 </textvar>
 
