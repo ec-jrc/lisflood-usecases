@@ -1,4 +1,4 @@
-timeseries valuescale.scalar settingsfile: /.../lisflood-usecases/LF_lat_lon_UseCase/settings_lat_lon-Run.xml date: Wed Apr 13 15:01:49 2022
+timeseries valuescale.scalar settingsfile: /home/carlo/releases/lisflood_v4.1.0/lisflood-usecases/LF_lat_lon_UseCase/settings_lat_lon-Run.xml date: Tue Oct  4 18:00:35 2022
 2
 timestep
 1
