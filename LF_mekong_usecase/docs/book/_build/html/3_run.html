@@ -1,0 +1,801 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Main run &#8212; A LISFLOOD catchment model - the Nam Ngum River</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Following steps" href="4_following_steps.html" />
+    <link rel="prev" title="Warmup run" href="2_warmup.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/header.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">A LISFLOOD catchment model - the Nam Ngum River</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0_general_setup.html">
+   Input and general settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_initialization.html">
+   Initialization run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_warmup.html">
+   Warmup run
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Main run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_following_steps.html">
+   Following steps
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/3_run.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#settings-file">
+   1 Settings file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-simulation">
+   2 Run the simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outputs">
+   3 Outputs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-stacks">
+     3.1 Map stacks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#soil-layers">
+       3.1.1 Soil layers
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#groundwater-zones">
+       3.1.2 Groundwater zones
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#discharge">
+       3.1.3 Discharge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reservoir-and-rice-irrigation">
+       3.1.4 Reservoir and rice irrigation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#water-exploitation-indexes">
+     3.1.5 Water exploitation indexes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#timeseries">
+     3.2 Timeseries
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.2.1 Discharge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reservoirs">
+       3.2.2 Reservoirs
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Main run</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#settings-file">
+   1 Settings file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-simulation">
+   2 Run the simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outputs">
+   3 Outputs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-stacks">
+     3.1 Map stacks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#soil-layers">
+       3.1.1 Soil layers
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#groundwater-zones">
+       3.1.2 Groundwater zones
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#discharge">
+       3.1.3 Discharge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reservoir-and-rice-irrigation">
+       3.1.4 Reservoir and rice irrigation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#water-exploitation-indexes">
+     3.1.5 Water exploitation indexes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#timeseries">
+     3.2 Timeseries
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.2.1 Discharge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reservoirs">
+       3.2.2 Reservoirs
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><img alt="header" src="_images/header.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="main-run">
+<h1>Main run<a class="headerlink" href="#main-run" title="Permalink to this headline">#</a></h1>
+<br>
+<br>
+<br>
+<p>Once we have done the initialization run and we have estimated the initial conditions in the warmup run, we are in a position to perform our target simulation. We want to simulate the 30 years period between 01-01-1990 and 31-12-2019  in order to estimate the climatology of the hydrological processes in the Nam Ngum River Basin. Remember that in <a class="reference external" href="https://ec-jrc.github.io/lisflood-code/2_ESSENTIAL_time-management/">LISFLOOD time convention</a> this dates corresponds to 02-01-1990 and 01-01-2020, respectively.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span> <span class="nn">lisflood_read_plot</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="settings-file">
+<h2>1 Settings file<a class="headerlink" href="#settings-file" title="Permalink to this headline">#</a></h2>
+<p>We will introduce a few changes in the settings file (<em>settings_run.xml</em>) compared with the file used in the warmup:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lfoptions&gt;</span>
+    
+    [...]
+    
+    # option to compute indicators
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;indicator&quot;</span><span class="nt">/&gt;</span>
+    
+    # report timeseries
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;repDischargeTs&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;repsimulateReservoirs&quot;</span><span class="nt">/&gt;</span>
+    
+    # report maps
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;repStateMaps&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;0&quot;</span> <span class="na">name=</span><span class="s">&quot;repEndMaps&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;repDischargeMaps&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;repTotalAbs&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;repWIndex&quot;</span><span class="nt">/&gt;</span>
+    
+    [...]
+    
+<span class="nt">&lt;/lfoptions&gt;</span>
+    
+<span class="nt">&lt;lfuser&gt;</span>
+    
+    [...]
+    
+    # reporting points
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;Gauges&quot;</span> <span class="na">value=</span><span class="s">&quot;102.32 18.62 102.82 19.30 102.67 18.12&quot;</span><span class="nt">/&gt;</span>
+    
+    # time-related variables
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;CalendarDayStart&quot;</span> <span class="na">value=</span><span class="s">&quot;02/01/1979 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;StepStart&quot;</span> <span class="na">value=</span><span class="s">&quot;02/01/1990 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;StepEnd&quot;</span> <span class="na">value=</span><span class="s">&quot;01/01/2000 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;timestepInit&quot;</span> <span class="na">value=</span><span class="s">&quot;01/01/1990 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ReportSteps&quot;</span> <span class="na">value=</span><span class="s">&quot;1..99999&quot;</span><span class="nt">/&gt;</span>
+    
+    # paths
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;PathInit&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathRoot)/initial&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;PathOut&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathRoot)/out/run&quot;</span><span class="nt">/&gt;</span>
+    
+    # initial conditions
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;OFDirectInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/ofdir_end.nc&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;OFOtherInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/ofoth_end.nc&quot;</span><span class="nt">/&gt;</span>
+    [...]
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LZInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathRoot)/out/warmup/lz&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ReservoirInitialFillValue&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/rsfil_end.nc&quot;</span><span class="nt">/&gt;</span>
+    
+    [...]
+
+<span class="nt">&lt;/lfuser&gt;</span>
+
+<span class="nt">&lt;lfbinding&gt;</span>
+    
+    [...]
+    
+    # initialization
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LZAvInflowMap&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/lzavin&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;AvgDis&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/avgdis&quot;</span><span class="nt">/&gt;</span>
+    
+    [...]
+    
+<span class="nt">&lt;/lfbinding&gt;</span>
+</pre></div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;lfoptions&gt;</span></code> element, timeseries and maps to be reported are activated/deactivated. We chose to report timeseries of discharge (<code class="docutils literal notranslate"><span class="pre">repDischargeTs</span></code>) and reservoirs (<code class="docutils literal notranslate"><span class="pre">repsimulateReservoirs</span></code>). Regarding maps, in this case we’re not interested in the end state maps, therefore <code class="docutils literal notranslate"><span class="pre">repEndMaps</span></code> is deactivated. We’re only interested in the map stacks of state variables, therefore we activated <code class="docutils literal notranslate"><span class="pre">RepStateMaps</span></code>. However, this variable will not create the discharge and water abstraction map stacks; for that we need to activate the variables <code class="docutils literal notranslate"><span class="pre">repDischargeMaps</span></code> and <code class="docutils literal notranslate"><span class="pre">RepTotalAbs</span></code>. Finally, to generate the water exploitation index maps, we need to activate both <code class="docutils literal notranslate"><span class="pre">indicator</span></code> and <code class="docutils literal notranslate"><span class="pre">repWIndex</span></code>.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;lfuser&gt;</span></code> element, we need to set several features. First, the points in the river network for which timeseries output will be generated; we defined three points using their longitude and latitude separated by spaces (there are other posibilities to set the reporting points). We set the simulation period, i.e., the start and end dates (<code class="docutils literal notranslate"><span class="pre">StepStart</span></code> and <code class="docutils literal notranslate"><span class="pre">StepEnd</span></code>), the timestep from which initial conditions may be read (<code class="docutils literal notranslate"><span class="pre">timestepInit</span></code>) and the timesteps that will be included in the output map stacks (<code class="docutils literal notranslate"><span class="pre">ReportSteps</span></code>). Later, the paths for the initial conditions and outputs are set. Finaly, the location of the initial condition maps must be specified. Special remark on the lower groundwater zone initial value (<code class="docutils literal notranslate"><span class="pre">LZInitValue</span></code>), for which we generated a map stack during the warmup run, instead of a end map; that’s the reason why the directory where the map is located is different.</p>
+<blockquote>
+<div><p><strong>Note</strong>. Pay special attention to the 5 nines in the variable <code class="docutils literal notranslate"><span class="pre">ReportSteps</span></code> (<code class="docutils literal notranslate"><span class="pre">1..99999</span></code>), which are necessary since the simulation exceeds the 10,000 timesteps</p>
+</div></blockquote>
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;lfbinding&gt;</span></code> element, same as in the warmup run, we must define the two maps that we generated in the <a class="reference internal" href="1_initialization.html"><span class="doc std std-doc">initialization run</span></a>.</p>
+</section>
+<section id="run-the-simulation">
+<h2>2 Run the simulation<a class="headerlink" href="#run-the-simulation" title="Permalink to this headline">#</a></h2>
+<p>This step is similar to the two previous runs, but pointing at the specific settings file (<em>settings_run.xml</em>).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda activate your_lisflood_environment
+lisflood /home/user/your_path/settings_run.xml
+</pre></div>
+</div>
+</section>
+<section id="outputs">
+<h2>3 Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">#</a></h2>
+<p>In this section we will see some of the outputs that the simulation has generated, which include map stacks and timeseries.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_out</span> <span class="o">=</span> <span class="s1">&#39;out/run/&#39;</span>
+<span class="n">settings_file</span> <span class="o">=</span> <span class="s1">&#39;settings_run.xml&#39;</span>
+</pre></div>
+</div>
+<section id="map-stacks">
+<h3>3.1 Map stacks<a class="headerlink" href="#map-stacks" title="Permalink to this headline">#</a></h3>
+<section id="soil-layers">
+<h4>3.1.1 Soil layers<a class="headerlink" href="#soil-layers" title="Permalink to this headline">#</a></h4>
+<p>First, we will analyse the water stored in the soil layers. We’ll load the data and then we plot it. The maps show the average over time, whereas the lineplot shows a timeseries obtained by computing, for each timestep, the spatial average. In the first case we get an insight into the spatial variability, whereas in the second case we show temporal variability.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and plot some map stacks</span>
+<span class="n">soil_storages</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tha&#39;</span><span class="p">,</span> <span class="s1">&#39;thb&#39;</span><span class="p">,</span> <span class="s1">&#39;thc&#39;</span><span class="p">]:</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_out</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">soil_storages</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+
+<span class="c1"># calculate minimum and maximum values of soil moisture among all the map stacks</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">soil_storages</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">soil_storages</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">plot_mapstacks</span><span class="p">(</span><span class="n">soil_storages</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;soil moisture&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/3_1.png" /></p>
+<p><em><strong>Figure 1</strong>. Evolution of soil moisture in the three soil layers trhoughout the main run.</em></p>
+<p>From the previous plots we can extract the following thoughts:</p>
+<ul class="simple">
+<li><p>The superficial soil (<span class="math notranslate nohighlight">\(tha\)</span>) shows a much higher temporal variability, since this layer is the most affected by precipitation and evapotranspiration.</p></li>
+<li><p>The upper soil layer (<span class="math notranslate nohighlight">\(thb\)</span>) has a seasonal variation. The “wet” season shows a lag with respect to the “wet” season in the superficial soil.</p></li>
+<li><p>The lower soil layer (<span class="math notranslate nohighlight">\(thc\)</span>) has also a seasonal variation, but at a much lower scale than the other two soil layers, reason why it’s bearly noticeable in this plot.</p></li>
+</ul>
+</section>
+<section id="groundwater-zones">
+<h4>3.1.2 Groundwater zones<a class="headerlink" href="#groundwater-zones" title="Permalink to this headline">#</a></h4>
+<p>Let’s do a similar analysis on the two groundwater zones.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and plot some map stacks</span>
+<span class="n">gw</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;uz&#39;</span><span class="p">,</span> <span class="s1">&#39;lz&#39;</span><span class="p">]:</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_out</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">gw</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+
+<span class="c1"># calculate minimum and maximum values among all the map stacks</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">gw</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">gw</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">plot_mapstacks</span><span class="p">(</span><span class="n">gw</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;water content&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/3_2.png" /></p>
+<p><em><strong>Figure 2</strong>. Evolution of the two groundwater storages trhoughout the main run.</em></p>
+<p>From this plot we can infer that, in this case, both zones show seasonality, but the order of magnitude of this seasonal variation differs. Whereas the annual pattern in the upper zone (<span class="math notranslate nohighlight">\(uz\)</span>) is clearly visible in the lineplot, that of the lower zone (<span class="math notranslate nohighlight">\(lz\)</span>) is unnoticeable.</p>
+</section>
+<section id="discharge">
+<h4>3.1.3 Discharge<a class="headerlink" href="#discharge" title="Permalink to this headline">#</a></h4>
+<p>In the case of discharge, apart from the average map over time, we will plot the discharge timeseries for the outlet.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># read map stack</span>
+<span class="n">dis</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_out</span><span class="si">}</span><span class="s1">/dis.nc&#39;</span><span class="p">)</span>
+
+<span class="c1"># configure plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+
+<span class="c1"># map of daily mean</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">dis</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+                      <span class="n">cbar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="s2">&quot;shrink&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s2">&quot;aspect&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;pad&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+
+<span class="c1"># daily timeseries of areal mean</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">outlet</span> <span class="o">=</span> <span class="n">dis</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">([</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">])</span>
+<span class="n">dis</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">outlet</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="c1"># configure timeseries plot</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">dis</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dis</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+          <span class="n">ylabel</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;discharge [</span><span class="si">{</span><span class="n">dis</span><span class="o">.</span><span class="n">units</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/3_3.png" /></p>
+<p><em><strong>Figure 3</strong>. Average river discharge and timeseries of river discharge at the catchment outlet.</em></p>
+<p>The same discharge timeseries at the catchment outlet can be generated directly from the model simulation. For that, the option <code class="docutils literal notranslate"><span class="pre">repDischargeTs</span></code> in the settings file must be active, and the variable <code class="docutils literal notranslate"><span class="pre">Gauges</span></code> must include the coordinates of the outlet.</p>
+</section>
+<section id="reservoir-and-rice-irrigation">
+<h4>3.1.4 Reservoir and rice irrigation<a class="headerlink" href="#reservoir-and-rice-irrigation" title="Permalink to this headline">#</a></h4>
+<p>In this section we will analyse the map stacks generated by the reservoir and the rice irrigation options. First, we will load the map stacks and later we will plot the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load map stacks</span>
+<span class="n">water_use</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ResStor&#39;</span><span class="p">,</span> <span class="s1">&#39;ResAbs&#39;</span><span class="p">,</span> <span class="s1">&#39;tAbsPdRc&#39;</span><span class="p">]:</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_out</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">water_use</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+
+<span class="n">plot_mapstacks</span><span class="p">(</span><span class="n">water_use</span><span class="p">,</span> <span class="n">agg</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;volume&#39;</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/3_4.png" /></p>
+<p><em><strong>Figure 4</strong>. Evolution of the reservoir volumen over the main run.</em></p>
+<p>The two maps on the top left show, respectively, mean reservoir storage and mean reservoir abstraction. Since there is only one reservoir in the catchment, only one cell has a value larger than zero. We can use this map to find the location of the reservoir and extract from the map stack the timeseries of reservoir storage for that cell (blue line in the lineplot). A similar procedure is carried out for the map stack of reservoir abstraction to produce the green line in the lineplot. Finally, the paddy rice irrigation map (plot on the top right) shows the areas in the catchment where rice is produced and the average amount of water required. The map stack of rice abstraction is used to create a total rice irrigation demand (red line in the lineplot). Pay attention to the scale of the <em>y</em> axis in the lineplot; it is in logarithmic scale in order to show the variability of abstraction and rice irrigation despite their much lower order of magnitude compared with the reservoir storage.</p>
+<p>As shown in these plots, from the map stacks we can extract time series. As we will see later, activating the option <code class="docutils literal notranslate"><span class="pre">repsimulateReservoir</span></code> in the settings file generates timeseries (TSS files) of the reservoir simulation. However, in the case of the reservoir storage, the TSS file represents relative filling, instead of stored volume.</p>
+</section>
+</section>
+<section id="water-exploitation-indexes">
+<h3>3.1.5 Water exploitation indexes<a class="headerlink" href="#water-exploitation-indexes" title="Permalink to this headline">#</a></h3>
+<p>Since for this run we activated the options <code class="docutils literal notranslate"><span class="pre">indicator</span></code> and <code class="docutils literal notranslate"><span class="pre">repWIndex</span></code>, a series of water index maps were generated:</p>
+<ul class="simple">
+<li><p>WDI: water dependency index</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+WDI = \frac{local Water Demand Not Met By Local Water}{total Water Demand}
+\]</div>
+<ul class="simple">
+<li><p>WSI: water security index</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+WSI = \frac{upstream Inflow Actually Used}{upstream Inflow Available}
+\]</div>
+<ul class="simple">
+<li><p>WTI: water sustainability index</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+WTI = 1 - \frac{surfaceWaterDeficit}{totalWaterDemand}
+\]</div>
+<p>All these maps have monthly resolution, even though the simulation has daily timesteps.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and plot some map stacks</span>
+<span class="n">wi</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;WDI&#39;</span><span class="p">,</span> <span class="s1">&#39;WSI&#39;</span><span class="p">,</span> <span class="s1">&#39;WTI&#39;</span><span class="p">]:</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_out</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">wi</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+
+<span class="c1"># calculate minimum and maximum values among all the map stacks</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">wi</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">wi</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">plot_mapstacks</span><span class="p">(</span><span class="n">wi</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;water content&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/3_5.png" /></p>
+<p><em><strong>Figure 5</strong>. Water indexes. Maps are averages over the whole period; timeseries are averages over the whole catchment.</em></p>
+<p>The maps reproduce the water regions; with the southern region having a slightly higher water demand stress. In the timeseries we observe that from 2005 onwards there are recurrent periods in which some of the local demands are not met by local water (peaks in WDI).</p>
+<p><font color='red'>Why is WTI constantly zero?</font></p>
+</section>
+<section id="timeseries">
+<h3>3.2 Timeseries<a class="headerlink" href="#timeseries" title="Permalink to this headline">#</a></h3>
+<section id="id1">
+<h4>3.2.1 Discharge<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<p>As mentioned before, discharge timeseries can be produced directly from the model. The option <code class="docutils literal notranslate"><span class="pre">repDischargeTs</span></code> in the settings file must be active, and the variable <code class="docutils literal notranslate"><span class="pre">Gauges</span></code> must define the points of interest (in our case using the coordinates, but there are other ways to define it). We defined three points in which the model will generate timeseries. Let’s check the results:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import timeseries</span>
+<span class="n">disWin</span> <span class="o">=</span> <span class="n">read_tss</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_out</span><span class="si">}</span><span class="s1">disWin.tss&#39;</span><span class="p">,</span> <span class="n">xml</span><span class="o">=</span><span class="n">settings_file</span><span class="p">)</span>
+
+<span class="c1"># plot timeseries</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">disWin</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">disWin</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">dis</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">outlet</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;3 (netCDF)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">disWin</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">disWin</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+       <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">6200</span><span class="p">),</span>
+       <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;discharge [m3/s]&#39;</span><span class="p">,</span>
+       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/3_6.png" /></p>
+<p><em><strong>Figure 6</strong>. Discharge timeseries at the three points of interest.</em></p>
+<p>The <em>disWin.tss</em> file includes the discharge timeseries for the three points we defined. Each point is assigned an identifier; in our case, the catchment outlet corresponds to point 3. For the sake of comparison, the plot includes as points the discharge timeseries at the outlet extracted from the discharge map stack (<em><a class="reference external" href="http://dis.nc">dis.nc</a></em>) in section <a class="reference external" href="#3.1.3-Discharge">Discharge</a>; we check that the values of the TSS file are equal to those of the netCDF.</p>
+</section>
+<section id="reservoirs">
+<h4>3.2.2 Reservoirs<a class="headerlink" href="#reservoirs" title="Permalink to this headline">#</a></h4>
+<p>As the option <code class="docutils literal notranslate"><span class="pre">repsimulateReservoirs</span></code> is active in the settings file, the simulation created three TSS files representing the inflow (<em>qresin.tss</em>), outflow (<em>qresout.tss</em>) and relative filling (<em>resfill.tss</em>) of the reservoirs. In our case, since there’s only one reservoir in the catchment, only one timeseries is included in each of these TSS files. Let’s load these timeseries and plot the reservoir simulation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load reservoir timeseries</span>
+<span class="n">timeseries</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;inflow&#39;</span><span class="p">:</span> <span class="s1">&#39;qresin&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;outflow&#39;</span><span class="p">:</span> <span class="s1">&#39;qresout&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;filling&#39;</span><span class="p">:</span> <span class="s1">&#39;resfill&#39;</span><span class="p">}</span>
+<span class="n">res_ts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">timeseries</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">read_tss</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_out</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">.tss&#39;</span><span class="p">,</span> <span class="n">xml</span><span class="o">=</span><span class="n">settings_file</span><span class="p">,</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">res_ts</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span>
+<span class="n">res_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">res_ts</span><span class="p">)</span>
+
+<span class="c1"># load reservoir relative filling limits</span>
+<span class="n">limits</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;conservative&#39;</span><span class="p">:</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;flood&#39;</span><span class="p">:</span> <span class="s1">&#39;f&#39;</span><span class="p">}</span>
+<span class="n">res_lim</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">limits</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">res_lim</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;tables/reservoirs/r</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">lim.txt&#39;</span><span class="p">,</span> <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># plot reservoir simulation</span>
+<span class="n">plot_reservoir</span><span class="p">(</span><span class="n">res_ts</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="n">res_lim</span><span class="p">[</span><span class="s1">&#39;conservative&#39;</span><span class="p">],</span> <span class="n">nlim</span><span class="o">=</span><span class="n">res_lim</span><span class="p">[</span><span class="s1">&#39;normal&#39;</span><span class="p">],</span> <span class="n">flim</span><span class="o">=</span><span class="n">res_lim</span><span class="p">[</span><span class="s1">&#39;flood&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/3_7.png" /></p>
+<p><em><strong>Figure 7</strong>. Reservoir inflow, outflow and relative filling.</em></p>
+<p>Conclusions from this plot:</p>
+<ul class="simple">
+<li><p>The reservoir storage is kept between the normal and flooding limits throughout most of the simulation period. In 1994, 1995 and 1997 there are three exceptions in which the storage exceeded the flood limit.</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="2_warmup.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Warmup run</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="4_following_steps.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Following steps</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joint Research Center - European Commission<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
