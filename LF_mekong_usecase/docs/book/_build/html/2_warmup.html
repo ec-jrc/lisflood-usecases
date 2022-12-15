@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Warmup run &#8212; A LISFLOOD catchment model - the Nam Ngum River</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Main run" href="3_run.html" />
+    <link rel="prev" title="Initialization run" href="1_initialization.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/header.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">A LISFLOOD catchment model - the Nam Ngum River</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0_general_setup.html">
+   Input and general settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_initialization.html">
+   Initialization run
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Warmup run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_run.html">
+   Main run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_following_steps.html">
+   Following steps
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/2_warmup.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#settings-file">
+   1 Settings file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-simulation">
+   2 Run the simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#output">
+   3 Output
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#end-state-maps">
+     3.1 End state maps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-stack-of-state-variables">
+     3.2 Map stack of state variables
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Warmup run</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#settings-file">
+   1 Settings file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-simulation">
+   2 Run the simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#output">
+   3 Output
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#end-state-maps">
+     3.1 End state maps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-stack-of-state-variables">
+     3.2 Map stack of state variables
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><img alt="header" src="_images/header.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="warmup-run">
+<h1>Warmup run<a class="headerlink" href="#warmup-run" title="Permalink to this headline">#</a></h1>
+<br>
+<br>
+<br>
+<p>The purpose of this run is to obtain the model state variables at the beginning of the period of interest. Hence, the model is run from the beginning of the meteorological data (01-01-1979) to the timestep prior to the beginning of the period of interest (31-12-1989). The initial conditions are set as default values, but we use the two outputs of the initialization run to set the average discharge (<code class="docutils literal notranslate"><span class="pre">avgdis</span></code>) and the average inflow into the lower groundwater zone (<code class="docutils literal notranslate"><span class="pre">lzavin</span></code>). From this run we want as a result only the map of the state variables at the end of the simulation.</p>
+<p>This run is not necessary in many studies. We have created this run only to show how the end maps of one simulation can be used as the initial conditions in the succeeding simulation, as it would be done in an operational forecasting system, for instance. This warmup run could be replaced by extending the final run a few years and discarding those first few years from the results. As explained in the <a class="reference external" href="https://ec-jrc.github.io/lisflood-code/3_step5_model-initialisation/">User Guide</a>, the lenght of time to be discarded depends on the “memory” of the water storages inside the model, which is usually in the order of months. A possible way to estimate the necessary time would be to run the model with completely different initial conditions and check when the results converge; from that moment on, the results are reliable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">lisflood_read_plot</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="settings-file">
+<h2>1 Settings file<a class="headerlink" href="#settings-file" title="Permalink to this headline">#</a></h2>
+<p>With all this in mind, the most relevant changes on the settings file (<em>settings_warmup.xml</em>) are shown in the following snippet:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lfoptions&gt;</span>
+    
+    # [...]
+    
+    # option to initialize Lisflood
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;0&quot;</span> <span class="na">name=</span><span class="s">&quot;InitLisflood&quot;</span><span class="nt">/&gt;</span>
+    
+    # report end state maps
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;repEndMaps&quot;</span><span class="nt">/&gt;</span>
+    
+    # report map stack of the lower groundwater zone
+    # (this option is not necessary, only for educational purposes)
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;0&quot;</span> <span class="na">name=</span><span class="s">&quot;repStateMaps&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;repLZMaps&quot;</span><span class="nt">/&gt;</span>
+    
+    # [...]
+    
+<span class="nt">&lt;/lfoptions&gt;</span>
+
+<span class="nt">&lt;lfuser&gt;</span>
+    
+    # [...]
+    
+    # time-related variables
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;CalendarDayStart&quot;</span> <span class="na">value=</span><span class="s">&quot;02-01-1979 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;StepStart&quot;</span> <span class="na">value=</span><span class="s">&quot;02-01-1979 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;StepEnd&quot;</span> <span class="na">value=</span><span class="s">&quot;01-01-1990 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;timestepInit&quot;</span> <span class="na">value=</span><span class="s">&quot;02-01-1979 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ReportSteps&quot;</span> <span class="na">value=</span><span class="s">&quot;1..9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;DtSec&quot;</span> <span class="na">value=</span><span class="s">&quot;86400&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;DtSecChannel&quot;</span> <span class="na">value=</span><span class="s">&quot;14400&quot;</span><span class="nt">/&gt;</span>
+    
+    # paths
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;PathInit&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathRoot)/initial&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;PathOut&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathRoot)/out/warmup&quot;</span><span class="nt">/&gt;</span>
+    
+    # files where the end state maps will be saved
+    # (only a few of them are shown for the sake of brevity)
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ReservoirFillEnd&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/rsfil&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;Theta1End&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/tha_end&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;Theta2End&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/thb_end&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;Theta3End&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/thc_end&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;UZEnd&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/uz_end&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LZEnd&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/lz_end&quot;</span><span class="nt">/&gt;</span>
+    # [...]
+    
+    # file where the output map stack will be saved
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LZState&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathOut)/lz&quot;</span><span class="nt">/&gt;</span>
+    
+    # [...]
+    
+<span class="nt">&lt;/lfuser&gt;</span>
+
+<span class="nt">&lt;lfbinding&gt;</span>
+    
+    [...]
+    
+    # files from where to read the initialized variables
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LZAvInflowMap&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/lzavin&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;AvgDis&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/avgdis&quot;</span><span class="nt">/&gt;</span>
+    
+    [...]
+    
+<span class="nt">&lt;/lfbinding&gt;</span>
+</pre></div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;lfoptions&gt;</span></code> element, the initialization model is deactivated, and several options that control the outputs reported by the simulation must be activated. In the succeeding run, we need to use the end state of this warmup run as the initial state; for that, the option <code class="docutils literal notranslate"><span class="pre">repEndMaps</span></code> is activated, which will create a NetCDF map for each state variable at the last timestep of the simulation. Only for the sake of showing another way of defining the initial conditions, we decided to report the map stack (evolution over time) of the lower groundwater storage; to do so, we can keep the option <code class="docutils literal notranslate"><span class="pre">repStateMaps</span></code> deactivated, but we must switch on the option <code class="docutils literal notranslate"><span class="pre">repLZMaps</span></code>.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;lfuser&gt;</span></code> element, the first thing to do is to set the start and end of the simulation, and to configure reporting at every timestep in the variable <code class="docutils literal notranslate"><span class="pre">ReportSteps</span></code>. Then, the name and location of the output maps are defined; these maps represent the model state variables at the last timestep of the simulation, and the stack map of the lower groundwater zone storage. For the sake of simplicity, in the snippet above only a few of them are shown. We chose to save the end maps in the <em>initial</em> subfolder of the project, together with the outputs of the initialization run, whereas the map stack will be saved in the subfolder <em>output/warmup</em>.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;lfbinding&gt;</span></code> element, we must define the initialization maps we’ve just created with the <a class="reference internal" href="1_initialization.html"><span class="doc std std-doc">initialization run</span></a>.</p>
+</section>
+<section id="run-the-simulation">
+<h2>2 Run the simulation<a class="headerlink" href="#run-the-simulation" title="Permalink to this headline">#</a></h2>
+<p>To run the simulation, open a terminal, activate the Conda environment where you installed LISFLOOD and execute the <code class="docutils literal notranslate"><span class="pre">lisflood</span></code> function pointing at the appropriate settings file. For instance:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda activate your_lisflood_environment
+lisflood /home/user/your_path/settings_warmup.xml
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h2>3 Output<a class="headerlink" href="#output" title="Permalink to this headline">#</a></h2>
+<p>The output of the warmup run are a series of NetCDF maps (subfolder <em>initial</em>) representing the state variables at the end of the simulation, and 1 NetCDF map stack (subfolder <em>out/warmup</em>) with the evolution of the lower groundwater zone storage. You must take into account that, depending on the modules activated in your LISFLOOD model, some end maps will be or will not be created.</p>
+<section id="end-state-maps">
+<h3>3.1 End state maps<a class="headerlink" href="#end-state-maps" title="Permalink to this headline">#</a></h3>
+<p>The end state maps will be the initial conditions for the succeeding run. In this example, they are the model state variables the 31-12-1989 (remember that this date is 01-01-1990 in LISFLOOD end-of-timestep notation). Let’s visualize some of those maps.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load some end state maps (initial conditions for the run)</span>
+<span class="n">init_cond</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tha&#39;</span><span class="p">,</span> <span class="s1">&#39;thb&#39;</span><span class="p">,</span> <span class="s1">&#39;thc&#39;</span><span class="p">,</span> <span class="s1">&#39;uz&#39;</span><span class="p">,</span> <span class="s1">&#39;lz&#39;</span><span class="p">,</span> <span class="s1">&#39;rsfil&#39;</span><span class="p">]:</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;initial/</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">_end.nc&#39;</span><span class="p">)</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">init_cond</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+
+<span class="c1"># plot end conditions</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">9.75</span><span class="p">))</span>
+<span class="n">plot_config</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;soil&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;tha&#39;</span><span class="p">,</span> <span class="s1">&#39;thb&#39;</span><span class="p">,</span> <span class="s1">&#39;thc&#39;</span><span class="p">],</span> <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Blues&#39;</span><span class="p">},</span>
+               <span class="s1">&#39;groudwater&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;uz&#39;</span><span class="p">,</span> <span class="s1">&#39;lz&#39;</span><span class="p">],</span> <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Greens&#39;</span><span class="p">},</span>
+               <span class="s1">&#39;reservoir&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rsfil&#39;</span><span class="p">],</span> <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">}}</span>
+<span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plot_config</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">]):</span>
+        <span class="n">init_cond</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;cmap&#39;</span><span class="p">])</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+                <span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/2_1.png" /></p>
+<p><em><strong>Figure 1</strong>. Maps of the model state variables at the end of the warmup run.</em></p>
+<p>The maps above represent:</p>
+<ul class="simple">
+<li><p>The first row is the water content in the three soil layers. From left to right, <span class="math notranslate nohighlight">\(\theta_{1a}\)</span> for superficial soil, <span class="math notranslate nohighlight">\(\theta_{1b}\)</span> for the upper soil, and <span class="math notranslate nohighlight">\(\theta_{1c}\)</span> for the lower soil.</p></li>
+<li><p>The second row represents groundwater storages: <span class="math notranslate nohighlight">\(UZ\)</span> for the upper groundwater zone, and <span class="math notranslate nohighlight">\(LZ\)</span> for the lower groundwater zone.</p></li>
+<li><p>The last row represents the relative filling of reservoirs (only one in this catchment).</p></li>
+</ul>
+<p>The water content maps here shown correspond only to the “other” land use fraction, i.e., any but forest, irrigated or sealed. Similar maps were generated for the forest and irrigated fractions, whereas for the sealed fraction none of these maps apply.</p>
+<p>The reservoir relative filling map has only one cell with a value different from 0, which is the cell representing the reservoir. Let’s find out what’s the initial condition for the relative filling of the reservoir:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Initial relative filling: </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">init_cond</span><span class="p">[</span><span class="s1">&#39;rsfil&#39;</span><span class="p">]))))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Initial relative filling: 0.870
+</pre></div>
+</div>
+</section>
+<section id="map-stack-of-state-variables">
+<h3>3.2 Map stack of state variables<a class="headerlink" href="#map-stack-of-state-variables" title="Permalink to this headline">#</a></h3>
+<p>We have defined in the settings file that we want to write the map stack of the lower groundwater zone storage. As mentioned earlier, this is not a compulsory step. It was done this way to show another possible way of defining the initial conditions on the main run, and to prove why a warmup period is necessary.</p>
+<p>This output differs from the end maps, since it has a temporal third dimension. Let’s inspect the resulting NetCDF file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load map stacks of lower groundwater zone storage</span>
+<span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;out/warmup/lz.nc&#39;</span><span class="p">)</span>
+<span class="n">da</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># plot map of average over time and timeseries of areal average</span>
+<span class="n">plot_map_timeseries</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Last timestep: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Last timestep: 1990-01-01T00:00:00.000000000
+</pre></div>
+</div>
+<p><img alt="png" src="_images/2_2.png" /></p>
+<p><em><strong>Figure 2</strong>. Evolution of the lower groundwater storage throughout the warmup run. The map on the left represents the average water storave over time, whereas the lineplot on the right the evolution over time of the average catchment water storage.</em></p>
+<p>The lineplot above proves why it is necessary to warm up the model. The default initial condition we used as a starting point for this run (02-01-1979) differs from the end condition (01-01-1990). Even though the differences may seem small in this case, they can make the difference in the succeeding run.</p>
+<p>The last timestep of this map stack may be used as the initial condition for the suceeding run, instead of the end map in <em>initial/lz.nc</em>, since they are the same. In the following notebook we will cover how to set this last map as the initial conditions.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="1_initialization.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Initialization run</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="3_run.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Main run</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joint Research Center - European Commission<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
