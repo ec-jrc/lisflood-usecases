@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Input and general settings &#8212; A LISFLOOD catchment model - the Nam Ngum River</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Initialization run" href="1_initialization.html" />
+    <link rel="prev" title="A LISFLOOD use case: the Nam Ngum River Basin" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/header.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">A LISFLOOD catchment model - the Nam Ngum River</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Input and general settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_initialization.html">
+   Initialization run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_warmup.html">
+   Warmup run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_run.html">
+   Main run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_following_steps.html">
+   Following steps
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/0_general_setup.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#study-area">
+   1 Study area
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-data">
+   2 Input data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maps">
+     2.1 Maps
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#static-maps">
+       2.1.1 Static maps
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dynamic-maps">
+       2.1.2 Dynamic maps
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meteorological-forcings">
+     2.2 Meteorological forcings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tables">
+     2.3 Tables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-setup">
+   3 General setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runs">
+     3.1 Runs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-settings">
+     3.2 General settings
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-options">
+       3.2.1 Model options
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calibration-parameters">
+       3.2.2 Calibration parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Input and general settings</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#study-area">
+   1 Study area
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-data">
+   2 Input data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maps">
+     2.1 Maps
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#static-maps">
+       2.1.1 Static maps
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dynamic-maps">
+       2.1.2 Dynamic maps
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meteorological-forcings">
+     2.2 Meteorological forcings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tables">
+     2.3 Tables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-setup">
+   3 General setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runs">
+     3.1 Runs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-settings">
+     3.2 General settings
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-options">
+       3.2.1 Model options
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calibration-parameters">
+       3.2.2 Calibration parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><img alt="header" src="_images/header.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="input-and-general-settings">
+<h1>Input and general settings<a class="headerlink" href="#input-and-general-settings" title="Permalink to this headline">#</a></h1>
+<br>
+<br>
+<br>
+<p>The objective of this this use case is to present new users the steps necessary to develop a LISFLOOD catchment model. We will guide you through the input data, the most important parts of the settings file, the diverse runs you will need to initialize the model, and the outputs of every run.</p>
+<p>We will suppose that there is a project in which we are asked to run a 30-year long simulation of the Nam Ngum river (Laos) to assess the water resources in the catchment.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">lisflood_read_plot</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="study-area">
+<h2>1 Study area<a class="headerlink" href="#study-area" title="Permalink to this headline">#</a></h2>
+<p>The Nam Ngum River is a tributary of the Mekong River that flows into it a few kilometers downstream of Laos’ capital city, Vientiane. The catchment has an area of approximately 16,000 km2, of which 8,400 km2 are regulated by the Nam Ngum Reservoir. The mean annual rainfall in the catchment is 1200 mm and a mean annual temperature around 12 ºC.</p>
+<p>According to the <a class="reference external" href="https://www.globalfloods.eu/">GloFAS</a> (Global Flood Awareness System) dataset, the are two gauges within the Nam Ngum River catchment. In this exercise, we will use the gauge downstream to cut the static maps and the meteorological forcing that LISFLOOD needs as input data. However, we are not interested specifically in these two gaugins stations; instead, we will define three reporting points, one corresponding to the downstream gauge and two points we will choose in the tributaries of the Nam Ngum River.</p>
+<p><img alt="Run explanation" src="_images/introduction_map.png" /></p>
+<p><em><strong>Figure 1</strong>. The Nam Ngum river (Laos) is a tributary of the Mekong river.</em></p>
+</section>
+<section id="input-data">
+<h2>2 Input data<a class="headerlink" href="#input-data" title="Permalink to this headline">#</a></h2>
+<p>The input data required by the LISFLOOD model can be divided in three groups: static maps, tables and meteorological forcings.</p>
+<section id="maps">
+<h3>2.1 Maps<a class="headerlink" href="#maps" title="Permalink to this headline">#</a></h3>
+<p>They are included in the folder <em>maps</em>, classified according to topics (<em>channels</em>, <em>general</em>, <em>lakes</em>…). This organization is voluntary, you can find your own way to organize the maps, as long as you reference them correctly in the settings file.</p>
+<p>The specific maps for this case study were created by cutting the global maps to the catchment defined by our oulet gauging stations. The <code class="docutils literal notranslate"><span class="pre">cutmaps</span></code> tool from the <a class="reference external" href="https://github.com/ec-jrc/lisflood-utilities">LISFLOOD utilities repository</a> allows you to perform this task.</p>
+<p>LISFLOOD requires a set of maps that define catchment properties such as topography, soil properties, land use, etc. LISFLOOD users are encouraged to produce their own maps following the protocol explained <a class="reference external" href="https://ec-jrc.github.io/lisflood-code/4_Static-Maps-introduction/">here</a>. European maps at 1 arcminute resolution and global maps at 3 arcminute resolution will be publicly available in 2023.</p>
+<section id="static-maps">
+<h4>2.1.1 Static maps<a class="headerlink" href="#static-maps" title="Permalink to this headline">#</a></h4>
+<p>The vast majority of these maps are static, i.e., they do not change over time. These maps include the channel properties, land cover related maps, soil hydraulics, etc. Let’s see how some of the soil hydraulis properties look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load maps</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ksat1_f&#39;</span><span class="p">,</span> <span class="s1">&#39;ksat2_f&#39;</span><span class="p">,</span> <span class="s1">&#39;thetas1_f&#39;</span><span class="p">,</span> <span class="s1">&#39;thetas2_f&#39;</span><span class="p">,</span> <span class="s1">&#39;thetas3&#39;</span><span class="p">]</span>
+<span class="n">soils</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;maps/soil_hydraulics/</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">soils</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;Band1&#39;</span><span class="p">]</span>
+
+<span class="c1"># plot maps</span>
+<span class="n">ncols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="n">ncols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">ncols</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">da</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">soils</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">cbar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">var</span><span class="p">,</span> <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="s2">&quot;shrink&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s2">&quot;aspect&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;pad&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/0_3.png" /></p>
+<p><em><strong>Figure 3</strong>. Static maps of some of the soil hydraulic properties.</em></p>
+</section>
+<section id="dynamic-maps">
+<h4>2.1.2 Dynamic maps<a class="headerlink" href="#dynamic-maps" title="Permalink to this headline">#</a></h4>
+<p>Some of the maps, instead, are dynamic, i.e., they change over time. In our case, since we have decided to simulate land use change and water use change, there are three sets of maps with temporal evolution.</p>
+<p><strong>Leaf area index (LAI)</strong></p>
+<p>Leaf area index has an annual cycle, therefore, representative maps for the evolution of LAI over a year must be provided. LAI maps are the only compulsory dynamic maps. In this example, we provide 10-day average LAI maps (36 maps per year) for forest (<em><a class="reference external" href="http://laif.nc">laif.nc</a></em>), irrigated (<em><a class="reference external" href="http://laii.nc">laii.nc</a></em>) and other (<em><a class="reference external" href="http://laio.nc">laio.nc</a></em>) land uses; you can find them in folder <em>maps/vegetation/</em>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and plot some map stacks</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;laif&#39;</span><span class="p">:</span> <span class="s1">&#39;LAI forest&#39;</span><span class="p">,</span> <span class="s1">&#39;laii&#39;</span><span class="p">:</span> <span class="s1">&#39;LAI irrigated&#39;</span><span class="p">,</span> <span class="s1">&#39;laio&#39;</span><span class="p">:</span> <span class="s1">&#39;LAI other&#39;</span><span class="p">}</span>
+<span class="n">lai</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">variables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;maps/vegetation/</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c1"># extract the LAI variable</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;Band1&#39;</span><span class="p">]</span>
+    <span class="c1"># set representative timesteps</span>
+    <span class="n">da</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">periods</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;10d&#39;</span><span class="p">)</span>
+    <span class="c1"># set attributes</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;long_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+    <span class="n">lai</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+
+<span class="c1"># plot maps and timeseries of LAI</span>
+<span class="n">plot_mapstacks</span><span class="p">(</span><span class="n">lai</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">6.8</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Leaf area index&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/0_4.png" /></p>
+<p><em><strong>Figure 4</strong>. Leaf Area Index maps for different land covers. The maps on top show the mean annual LAI, whereas the lineplot at the bottom the evolution over time of the mean catchment LAI.</em></p>
+<blockquote>
+<div><p>Check this <a class="reference external" href="https://ec-jrc.github.io/lisflood-code/4_Static-Maps_leaf-area-index/">link</a> for more info about the use of LAI maps in LISFLOOD.</p>
+</div></blockquote>
+<p><strong>Transient water use</strong></p>
+<p>In this use case, we have decided to model the change in water use along the study period. The following plot shows how the water use is distributed spatially across the catchment and its evolution over time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and plot some map stacks</span>
+<span class="n">water_use</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;dom&#39;</span><span class="p">,</span> <span class="s1">&#39;ene&#39;</span><span class="p">,</span> <span class="s1">&#39;ind&#39;</span><span class="p">,</span> <span class="s1">&#39;liv&#39;</span><span class="p">]:</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;maps/water_use/</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">water_use</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+
+<span class="c1"># calculate minimum and maximum values of soil moisture among all the map stacks</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">water_use</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">water_use</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+
+<span class="n">plot_mapstacks</span><span class="p">(</span><span class="n">water_use</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;water use&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/0_5.png" /></p>
+<p><em><strong>Figure 5</strong>. Transient water use for 4 types of consumption (<em>dom</em>: domestic, <em>ene</em>: energy, <em>ind</em>: industry, <em>liv</em>: livestock). The maps on top show mean consumption over the study period, whereas the lineplot at the bottom shows the evolution over time of the mean catchment water use.</em></p>
+<p>The maps above show that water use is concentrated in a few cells over the catchment. The lineplot shows that, in our case, water use has increased in the last few decades, and that the domestic consumption has a seasonal cycle.</p>
+<p><strong>Land use change</strong></p>
+<p>To reproduce land use change, we provide LISFLOOD with monthly maps of the fraction of each cell devoted to each land use. The files are located in the folder <em>maps/land_use/dynamic</em>. For instance, let’s see the evolution of the six land covers (forest, irrigated, other, water bodies, urban and rice) over the 41 year period:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">land_use</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;forest&#39;</span><span class="p">,</span> <span class="s1">&#39;irrigated&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="s1">&#39;rice&#39;</span><span class="p">,</span> <span class="s1">&#39;sealed&#39;</span><span class="p">,</span> <span class="s1">&#39;water&#39;</span><span class="p">]:</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;maps/land_use/dynamic/frac</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">land_use</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+
+<span class="n">plot_mapstacks</span><span class="p">(</span><span class="n">land_use</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/0_6.png" /></p>
+<p><em><strong>Figure 6</strong>. Land use change. Maps represent average over time, whereas the timeseries represents average over the entire catchment.</em></p>
+<p>In our study area, the majority of the catchment belongs to either forest or the “other” fraction, with a diverging trend between the two of them; forest cover has slightly increased, whereas the “other” fraction has decreased. The irrigated and rice cultivation areas are mostly in the lower part of the catchment, whereas the water bodies mainly refer to the reservoir. It is important to notice that the sum of all fractions must be 1.</p>
+<p>The data provided with the use case also includes in folder <em>maps/land_use/static/</em> the same land use fraction maps for a simulation without land use change. In that case, each file contains a unique map that applies to the whole simulation period.</p>
+<blockquote>
+<div><p>Check this <a class="reference external" href="https://ec-jrc.github.io/lisflood-model/3_13_optLISFLOOD_TransientLandUseChange/">link</a> for more information about the simulation of land use change in LISFLOOD.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="meteorological-forcings">
+<h3>2.2 Meteorological forcings<a class="headerlink" href="#meteorological-forcings" title="Permalink to this headline">#</a></h3>
+<p>They are provided in the folder <em>meteo</em>. Five map stacks are required: air temperature 2 m above ground (<em>2t</em>), potential evaporation (<em>e0</em>), potential evaporation from bare soil (<em>eS0</em>), potential evapotranspiration (<em>eT0</em>) and precipitation (<em>tp</em>). A netCDF file is supplied for each meteorological variable; each file contains the daily maps for the 41 years of data available.</p>
+<p>Similarly to the <a class="reference external" href="#2.1-Maps">maps</a>, the meteorological forcings were created applying the <code class="docutils literal notranslate"><span class="pre">cutmaps</span></code> tool to the global dataset developed by the GloFAS team. The use of the GloFAS meteorological dataset is not mandatory; on the contrary, we encourage users to use their preferred meteorological datasets. The only requirement is that the meteorological forcings must match the spatial definition (coordinate reference system, resolution and grid) of the static maps.</p>
+<p>Let’s inspect one of these files, e.g., the air temperature.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the temperature stack map</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;meteo/2t.nc&#39;</span><span class="p">)</span>
+
+<span class="c1"># check the dimensions of the data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data dimensions: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">dims</span><span class="p">))</span>
+
+<span class="c1"># extract the temperature variable</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="s1">&#39;2t&#39;</span><span class="p">]</span>
+<span class="n">t</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># create a simple plot of the data</span>
+<span class="n">plot_map_timeseries</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;temperature [°C]&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+
+<span class="n">T</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Data dimensions: Frozen({&#39;lon&#39;: 29, &#39;lat&#39;: 36, &#39;time&#39;: 14975})
+</pre></div>
+</div>
+<p><img alt="png" src="_images/0_7.png" /></p>
+<p><em><strong>Figure 7</strong>. Air temperature. On the left, a map of the mean temperature; on the right, a time series of mean areal temperature.</em></p>
+<blockquote>
+<div><p>Try to inspect the other meteorological datasets.</p>
+</div></blockquote>
+</section>
+<section id="tables">
+<h3>2.3 Tables<a class="headerlink" href="#tables" title="Permalink to this headline">#</a></h3>
+<p>LISFLOOD uses tables (TXT files) to provide specific parameters for the lake and reservoir simulation. In this use case, since there are no lakes in the catchment, we only require these text files for the reservoir simulation (see folder <em>tables/reservoirs</em>). Each of the TXT files is a two-entry table; the first column represents the reservoir ID and the second column the value of the corresponding variable.</p>
+<p>As an example, the following code snippet corresponds to the file <em>rnormq.txt</em>, which defines the normal reservoir outflow (159.1 m3/s) for the Nam Ngum Reservoir (which in the GloFAS dataset has ID 530).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>530 159.1
+</pre></div>
+</div>
+</section>
+</section>
+<section id="general-setup">
+<h2>3 General setup<a class="headerlink" href="#general-setup" title="Permalink to this headline">#</a></h2>
+<section id="runs">
+<h3>3.1 Runs<a class="headerlink" href="#runs" title="Permalink to this headline">#</a></h3>
+<p>As mentioned above, the objective of this use case is to have a climatology of river discharge in three points of the Nam Ngum River, for which a simulation of 30 years needs to be done. Before we proceed with the run, we must both initialize the LISFLOOD model of the catchment and warmup the state variables. In total, we will simulate three runs:</p>
+<ul class="simple">
+<li><p>An <strong>initialization run</strong> to estimate the average discharge in the river network (required by the kinematic wave split routing) and the average inflow in the lower groundwater zone (required to estimate the initial conditions of the lower groundwater zone). Please, read this <a class="reference external" href="https://ec-jrc.github.io/lisflood-code/3_step5_model-initialisation/">link</a> for further information on LISFLOOD initialization.</p></li>
+<li><p>A <strong>warm-up run</strong> to estimate the state variables at the beginning of the period of interest. This run is not mandatory for a simulation like ours. It is done here only to show how the end states of a simulation can be applied as the initial conditions of a succeeding simulation. A simpler and more common approach is to simulate the main run with default initial conditions and to discard the first few years of the results, assuming that the results at the beginning of the simulation are not reliable due to unrealistic initial conditions.</p></li>
+<li><p>The actual <strong>30-year run</strong>.</p></li>
+</ul>
+<p>The following figure shows the extent of these three simulations in our case study. The meteorological data spans from 01-01-1979 to 31-12-2019, so 41 years of data are available. It is recommended that the initialization run be as long as possible; therefore, the 41 years of data are used for this run. To warm up the model we use the first 11 years of data (1979-1990) and the remaining 30 years are used for the actual run.</p>
+<p><img alt="Run explanation" src="_images/3_run_explanation.png" /></p>
+<p><em><strong>Figure 8</strong>. Time periods of the three runs. The initialization run expands the complete 41 years of meteorological data. This period is divided in a warmup run (11 first years) and the actual run (30 years).</em></p>
+</section>
+<section id="general-settings">
+<h3>3.2 General settings<a class="headerlink" href="#general-settings" title="Permalink to this headline">#</a></h3>
+<p>The Nam Ngum river catchment has a set of particularities for which it was chosen as a use case.</p>
+<ul class="simple">
+<li><p>There is a reservoir that regulates approximately half of the catchment.</p></li>
+<li><p>There is an extensive area of the catchment dedicated to rice production.</p></li>
+<li><p>We want to include in the simulation the change over time of both water demand and land use.</p></li>
+<li><p>We want to apply split kinematic wave routing.</p></li>
+<li><p>The maps are in a geographic coordinate system (latitude and longitude), so we must input maps for pixel length and area (activation via option <code class="docutils literal notranslate"><span class="pre">gridSizeUserDefined</span></code>)</p></li>
+</ul>
+<p>With all these requirements, we can start working from the <a class="reference external" href="https://github.com/ec-jrc/lisflood-code/blob/master/src/lisfloodSettings_reference.xml">default settings file</a> and define our specific settings.</p>
+<section id="model-options">
+<h4>3.2.1 Model options<a class="headerlink" href="#model-options" title="Permalink to this headline">#</a></h4>
+<p>These are the LISFLOOD modules activated in the <code class="docutils literal notranslate"><span class="pre">&lt;lfoptions&gt;</span></code> element of the settings file:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lfoptions&gt;</span>
+
+    # [...]
+
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;gridSizeUserDefined&quot;</span><span class="nt">/&gt;</span>
+
+    # option to read/write NetCDF
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;readNetcdfStack&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;writeNetcdfStack&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;writeNetcdf&quot;</span><span class="nt">/&gt;</span>
+
+    # options to turn hydrological modules on/off
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;wateruse&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;TransientWaterDemandChange&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;TransientLandUseChange&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;wateruseRegion&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;drainedIrrigation&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;riceIrrigation&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;openwaterevapo&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;simulateReservoirs&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;SplitRouting&quot;</span><span class="nt">/&gt;</span>
+
+    # [...]
+
+<span class="nt">&lt;/lfoptions&gt;</span>
+</pre></div>
+</div>
+<p>These options apply to the three runs (<em>settings_initialization.xml</em>, <em>settings_warmup.xml</em> and <em>settings_run.xml</em>). As we will see in the following notebooks, other options will change depending on the run.</p>
+</section>
+<section id="calibration-parameters">
+<h4>3.2.2 Calibration parameters<a class="headerlink" href="#calibration-parameters" title="Permalink to this headline">#</a></h4>
+<p>Amont the multiple model parameters in LISFLOOD, the recommended calibration procedure focuses on tuning a smaller set of parameters. These calibration paramenters can be found in the settings file within the element <code class="docutils literal notranslate"><span class="pre">&lt;lfusers&gt;</span></code>; the comments on each of these paremeters show their default value. We will start running our catchment model with these default values.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;UpperZoneTimeConstant&quot;</span> <span class="na">value=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LowerZoneTimeConstant&quot;</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;GwPercValue&quot;</span> <span class="na">value=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;GwLoss&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LZThreshold&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathSoilHyd)/lzthreshold_Global_03min.nc&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;b_Xinanjiang&quot;</span> <span class="na">value=</span><span class="s">&quot;0.7&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;PowerPrefFlow&quot;</span> <span class="na">value=</span><span class="s">&quot;3.5&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;CalChanMan&quot;</span> <span class="na">value=</span><span class="s">&quot;2.0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;CalChanMan2&quot;</span> <span class="na">value=</span><span class="s">&quot;3.0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;SnowMeltCoef&quot;</span> <span class="na">value=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LakeMultiplier&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;adjust_Normal_Flood&quot;</span> <span class="na">value=</span><span class="s">&quot;0.8&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ReservoirRnormqMult&quot;</span> <span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;QSplitMult&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong>. Bear in mind that the default parameter values are simply a way to start the model, but they should be calibrated against observations in your specific catchment. The <a class="reference external" href="https://github.com/ec-jrc/lisflood-calibration">LISFLOOD-calibration repository</a> is a possible way of calibrating your model, but you can use any other procedure.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">A LISFLOOD use case: the Nam Ngum River Basin</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="1_initialization.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Initialization run</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joint Research Center - European Commission<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
