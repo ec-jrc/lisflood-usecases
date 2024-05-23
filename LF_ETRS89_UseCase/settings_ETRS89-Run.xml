@@ -1578,7 +1578,21 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 This option sets the value of NetCDFTimeChunks to -1, meaning that the whole time series in the NetCDF inputs is loaded into memory.
             </comment>       
         </textvar>         
-        
+
+        <comment>
+
+            The option "OutputMapsChunks" may take the following values:
+                - "[positive integer number]"  : Dump outputs to disk every X steps (default 1) 
+        </comment>
+        <textvar name="OutputMapsChunks" value="1"/>
+
+        <comment>
+            The option "OutputMapsDataType" sets the output data type and may take the following values:
+                - "float64"
+                - "float32"
+        </comment>
+        <textvar name="OutputMapsDataType" value="float64"/>
+
         <textvar name="netCDFtemplate" value="$(netCDFtemplate)">
             <comment>
                 netcdf template used to copy metadata information for writing netcdf
