@@ -1,4 +1,4 @@
-timeseries valuescale.scalar settingsfile: /home/carlo/releases/lisflood_v4.1.0/lisflood-usecases/LF_ETRS89_UseCase/settings_ETRS89-Run.xml date: Tue Oct  4 17:25:08 2022
+timeseries valuescale.scalar settingsfile: /lisflood-usecases/LF_ETRS89_UseCase/settings_ETRS89-Run.xml date: Tue Jun 11 11:44:26 2024
 2
 timestep
 1
