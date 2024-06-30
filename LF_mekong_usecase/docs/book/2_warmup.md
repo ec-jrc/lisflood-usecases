@@ -6,13 +6,13 @@
 <br>
 <br>
 
-The purpose of this run is to obtain the model state variables at the beginning of the period of interest. Hence, the model is run from the beginning of the meteorological data (01-01-1979) to the timestep prior to the beginning of the period of interest (31-12-1989). The initial conditions are set as default values, but we use the two outputs of the initialization run to set the average discharge (`avgdis`) and the average inflow into the lower groundwater zone (`lzavin`). From this run we want as a result only the map of the state variables at the end of the simulation.
+The purpose of the warmup run is to obtain the model state variables at the beginning of the period of interest. Hence, the model is run from the beginning of the meteorological data (01-01-1979) to the timestep prior to the beginning of the period of interest (31-12-1989). The initial conditions are set as default values, but we use the two outputs of the initialization run to set the average discharge (`avgdis`) and the average inflow into the lower groundwater zone (`lzavin`). From this run we want as a result only the map of the state variables at the end of the simulation.
 
-This run is not necessary in many studies. We have created this run only to show how the end maps of one simulation can be used as the initial conditions in the succeeding simulation, as it would be done in an operational forecasting system, for instance. This warmup run could be replaced by extending the final run a few years and discarding those first few years from the results. As explained in the [User Guide](https://ec-jrc.github.io/lisflood-code/3_step5_model-initialisation/), the lenght of time to be discarded depends on the "memory" of the water storages inside the model, which is usually in the order of months. A possible way to estimate the necessary time would be to run the model with completely different initial conditions and check when the results converge; from that moment on, the results are reliable.
+This run is not necessary in many studies. We have created this run only to show how the end maps of one simulation can be used as the initial conditions in the succeeding simulation, as it would be done in an operational forecasting system, for instance. This warmup run could be replaced by extending the final run a few years and discarding those first few years from the results. As explained in the [User Guide](https://ec-jrc.github.io/lisflood-code/3_step5_model-initialisation/), the length of time to be discarded depends on the "memory" of the water storages inside the model, which is usually in the order of months. A possible way to estimate the necessary time would be to run the model with completely different initial conditions and check when the results converge; from that moment on, the results are reliable.
 
 
 ```python
-import os
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -20,12 +20,12 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from lisflood_read_plot import *
 
-os.chdir('../../')
+path_model = Path('../../model/')
 ```
 
 ## 1 Settings file
 
-With all this in mind, the most relevant changes on the settings file (_settings_warmup.xml_) are shown in the following snippet:
+With all this in mind, the most relevant changes on the settings file ([_settings_warmup.xml_](../../model/settings_warmup.xml)) are shown in the following snippet:
 
 ```xml
 <lfoptions>
@@ -94,19 +94,19 @@ With all this in mind, the most relevant changes on the settings file (_settings
 </lfbinding>
 ```
 
-In the `<lfoptions>` element, the initialization model is deactivated, and several options that control the outputs reported by the simulation must be activated. In the succeeding run, we need to use the end state of this warmup run as the initial state; for that, the option `repEndMaps` is activated, which will create a NetCDF map for each state variable at the last timestep of the simulation. Only for the sake of showing another way of defining the initial conditions, we decided to report the map stack (evolution over time) of the lower groundwater storage; to do so, we can keep the option `repStateMaps` deactivated, but we must switch on the option `repLZMaps`.
+In the `<lfoptions>` section, the initialization model is deactivated, and several options that control the outputs reported by the simulation must be activated. In the succeeding run, we need to use the end state of this warmup run as the initial state; for that, the option `repEndMaps` is activated, which will create a NetCDF map for each state variable at the last timestep of the simulation. Only for the sake of showing another way of defining the initial conditions, we decided to report the map stack (evolution over time) of the lower groundwater storage; to do so, we can keep the option `repStateMaps` deactivated, but we must switch on the option `repLZMaps`.
 
-In the `<lfuser>` element, the first thing to do is to set the start and end of the simulation, and to configure reporting at every timestep in the variable `ReportSteps`. Then, the name and location of the output maps are defined; these maps represent the model state variables at the last timestep of the simulation, and the stack map of the lower groundwater zone storage. For the sake of simplicity, in the snippet above only a few of them are shown. We chose to save the end maps in the _initial_ subfolder of the project, together with the outputs of the initialization run, whereas the map stack will be saved in the subfolder _output/warmup_.
+In the `<lfuser>` section, the first thing to do is to set the start and end of the simulation, and make sure that results are reported every timestep with the variable `ReportSteps`. Then, the name and location of the output maps are defined; these maps represent the model state variables at the last timestep of the simulation, and the stack map of the lower groundwater zone storage. For the sake of simplicity, in the snippet above only a few of them are shown. We chose to save the end maps in the _initial_ subfolder of the project, together with the outputs of the initialization run, whereas the map stack will be saved in the subfolder _output/warmup_.
 
-In the `<lfbinding>` element, we must define the initialization maps we've just created with the [initialization run](1_initialization.ipynb).
+In the `<lfbinding>` element, we must define the initialization maps we've just created in the [initialization run](1_initialization.ipynb).
 
 ## 2 Run the simulation
 
-To run the simulation, open a terminal, activate the Conda environment where you installed LISFLOOD and execute the `lisflood` function pointing at the appropriate settings file. For instance:
+To run the simulation, open a terminal, activate the Conda environment where you have installed LISFLOOD and execute the `lisflood` function pointing at the appropriate settings file. For instance:
 
 ```shell
 conda activate your_lisflood_environment
-lisflood /home/user/your_path/settings_warmup.xml
+lisflood <path_where_you_saved_the_repository>/lisflood-usecases/LF_mekong_usecase/model/settings_warmup.xml
 ```
 
 ## 3 Output
@@ -115,14 +115,14 @@ The output of the warmup run are a series of NetCDF maps (subfolder _initial_) r
 
 ### 3.1 End state maps 
 
-The end state maps will be the initial conditions for the succeeding run. In this example, they are the model state variables the 31-12-1989 (remember that this date is 01-01-1990 in LISFLOOD end-of-timestep notation). Let's visualize some of those maps.
+The end state maps will be the initial conditions for the succeeding run. In this example, they are the model state variables at 31-12-1989 (remember that this date is 01-01-1990 in LISFLOOD end-of-timestep notation). Let's visualize some of those maps.
 
 
 ```python
 # load some end state maps (initial conditions for the run)
 init_cond = {}
 for var in ['tha', 'thb', 'thc', 'uz', 'lz', 'rsfil']:
-    da = xr.open_dataarray(f'initial/{var}_end.nc')
+    da = xr.open_dataarray(path_model / 'initial' / f'{var}_end.nc')
     da.close()
     init_cond[var] = da
 
@@ -150,32 +150,32 @@ for row, (group, config) in enumerate(plot_config.items()):
 
 The maps above represent:
 
-* The first row is the water content in the three soil layers. From left to right, $\theta_{1a}$ for superficial soil, $\theta_{1b}$ for the upper soil, and $\theta_{1c}$ for the lower soil.
+* The first row is the water content in the three soil layers. From left to right, $\theta_{1a}$ for superficial soil, $\theta_{1b}$ for the upper soil, and $\theta_{2}$ for the lower soil.
 * The second row represents groundwater storages: $UZ$ for the upper groundwater zone, and $LZ$ for the lower groundwater zone.
 * The last row represents the relative filling of reservoirs (only one in this catchment).
 
-The water content maps here shown correspond only to the "other" land use fraction, i.e., any but forest, irrigated or sealed. Similar maps were generated for the forest and irrigated fractions, whereas for the sealed fraction none of these maps apply.
+The water content maps here shown correspond only to the "other" land use fraction, i.e., any but forest, irrigated or sealed. Similar maps were generated for the forest and irrigated fractions, whereas for the sealed fraction none of these maps apply, as there is no infiltration in impermeable surfaces.
 
 The reservoir relative filling map has only one cell with a value different from 0, which is the cell representing the reservoir. Let's find out what's the initial condition for the relative filling of the reservoir:
 
 
 ```python
-print('Initial relative filling: {0:.3f}'.format(np.nanmax(np.unique(init_cond['rsfil']))))
+print('Initial relative filling: {0:.1f}%'.format(np.nanmax(np.unique(init_cond['rsfil'])) * 100))
 ```
 
-    Initial relative filling: 0.870
-
+    Initial relative filling: 87.0%
+    
 
 ### 3.2 Map stack of state variables
 
-We have defined in the settings file that we want to write the map stack of the lower groundwater zone storage. As mentioned earlier, this is not a compulsory step. It was done this way to show another possible way of defining the initial conditions on the main run, and to prove why a warmup period is necessary.
+We have defined in the settings file that we want to write the map stack of the lower groundwater zone storage. As mentioned earlier, this is not a compulsory step. It was done to show another possible way of defining the initial conditions on the main run, and to prove why a warmup period is necessary.
 
 This output differs from the end maps, since it has a temporal third dimension. Let's inspect the resulting NetCDF file.
 
 
 ```python
 # load map stacks of lower groundwater zone storage
-da = xr.open_dataarray(f'out/warmup/lz.nc')
+da = xr.open_dataarray(path_model / 'out' / 'warmup' / 'lz.nc')
 da.close()
 
 # plot map of average over time and timeseries of areal average
@@ -185,7 +185,7 @@ print('Last timestep: {0}'.format(da['time'].isel(time=-1).data))
 ```
 
     Last timestep: 1990-01-01T00:00:00.000000000
-
+    
 
 
     
