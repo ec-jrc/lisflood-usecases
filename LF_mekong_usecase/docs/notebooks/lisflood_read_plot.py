@@ -161,7 +161,7 @@ def plot_reservoir(df, clim=None, nlim=None, flim=None, **kwargs):
     ax2.set(ylim=(0, 1))
     ax2.set_ylabel('relative filling (-)')
     
-    fig.legend(ncol=2, bbox_to_anchor=[1.025, .8, .1, .1]);
+    fig.legend(ncol=2, bbox_to_anchor=[1.025, .8, .1, .1], frameon=False);
     
     
     
@@ -209,4 +209,4 @@ def plot_mapstacks(dct, agg='mean', **kwargs):
     ax_ts.set(xlim=(da.time.data[0], da.time.data[-1]),
               ylabel='{0} [{1}]'.format(kwargs.get('ylabel', ''), da.units),
               yscale=kwargs.get('yscale', 'linear'))
-    ax_ts.legend(loc=8, ncol=len(dct), bbox_to_anchor=[0.25, -.4, .5, .1]);
+    ax_ts.legend(loc=8, ncol=len(dct), bbox_to_anchor=[0.25, -.4, .5, .1], frameon=False);
