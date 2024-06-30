@@ -31,7 +31,7 @@ path_init = Path('../../model/initial/')
 
 ## 1 Settings file
 
-In the following lines, a snippet of the settings file (_settings_initialization.xml_) shows the most relevant lines to configure the initializatin run.
+In the following lines, a snippet of the settings file ([_settings_initialization.xml_](../../model/settings_initialization.xml)) shows the most relevant lines to configure the initializatin run.
 
 ```xml
 <lfoptions>
