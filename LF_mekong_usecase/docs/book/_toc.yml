@@ -1,0 +1,8 @@
+format: jb-book
+root: intro
+chapters:
+- file: 0_general_setup
+- file: 1_initialization
+- file: 2_warmup
+- file: 3_run
+- file: 4_following_steps
