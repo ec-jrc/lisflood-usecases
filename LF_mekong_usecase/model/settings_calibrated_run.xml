@@ -162,6 +162,21 @@ You can use builtin path variables in this template and reference to other paths
 						- "False"  : No caching
 					</comment>
 				</textvar>
+
+				<textvar name="OutputMapsChunks" value="1">
+					<comment>
+						The option "OutputMapsChunks" may take the following values:
+						- "[positive integer number]"  : Dump outputs to disk every X steps (default 1)
+					</comment>
+				</textvar>
+
+				<textvar name="OutputMapsDataType" value="float64">
+					<comment>
+						The option "OutputMapsDataType" sets the output data type and may take the following values:
+						- "float64"
+						- "float32"
+					</comment>
+				</textvar>
 			</group>
 
 			<!--PARALLELIZED KINEMATIC ROUTING-->
@@ -353,13 +368,20 @@ You can use builtin path variables in this template and reference to other paths
 				</comment>
 			</textvar>
 
-			<textvar name="PathOut" value="$(PathRoot)/out/run/calibrated">
+			<textvar name="PathOut" value="$(PathRoot)/results/run/calibrated">
 				<comment>
 				Output path (org=$(PathRoot)/out)
 				</comment>
 			</textvar>
 
-			<textvar name="PathInit" value="$(PathRoot)/initial/calibrated">
+			<textvar name="PathInit" value="$(PathRoot)/results/initial/calibrated">
+				<comment>
+				Directory used to save of the initial value maps.
+				E.g.: lzavin.nc (org=$(PathRoot)/outPo)
+				</comment>
+			</textvar>
+
+			<textvar name="PathWarm" value="$(PathRoot)/results/warmup/calibrated">
 				<comment>
 				Directory used to save of the initial value maps.
 				E.g.: lzavin.nc (org=$(PathRoot)/outPo)
@@ -1059,74 +1081,64 @@ You can use builtin path variables in this template and reference to other paths
 
 				<comment>maps or single values</comment>
 
-				<textvar name="OFDirectInitValue" value="$(PathInit)/ofdir_end.nc">
+				<textvar name="OFDirectInitValue" value="$(PathWarm)/ofdir_end.nc">
 					<comment>
 					Initial overland flow storage [m3], direct runoff fraction
 						default: 0 [m3]
-						$(PathInit)/ofdir
 					</comment>
 				</textvar>
 
-				<textvar name="OFOtherInitValue" value="$(PathInit)/ofoth_end.nc">
+				<textvar name="OFOtherInitValue" value="$(PathWarm)/ofoth_end.nc">
 					<comment>
 					Initial overland flow storage [m3], other fraction
-						$(PathInit)/ofoth
 					</comment>
 				</textvar>
 
-				<textvar name="OFForestInitValue" value="$(PathInit)/offor_end.nc">
+				<textvar name="OFForestInitValue" value="$(PathWarm)/offor_end.nc">
 					<comment>
 					Initial overland flow storage [m3], forest fraction
-						$(PathInit)/offor
 					</comment>
 				</textvar>
 
-				<textvar name="SnowCoverAInitValue" value="$(PathInit)/scova_end.nc">
+				<textvar name="SnowCoverAInitValue" value="$(PathWarm)/scova_end.nc">
 					<comment>
 					initial snow depth in snow zone A [mm]
-						$(PathInit)/scova
 					</comment>
 				</textvar>
 
-				<textvar name="SnowCoverBInitValue" value="$(PathInit)/scovb_end.nc">
+				<textvar name="SnowCoverBInitValue" value="$(PathWarm)/scovb_end.nc">
 					<comment>
 					initial snow depth in snow zone B [mm]
-						$(PathInit)/scovb
 					</comment>
 				</textvar>
 
-				<textvar name="SnowCoverCInitValue" value="$(PathInit)/scovc_end.nc">
+				<textvar name="SnowCoverCInitValue" value="$(PathWarm)/scovc_end.nc">
 					<comment>
 					initial snow depth in snow zone C [mm]
-						$(PathInit)/scovc
 					</comment>
 				</textvar>
 
-				<textvar name="FrostIndexInitValue" value="$(PathInit)/frost_end.nc">
+				<textvar name="FrostIndexInitValue" value="$(PathWarm)/frost_end.nc">
 					<comment>
 					initial Frost Index value [degC/day]
-						$(PathInit)/frost
 					</comment>
 				</textvar>
 
-				<textvar name="CumIntInitValue" value="$(PathInit)/cum_end.nc">
+				<textvar name="CumIntInitValue" value="$(PathWarm)/cum_end.nc">
 					<comment>
 					water stored as cumulative interception [mm]
-						$(PathInit)/cum
 					</comment>
 				</textvar>
 
-				<textvar name="UZInitValue" value="$(PathInit)/uz_end.nc">
+				<textvar name="UZInitValue" value="$(PathWarm)/uz_end.nc">
 					<comment>
 					water stored in the groundwater upper store [mm]
-						$(PathInit)/uz
 					</comment>
 				</textvar>
 
-				<textvar name="DSLRInitValue" value="$(PathInit)/dslr_end.nc">
+				<textvar name="DSLRInitValue" value="$(PathWarm)/dslr_end.nc">
 					<comment>
 					days since last rainfall [days]
-						$(PathInit)/dslr
 					</comment>
 				</textvar>
 			</group>
@@ -1140,59 +1152,52 @@ You can use builtin path variables in this template and reference to other paths
 				-9999
 				</comment>
 
-				<textvar name="ThetaInit1Value" value="$(PathInit)/tha_end">
+				<textvar name="ThetaInit1Value" value="$(PathWarm)/tha_end">
 					<comment>
 					initial soil moisture content in layer 1a (superficial soil layer) [mm3/mm3]
 						-9999: use field capacity values
-						$(PathInit)/tha
 					</comment>
 				</textvar>
 
-				<textvar name="ThetaInit2Value" value="$(PathInit)/thb_end">
+				<textvar name="ThetaInit2Value" value="$(PathWarm)/thb_end">
 					<comment>
 					initial soil moisture content layer 1b (upper soil layer)  [mm3/mm3]
 						-9999: use field capacity values
-						$(PathInit)/thb
 					</comment>
 				</textvar>
 
-				<textvar name="ThetaInit3Value" value="$(PathInit)/thc_end">
+				<textvar name="ThetaInit3Value" value="$(PathWarm)/thc_end">
 					<comment>
 					initial soil moisture content layer 2 (lower soil layer)  [mm3/mm3]
 						-9999: use field capacity values
-						$(PathInit)/thc
 					</comment>
 				</textvar>
 
-				<textvar name="LZInitValue" value="$(PathRoot)/out/warmup/calibrated/lz">
+				<textvar name="LZInitValue" value="$(PathWarm)/lz">
 					<comment>
 					water stored in the groundwater lower zone [mm]
 						-9999: use steady-state storage
-						$(PathInit)/lz
 					</comment>
 				</textvar>
 
-				<textvar name="TotalCrossSectionAreaInitValue" value="$(PathInit)/chcro_end">
+				<textvar name="TotalCrossSectionAreaInitValue" value="$(PathWarm)/chcro_end">
 					<comment>
 					initial cross-sectional area of flow in channel [m2]
 						-9999: use half bankfull
-						$(PathInit)/chcro
 					</comment>
 				</textvar>
 
-				<textvar name="CrossSection2AreaInitValue" value="$(PathInit)/ch2cr_end">
+				<textvar name="CrossSection2AreaInitValue" value="$(PathWarm)/ch2cr_end">
 					<comment>
 					initial channel cross-section area [m2] for 2nd routing channel, i.e., overbank flow
 						-9999: use 0
-						$(PathInit)/ch2cr
 					</comment>
 				</textvar>
 
-				<textvar name="PrevSideflowInitValue" value="$(PathInit)/chside_end">
+				<textvar name="PrevSideflowInitValue" value="$(PathWarm)/chside_end">
 					<comment>
 					initial lateral inflow for 1st line of routing [m2/s]
 						-9999: use 0
-						$(PathInit)/chside
 					</comment>
 				</textvar>
 
@@ -1200,7 +1205,6 @@ You can use builtin path variables in this template and reference to other paths
 					<comment>
 					Initial lake level [m]
 						-9999 sets initial value to steady-state level
-						$(PathInit)/lakeh
 					</comment>
 				</textvar>
 
@@ -1208,7 +1212,6 @@ You can use builtin path variables in this template and reference to other paths
 					<comment>
 					Lake inflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
 						-9999 sets initial value equal to PrevDischarge (ChanQ(t))
-						$(PathInit)/lakeprevinq
 					</comment>
 				</textvar>
 
@@ -1216,7 +1219,6 @@ You can use builtin path variables in this template and reference to other paths
 					<comment>
 					Lake outflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
 						-9999 sets initial value
-						$(PathInit)/lakeprevoutq
 					</comment>
 				</textvar>
 
@@ -1225,7 +1227,6 @@ You can use builtin path variables in this template and reference to other paths
 					initial discharge [m3/s] from previous run for lakes, reservoirs and transmission loss ChanQ
 					only needed for lakes reservoirs and transmission loss
 						-9999: use 0
-						$(PathInit)/chanq
 					</comment>
 				</textvar>
 			</group>
@@ -1235,48 +1236,42 @@ You can use builtin path variables in this template and reference to other paths
 
 				<comment>maps or single values</comment>
 
-				<textvar name="CumIntForestInitValue" value="$(PathInit)/cumf_end">
+				<textvar name="CumIntForestInitValue" value="$(PathWarm)/cumf_end">
 					<comment>
 					cumulative interception [mm]
-						$(PathInit)/cumf
 					</comment>
 				</textvar>
 
-				<textvar name="UZForestInitValue" value="$(PathInit)/uzf_end">
+				<textvar name="UZForestInitValue" value="$(PathWarm)/uzf_end">
 					<comment>
 					water in upper groundwater store [mm]
-						$(PathInit)/uzf
 					</comment>
 				</textvar>
 
-				<textvar name="DSLRForestInitValue" value="$(PathInit)/dslrf_end">
+				<textvar name="DSLRForestInitValue" value="$(PathWarm)/dslrf_end">
 					<comment>
 					days since last rainfall
-						$(PathInit)/dslrf
 					</comment>
 				</textvar>
 
-				<textvar name="ThetaForestInit1Value" value="$(PathInit)/thfa_end">
+				<textvar name="ThetaForestInit1Value" value="$(PathWarm)/thfa_end">
 					<comment>
 					initial soil moisture content [mm3/mm3] layer 1a (superficial soil layer)
 						-9999: use field capacity values
-						$(PathInit)/thfa
 					</comment>
 				</textvar>
 
-				<textvar name="ThetaForestInit2Value" value="$(PathInit)/thfb_end">
+				<textvar name="ThetaForestInit2Value" value="$(PathWarm)/thfb_end">
 					<comment>
 					initial soil moisture content [mm3/mm3] layer 1b (upper soil layer)
 						-9999: use field capacity values
-						$(PathInit)/thfb
 					</comment>
 				</textvar>
 
-				<textvar name="ThetaForestInit3Value" value="$(PathInit)/thfc_end">
+				<textvar name="ThetaForestInit3Value" value="$(PathWarm)/thfc_end">
 					<comment>
 					initial soil moisture content [mm3/mm3] layer 2 (lower soil layer)
 						-9999: use field capacity values
-						$(PathInit)/thfc
 					</comment>
 				</textvar>
 			</group>
@@ -1286,48 +1281,42 @@ You can use builtin path variables in this template and reference to other paths
 
 				<comment>maps or single values</comment>
 
-				<textvar name="CumIntIrrigationInitValue" value="$(PathInit)/cumi_end">
+				<textvar name="CumIntIrrigationInitValue" value="$(PathWarm)/cumi_end">
 					<comment>
 					cumulative interception [mm]
-						$(PathInit)/cumi
 					</comment>
 				</textvar>
 
-				<textvar name="UZIrrigationInitValue" value="$(PathInit)/uzi_end">
+				<textvar name="UZIrrigationInitValue" value="$(PathWarm)/uzi_end">
 					<comment>
 					water stored in groundwater upper store [mm]
-						$(PathInit)/uzi
 					</comment>
 				</textvar>
 
-				<textvar name="DSLRIrrigationInitValue" value="$(PathInit)/dslri_end">
+				<textvar name="DSLRIrrigationInitValue" value="$(PathWarm)/dslri_end">
 					<comment>
 					days since last rainfall
-						$(PathInit)/dslri
 					</comment>
 				</textvar>
 
-				<textvar name="ThetaIrrigationInit1Value" value="$(PathInit)/thia_end">
+				<textvar name="ThetaIrrigationInit1Value" value="$(PathWarm)/thia_end">
 					<comment>
 					initial soil moisture content [mm3/mm3] layer 1a (superficial soil layer)
 						-9999: use field capacity values
-						$(PathInit)/thia
 					</comment>
 				</textvar>
 
-				<textvar name="ThetaIrrigationInit2Value" value="$(PathInit)/thib_end">
+				<textvar name="ThetaIrrigationInit2Value" value="$(PathWarm)/thib_end">
 					<comment>
 					initial soil moisture content [mm3/mm3] layer 1b (upper soil layer)
 						-9999: use field capacity values
-						$(PathInit)/thib
 					</comment>
 				</textvar>
 
-				<textvar name="ThetaIrrigationInit3Value" value="$(PathInit)/thic_end">
+				<textvar name="ThetaIrrigationInit3Value" value="$(PathWarm)/thic_end">
 					<comment>
 					initial soil moisture content [mm3/mm3] layer 2 (lower soil layer)
 						-9999: use field capacity values
-						$(PathInit)/thic
 					</comment>
 				</textvar>
 			</group>
@@ -1337,10 +1326,9 @@ You can use builtin path variables in this template and reference to other paths
 
 				<comment>maps or single values</comment>
 
-				<textvar name="CumIntSealedInitValue" value="$(PathInit)/cseal_end">
+				<textvar name="CumIntSealedInitValue" value="$(PathWarm)/cseal_end">
 					<comment>
 					cumulative interception [mm]
-						$(PathInit)/cseal
 					</comment>
 				</textvar>
 
@@ -1456,11 +1444,10 @@ You can use builtin path variables in this template and reference to other paths
 					</comment>
 				</textvar>
 
-				<textvar name="ReservoirInitialFillValue" value="$(PathInit)/rsfil_end.nc">
+				<textvar name="ReservoirInitialFillValue" value="$(PathWarm)/rsfil_end.nc">
 					<comment>
 					Initial reservoir fill fraction [-]
 						-9999 sets initial fill to normal storage limit
-						$(PathInit)/rsfil
 					if you're not using the reservoir option, enter some bogus value
 					</comment>
 				</textvar>
@@ -1619,6 +1606,8 @@ You can use builtin path variables in this template and reference to other paths
 			<group>
 				<textvar name="NetCDFTimeChunks" value="$(NetCDFTimeChunks)"/>
 				<textvar name="MapsCaching" value="$(MapsCaching)"/>
+				<textvar name="OutputMapsChunks" value="$(OutputMapsChunks)"/>
+				<textvar name="OutputMapsDataType" value="$(OutputMapsDataType)"/>
 			</group>
 
 			<!--PARALLELIZATION-->
@@ -2100,7 +2089,6 @@ You can use builtin path variables in this template and reference to other paths
 					lower groundwater zone (reported for end of simulation) [mm/day]
 					Do not include extension, since LISFLOOD already defines the .nc
 					(netCDF) extension
-						$(PathInit)/lzavin
 					</comment>
 				</textvar>
 
@@ -2110,7 +2098,6 @@ You can use builtin path variables in this template and reference to other paths
 					line in the channel split routing
 					Do not include extension, since LISFLOOD already defines the .nc
 					(netCDF) extension
-						$(PathInit)/avgdis
 					</comment>
 				</textvar>
 

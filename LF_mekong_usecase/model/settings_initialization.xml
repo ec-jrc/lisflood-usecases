@@ -162,6 +162,21 @@ You can use builtin path variables in this template and reference to other paths
 						- "False"  : No caching
 					</comment>
 				</textvar>
+
+				<textvar name="OutputMapsChunks" value="1">
+					<comment>
+						The option "OutputMapsChunks" may take the following values:
+						- "[positive integer number]"  : Dump outputs to disk every X steps (default 1)
+					</comment>
+				</textvar>
+
+				<textvar name="OutputMapsDataType" value="float64">
+					<comment>
+						The option "OutputMapsDataType" sets the output data type and may take the following values:
+						- "float64"
+						- "float32"
+					</comment>
+				</textvar>
 			</group>
 
 			<!--PARALLELIZED KINEMATIC ROUTING-->
@@ -199,12 +214,6 @@ You can use builtin path variables in this template and reference to other paths
 				<textvar name="proj4_params" value="+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs">
 					<comment>
 					This is necessary when using projected coordinates (x,y)
-					</comment>
-				</textvar>
-
-				<textvar name="PathRoot" value="$(SettingsPath)">
-					<comment>
-					Root directory for maps, tables and parameters
 					</comment>
 				</textvar>
 
@@ -354,13 +363,19 @@ You can use builtin path variables in this template and reference to other paths
 		-->
 		<group>
 
-			<textvar name="PathOut" value="$(PathRoot)/out/initialization">
+			<textvar name="PathRoot" value="$(SettingsPath)">
+				<comment>
+				Root directory for maps, tables and parameters
+				</comment>
+			</textvar>
+
+			<textvar name="PathOut" value="$(PathRoot)/results/initial">
 				<comment>
 				Output path (org=$(PathRoot)/out)
 				</comment>
 			</textvar>
 
-			<textvar name="PathInit" value="$(PathRoot)/initial">
+			<textvar name="PathInit" value="$(PathRoot)/results/initial">
 				<comment>
 				Directory used to save of the initial value maps.
 				E.g.: lzavin.nc (org=$(PathRoot)/outPo)
@@ -1654,6 +1669,8 @@ You can use builtin path variables in this template and reference to other paths
 			<group>
 				<textvar name="NetCDFTimeChunks" value="$(NetCDFTimeChunks)"/>
 				<textvar name="MapsCaching" value="$(MapsCaching)"/>
+				<textvar name="OutputMapsChunks" value="$(OutputMapsChunks)"/>
+				<textvar name="OutputMapsDataType" value="$(OutputMapsDataType)"/>
 			</group>
 
 			<!--PARALLELIZATION-->
