@@ -6,15 +6,15 @@
 <br>
 <br>
 
-So far we have developed a LISFLOOD model than runs and it is correctly initialized. However, we are using default model parameters, so there's no confidence at all in the accuracy of the model. Before you can extract any conclusions from your model results, the model needs to be calibrated. As a result of the calibration, the model parameters are tuned so that the outputs reproduce observed data as good as possible. Calibration is usually performed on the river discharge timeseries at one or more gauging stations, but there are plenty of other calibration procedures. 
+So far we have developed a LISFLOOD model than runs and it is correctly initialized. However, we are using default model parameters, so there's no confidence at all in the accuracy of the model. Before you can extract any conclusions from your model results, the model needs to be calibrated. As a result of the calibration, the model parameters are tuned so that the outputs reproduce observed data as good as possible. Calibration is usually performed on the river discharge timeseries at one or more gauging stations, but there are plenty of other calibration strategies. 
 
-To perform a calibration, LISFLOOD proposes a [calibration tool](https://github.com/ec-jrc/lisflood-calibration) based on DEAP (Distributed Evolutionary Algorithms in Python) (Fortin et al., 2012).The calibration procedure exceeds the scope of this tutorial, so we will not get into it. Please, feel free to use any other calibration procedure and optimization algorithm.
+To perform a calibration, LISFLOOD proposes a [calibration tool](https://github.com/ec-jrc/lisflood-calibration) based on DEAP (Distributed Evolutionary Algorithms in Python) ([Fortin et al., 2012](https://www.jmlr.org/papers/volume13/fortin12a/fortin12a.pdf)).The calibration procedure exceeds the scope of this tutorial, so we will not get into it. Please, feel free to use any other calibration procedure or optimization algorithm.
 
 ## 1 Settings
 
 The repository includes three settings files (one for each of the runs) in which we have changed the calibration parameters according to the results of the calibration of the model (`lfuser` element in the settings file). Apart from the calibration parameters, we have changed the output directories, so the results don't overwrite those of the previous runs. The results will be saved in subdirectories called _calibrated_; for instance, the initial conditions will be saved in the folder _initial/calibrated_ instead of the folder _initial_.
 
-The snippet below shows a part of the file _settins_calibrated_run.xml_ that defines the paths to the initial conditions and where results will be saved, and the definition of the calibration parameters.
+The snippet below shows a part of the file [_settings_calibrated_run.xml_](../../model/settings_calibrated_run.xml) that is used to run the final simulation of 30 years using calibrated parameters. It defines the paths to the initial conditions and where results will be saved, and the definition of the calibrated parameters.
 
 ```xml
 <lfuser>
@@ -60,28 +60,29 @@ The snippet below shows a part of the file _settins_calibrated_run.xml_ that def
 
 
 ```python
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import xarray as xr
 import matplotlib.pyplot as plt
 from lisflood_read_plot import *
 
-path_model = '../../model/'
-path_out = f'{path_model}out/run/'
+path_model = Path('../../model/')
+path_out = path_model / 'out' / 'run'
 ```
 
 ## 2 Initialization
 
-As explained in [Chapter 2 - Initialization](#1_initialization.ipynb), this run is meant to create two outmaps that define the average river discharge (_avgdis.nc_) and the average inflow into the lower groundwater zone (_lzavin.nc_). Let's see how these initialization maps change once we apply the calibration parameters.
+As explained in [Chapter 1 - Initialization](1_initialization.ipynb), this run is meant to create two outmaps that define the average river discharge (_avgdis.nc_) and the average inflow into the lower groundwater zone (_lzavin.nc_). Let's see how these initialization maps change once we apply the calibration parameters.
 
 
 ```python
 fig, ax = plt.subplots(ncols=2, nrows=2, figsize=(10, 9))
 
 for r, (var, cmap) in enumerate(zip(['lzavin', 'avgdis'], ['Blues', 'Greens'])):
-    non_calib = xr.open_dataarray(f'{path_model}/initial/{var}.nc')
+    non_calib = xr.open_dataarray(path_model / 'initial'/ f'{var}.nc')
     non_calib.close()
-    calib = xr.open_dataarray(f'{path_model}/initial/calibrated/{var}.nc')
+    calib = xr.open_dataarray(path_model / 'initial' / 'calibrated' / f'{var}.nc')
     calib.close()
     
     vmin = min(non_calib.min(), calib.min())
@@ -95,21 +96,20 @@ fig.text(.275, .9, 'Uncalibrated', fontsize=12, horizontalalignment='center')
 fig.text(.7, .9, 'Calibrated', fontsize=12, horizontalalignment='center');
 ```
 
-
     
 ![png](images/4_1.png)
     
 
 
-***Figure 1**. Output maps from the initialization run: average inflow into the lower groundwater zone (_LZAvin_) and average river discharge (_avgdis_). The left column corresponds to the initialization with default parameters, and the right column to the initialization with calibrated parameters.*
+***Figure 1**. Output maps from the initialization run: average inflow into the lower groundwater zone (LZAvin) and average river discharge (avgdis). The left column corresponds to the initialization with default parameters, and the right column to the initialization with calibrated parameters.*
 
 In our study case, the change in the _lzavin_ is notorious.
 
 ## 3 Warmup
 
-As explained in [Chapter 3 - Warmup](#2_warmup.ipynb), this objective of this run is to find the initial conditions at the begining of the target run. The usual output of these simulation is a set of maps (NetCDF) with the model state variables at the end of the simulation. For educational purposes, we chose to write, not only the end state maps, but also the map stack of one of the state variables: the lower groundwater zone.
+As explained in [Chapter 3 - Warmup](2_warmup.ipynb), the objective of this run is to find the initial conditions at the begining of the target run. The usual output of these simulation is a set of maps (NetCDF) with the model state variables at the end of the simulation. For educational purposes, we chose to write, not only the end state maps, but also the map stack of one of the state variables: the lower groundwater zone.
 
-Let's see how some of the outputs of this run has changed with the calibrated parameters and the new initialization maps.
+Let's see how some of the outputs of this run have changed with the calibrated parameters and the new initialization maps.
 
 ### 3.1 End maps
 
@@ -121,10 +121,10 @@ The following figure compares the end state maps of the warmup run with default 
 init_cond = {'uncalibrated': {}, 'calibrated': {}}
 vmin, vmax = np.nan, np.nan
 for var in ['tha', 'thb', 'thc', 'uz', 'lz']:
-    da = xr.open_dataarray(f'{path_model}initial/{var}_end.nc')
+    da = xr.open_dataarray(path_model / 'initial' / f'{var}_end.nc')
     da.close()
     init_cond['uncalibrated'][var] = da
-    da = xr.open_dataarray(f'{path_model}initial/calibrated/{var}_end.nc')
+    da = xr.open_dataarray(path_model / 'initial' / 'calibrated' / f'{var}_end.nc')
     da.close()
     init_cond['calibrated'][var] = da
 
@@ -156,7 +156,7 @@ for g, (group, config) in enumerate(plot_config.items()):
     
 
 
-***Figure 2**. Initial conditions in the soil (blue) and groundwater (green) layers. In each of the groups of variables, the top row corresponds to the initial conditions with default parameters, and the bottom row to the initial conditions with calibrated parameters.*
+***Figure 2**. Initial conditions in the soil (blue) and groundwater (green) layers. In each of the groups of variables, the top row corresponds to the initial conditions with default parameters, and the bottom row the initial conditions with calibrated parameters.*
 
 In our study case, the initial conditions of the soil layers have not changed significantly, but those of the groundwater zone are clearly different.
 
@@ -169,11 +169,11 @@ The following figure shows the timeseries of the average lower groundwater stora
 
 ```python
 # load map stack for the uncalibrated warmup
-lz = xr.open_dataarray(f'{path_model}out/warmup/lz.nc')
+lz = xr.open_dataarray(path_model / 'out' / 'warmup' / 'lz.nc')
 lz.close()
 
 # load map stack for the calibrated warmup
-lz_cal = xr.open_dataarray(f'{path_model}out/warmup/calibrated/lz.nc')
+lz_cal = xr.open_dataarray(path_model / 'out' / 'warmup' / 'calibrated' / 'lz.nc')
 lz_cal.close()
 
 # plot comparison
@@ -185,7 +185,7 @@ ax.set(xlim=('1979-01-01', '1990-01-01'),
        ylim=(0, 200),
        ylabel='lower groundwater [mm]',
        title='')
-fig.legend(loc=8, ncol=4, bbox_to_anchor=[0.45, -0.07, .1, .1]);
+fig.legend(loc=8, ncol=4, bbox_to_anchor=[0.45, -0.07, .1, .1], frameon=False);
 ```
 
 
@@ -205,14 +205,14 @@ Now we are in a position to run our target simulation with a correct initializat
 
 ```python
 # settings files for the main run with default or calibrated parameters
-settings = f'{path_model}settings_run.xml'
-settings_cal = f'{path_model}settings_calibrated_run.xml'
+settings = path_model / 'settings_run.xml'
+settings_cal = path_model / 'settings_calibrated_run.xml'
 
 # import non-calibrated discharge timeseries
-dis = read_tss(f'{path_out}disWin.tss', xml=settings)
+dis = read_tss(path_out / 'disWin.tss', xml=settings)
 
 # import calibrated discharge timeseries
-dis_cal = read_tss(f'{path_out}/calibrated/disWin.tss', xml=settings_cal)
+dis_cal = read_tss(path_out / 'calibrated' / 'disWin.tss', xml=settings_cal)
 
 # plot timeseries
 fig, ax = plt.subplots(figsize=(12, 4))
@@ -222,7 +222,7 @@ ax.set(xlim=('2010-01-01', '2015-01-01'),
        ylim=(-200, 4200),
        ylabel='discharge [m3/s]',
        title='')
-fig.legend(loc=8, ncol=4, bbox_to_anchor=[0.45, -0.05, .1, .1]);
+fig.legend(loc=8, ncol=4, bbox_to_anchor=[0.45, -0.05, .1, .1], frameon=False);
 ```
 
 
