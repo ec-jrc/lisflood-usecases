@@ -6,25 +6,26 @@
 <br>
 <br>
 
-Once we have done the initialization run and we have estimated the initial conditions in the warmup run, we are in a position to perform our target simulation. We want to simulate the 30 years period between 01-01-1990 and 31-12-2019  in order to estimate the climatology of the hydrological processes in the Nam Ngum River Basin. Remember that in [LISFLOOD time convention](https://ec-jrc.github.io/lisflood-code/2_ESSENTIAL_time-management/) this dates corresponds to 02-01-1990 and 01-01-2020, respectively.
+Once we have done the initialization run and we have estimated the initial conditions in the warmup run, we are in a position to perform our target simulation. We want to simulate the 30 years period between 01-01-1990 and 31-12-2019  in order to estimate the climatology of the hydrological processes in the Nam Ngum River Basin. Remember that in [LISFLOOD time convention](https://ec-jrc.github.io/lisflood-code/2_ESSENTIAL_time-management/) these dates correspond to 02-01-1990 and 01-01-2020, respectively.
 
 
 ```python
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import xarray as xr
 import matplotlib.pyplot as plt
-import os
 from datetime import datetime, timedelta
 from matplotlib.gridspec import GridSpec
 from lisflood_read_plot import *
 
-os.chdir('../../')
+path_model = Path('../../model/')
+path_out = path_model / 'out' / 'run'
 ```
 
 ## 1 Settings file
 
-We will introduce a few changes in the settings file (*settings_run.xml*) compared with the file used in the warmup:
+We will introduce a few changes in the settings file ([*settings_run.xml*](../../model/settings_run.xml)) compared with the file used in the warmup:
 
 
 ```xml
@@ -35,7 +36,7 @@ We will introduce a few changes in the settings file (*settings_run.xml*) compar
     # option to compute indicators
     <setoption choice="1" name="indicator"/>
     
-    # report timeseries
+    # report time series
     <setoption choice="1" name="repDischargeTs"/>
     <setoption choice="1" name="repsimulateReservoirs"/>
     
@@ -92,9 +93,9 @@ We will introduce a few changes in the settings file (*settings_run.xml*) compar
 </lfbinding>
 ```
 
-In the `<lfoptions>` element, timeseries and maps to be reported are activated/deactivated. We chose to report timeseries of discharge (`repDischargeTs`) and reservoirs (`repsimulateReservoirs`). Regarding maps, in this case we're not interested in the end state maps, therefore `repEndMaps` is deactivated. We're only interested in the map stacks of state variables, therefore we activated `RepStateMaps`. However, this variable will not create the discharge and water abstraction map stacks; for that we need to activate the variables `repDischargeMaps` and `RepTotalAbs`. Finally, to generate the water exploitation index maps, we need to activate both `indicator` and `repWIndex`.
+In the `<lfoptions>` section, time series and maps to be reported are activated/deactivated. We chose to report time series of discharge (`repDischargeTs`) and reservoirs (`repsimulateReservoirs`); these options will save text files (in TSS format) with the respecive time series. Regarding maps, in this case we're not interested in the end state maps, therefore `repEndMaps` is deactivated. We're only interested in the map stacks of state variables, therefore we activated `RepStateMaps`. However, this option will not create the discharge and water abstraction map stacks; for that we need to activate the variables `repDischargeMaps` and `RepTotalAbs`. Finally, to generate the water exploitation index maps, we need to activate both `indicator` and `repWIndex`.
 
-In the `<lfuser>` element, we need to set several features. First, the points in the river network for which timeseries output will be generated; we defined three points using their longitude and latitude separated by spaces (there are other posibilities to set the reporting points). We set the simulation period, i.e., the start and end dates (`StepStart` and `StepEnd`), the timestep from which initial conditions may be read (`timestepInit`) and the timesteps that will be included in the output map stacks (`ReportSteps`). Later, the paths for the initial conditions and outputs are set. Finaly, the location of the initial condition maps must be specified. Special remark on the lower groundwater zone initial value (`LZInitValue`), for which we generated a map stack during the warmup run, instead of a end map; that's the reason why the directory where the map is located is different.
+In the `<lfuser>` section, we need to set several features. First, the points in the river network for which time series output will be generated; we defined three points using their longitude and latitude separated by spaces (there are other posibilities to set the reporting points). We set the simulation period, i.e., the start and end dates (`StepStart` and `StepEnd`), the timestep from which initial conditions may be read (`timestepInit`) and the timesteps that will be included in the output map stacks (`ReportSteps`). Later, the paths for the initial conditions and outputs are set. Finaly, the location of the initial condition maps must be specified. Special remark on the lower groundwater zone initial value (`LZInitValue`), for which we generated a map stack during the [warmup run](2_warmup.ipynb), instead of a end map; that's the reason why the directory where the map is located is different.
 
 > **Note**. Pay special attention to the 5 nines in the variable `ReportSteps` (`1..99999`), which are necessary since the simulation exceeds the 10,000 timesteps
 
@@ -102,35 +103,34 @@ In the `<lfbinding>` element, same as in the warmup run, we must define the two 
 
 ## 2 Run the simulation
 
-This step is similar to the two previous runs, but pointing at the specific settings file (*settings_run.xml*).
+This step is similar to the two previous runs, but pointing at the specific settings file ([*settings_run.xml*](../../model/settings_run.xml)).
 
 ```shell
 conda activate your_lisflood_environment
-lisflood /home/user/your_path/settings_run.xml
+lisflood <path_where_you_saved_the_repository>/lisflood-usecases/LF_mekong_usecase/model/settings_run.xml
 ```
 
 ## 3 Outputs
 
-In this section we will see some of the outputs that the simulation has generated, which include map stacks and timeseries.
+In this section we will see some of the outputs that the simulation has generated, which include map stacks and time series.
 
 
 ```python
-path_out = 'out/run/'
-settings_file = 'settings_run.xml'
+settings_file = path_model / 'settings_run.xml'
 ```
 
 ### 3.1 Map stacks
 
 #### 3.1.1 Soil layers
 
-First, we will analyse the water stored in the soil layers. We'll load the data and then we plot it. The maps show the average over time, whereas the lineplot shows a timeseries obtained by computing, for each timestep, the spatial average. In the first case we get an insight into the spatial variability, whereas in the second case we show temporal variability.
+First, we will analyse the water stored in the soil layers. We'll load the data and then plot it. The maps show the average over time, whereas the lineplot shows a time series obtained by computing the spatial average for each timestep. In the first case we get an insight into the spatial variability, whereas in the second case we show temporal variability.
 
 
 ```python
 # load and plot some map stacks
 soil_storages = {}
 for var in ['tha', 'thb', 'thc']:
-    da = xr.open_dataarray(f'{path_out}/{var}.nc')
+    da = xr.open_dataarray(path_out / f'{var}.nc')
     da.close()
     soil_storages[var] = da
 
@@ -146,7 +146,7 @@ plot_mapstacks(soil_storages, vmin=vmin, vmax=vmax, ylabel='soil moisture')
     
 
 
-***Figure 1**. Evolution of soil moisture in the three soil layers trhoughout the main run.*
+***Figure 1**. Evolution of soil moisture in the three soil layers throughout the main run.*
 
 From the previous plots we can extract the following thoughts:
 
@@ -163,7 +163,7 @@ Let's do a similar analysis on the two groundwater zones.
 # load and plot some map stacks
 gw = {}
 for var in ['uz', 'lz']:
-    da = xr.open_dataarray(f'{path_out}/{var}.nc')
+    da = xr.open_dataarray(path_out / f'{var}.nc')
     da.close()
     gw[var] = da
 
@@ -181,16 +181,16 @@ plot_mapstacks(gw, vmin=vmin, vmax=vmax, ylabel='water content')
 
 ***Figure 2**. Evolution of the two groundwater storages trhoughout the main run.*
 
-From this plot we can infer that, in this case, both zones show seasonality, but the order of magnitude of this seasonal variation differs. Whereas the annual pattern in the upper zone ($uz$) is clearly visible in the lineplot, that of the lower zone ($lz$) is unnoticeable.
+From this plot we can infer that, in this case, both zones show seasonality, but the order of magnitude of this seasonal variation differs. Whereas the annual pattern in the upper zone ($\text{uz}$) is clearly visible in the lineplot, that of the lower zone ($\text{lz}$) is unnoticeable.
 
 #### 3.1.3 Discharge
 
-In the case of discharge, apart from the average map over time, we will plot the discharge timeseries for the outlet.
+In the case of discharge, apart from the average map over time, we will plot the discharge time series for the outlet.
 
 
 ```python
 # read map stack
-dis = xr.open_dataarray(f'{path_out}/dis.nc')
+dis = xr.open_dataarray(path_out / 'dis.nc')
 
 # configure plot
 fig = plt.figure(figsize=(12, 4))
@@ -202,11 +202,11 @@ ax1.axis('off')
 dis.mean('time').plot(ax=ax1, cmap='Blues',
                       cbar_kwargs={"orientation": "horizontal", "shrink": 0.8, "aspect": 40, "pad": 0.1})
 
-# daily timeseries of areal mean
+# daily time series of areal mean
 ax2 = fig.add_subplot(gs[0,1:])
 outlet = dis.mean('time').argmax(['lat', 'lon'])
 dis.isel(outlet).plot(lw=1, ax=ax2)
-# configure timeseries plot
+# configure time series plot
 ax2.set(xlim=(dis.time.data[0], dis.time.data[-1]),
           ylabel=f'discharge [{dis.units}]');
 ```
@@ -217,9 +217,9 @@ ax2.set(xlim=(dis.time.data[0], dis.time.data[-1]),
     
 
 
-***Figure 3**. Average river discharge and timeseries of river discharge at the catchment outlet.*
+***Figure 3**. Average river discharge and time series of river discharge at the catchment outlet.*
 
-The same discharge timeseries at the catchment outlet can be generated directly from the model simulation. For that, the option `repDischargeTs` in the settings file must be active, and the variable `Gauges` must include the coordinates of the outlet. 
+The same discharge time series at the catchment outlet can be generated directly from the model simulation. For that, the option `repDischargeTs` in the settings file must be active, and the variable `Gauges` must include the coordinates of the outlet. 
 
 #### 3.1.4 Reservoir and rice irrigation
 
@@ -230,7 +230,7 @@ In this section we will analyse the map stacks generated by the reservoir and th
 # load map stacks
 water_use = {}
 for var in ['ResStor', 'ResAbs', 'tAbsPdRc']:
-    da = xr.open_dataarray(f'{path_out}/{var}.nc')
+    da = xr.open_dataarray(path_out / f'{var}.nc')
     da.close()
     water_use[var] = da
 
@@ -239,37 +239,31 @@ plot_mapstacks(water_use, agg='sum', ylabel='volume', yscale='log')
 
 
     
-![png](images/3_4.png)
+![png](images_3_4.png)
     
 
 
 ***Figure 4**. Evolution of the reservoir volumen over the main run.*
 
-The two maps on the top left show, respectively, mean reservoir storage and mean reservoir abstraction. Since there is only one reservoir in the catchment, only one cell has a value larger than zero. We can use this map to find the location of the reservoir and extract from the map stack the timeseries of reservoir storage for that cell (blue line in the lineplot). A similar procedure is carried out for the map stack of reservoir abstraction to produce the green line in the lineplot. Finally, the paddy rice irrigation map (plot on the top right) shows the areas in the catchment where rice is produced and the average amount of water required. The map stack of rice abstraction is used to create a total rice irrigation demand (red line in the lineplot). Pay attention to the scale of the _y_ axis in the lineplot; it is in logarithmic scale in order to show the variability of abstraction and rice irrigation despite their much lower order of magnitude compared with the reservoir storage.
+The two maps on the top left show, respectively, mean reservoir storage and mean reservoir abstraction. Since there is only one reservoir in the catchment, only one cell has a value larger than zero. We can use this map to find the location of the reservoir and extract from the map stack the time series of reservoir storage for that cell (blue line in the lineplot). A similar procedure is carried out for the map stack of reservoir abstraction to produce the green line in the lineplot. Finally, the paddy rice irrigation map (plot on the top right) shows the areas in the catchment where rice is produced and the average amount of water required. The map stack of rice abstraction is used to create a total rice irrigation demand (red line in the lineplot). Pay attention to the scale of the _y_ axis in the lineplot; it is in logarithmic scale in order to show the variability of abstraction and rice irrigation despite their much lower order of magnitude compared with the reservoir storage.
 
-As shown in these plots, from the map stacks we can extract time series. As we will see later, activating the option `repsimulateReservoir` in the settings file generates timeseries (TSS files) of the reservoir simulation. However, in the case of the reservoir storage, the TSS file represents relative filling, instead of stored volume.
+As shown in these plots, from the map stacks we can extract time series. As we will see later, activating the option `repsimulateReservoir` in the settings file generates time series (TSS files) of the reservoir simulation. However, in the case of the reservoir storage, the TSS file represents relative filling, instead of stored volume.
 
-### 3.1.5 Water exploitation indexes
+#### 3.1.5 Water exploitation indexes
 
-Since for this run we activated the options `indicator` and `repWIndex`, a series of water index maps were generated:
+As we activated the options `indicator` and `repWIndex`, a series of water index maps were generated:
     
 * WDI: water dependency index
 
-$$
-WDI = \frac{local Water Demand Not Met By Local Water}{total Water Demand}
-$$
+$$WDI = \frac{\text{local Water Demand Not Met By Local Water}}{\text{total Water Demand}}$$
 
 * WSI: water security index
 
-$$
-WSI = \frac{upstream Inflow Actually Used}{upstream Inflow Available}
-$$
+$$WSI = \frac{\text{upstream Inflow Actually Used}}{\text{upstream Inflow Available}}$$
 
 * WTI: water sustainability index
 
-$$
-WTI = 1 - \frac{surfaceWaterDeficit}{totalWaterDemand}
-$$
+$$WTI = 1 - \frac{\text{surface Water Deficit}}{\text{total Water Demand}}$$
     
 All these maps have monthly resolution, even though the simulation has daily timesteps.
 
@@ -278,7 +272,7 @@ All these maps have monthly resolution, even though the simulation has daily tim
 # load and plot some map stacks
 wi = {}
 for var in ['WDI', 'WSI', 'WTI']:
-    da = xr.open_dataarray(f'{path_out}/{var}.nc')
+    da = xr.open_dataarray(path_out / f'{var}.nc')
     da.close()
     wi[var] = da
 
@@ -294,23 +288,21 @@ plot_mapstacks(wi, vmin=vmin, vmax=vmax, ylabel='water content')
     
 
 
-***Figure 5**. Water indexes. Maps are averages over the whole period; timeseries are averages over the whole catchment.*
+***Figure 5**. Water indexes. Maps are averages over the whole period; time series are averages over the whole catchment.*
 
-The maps reproduce the water regions; with the southern region having a slightly higher water demand stress. In the timeseries we observe that from 2005 onwards there are recurrent periods in which some of the local demands are not met by local water (peaks in WDI).
+The maps reproduce the water regions; with the southern region having a slightly higher water demand stress. In the time series we observe that from 2005 onwards there are recurrent periods in which some of the local demands are not met by local water (peaks in WDI).
 
-<font color='red'>Why is WTI constantly zero?</font>
-
-### 3.2 Timeseries
+### 3.2 Time series
 #### 3.2.1 Discharge
 
-As mentioned before, discharge timeseries can be produced directly from the model. The option `repDischargeTs` in the settings file must be active, and the variable `Gauges` must define the points of interest (in our case using the coordinates, but there are other ways to define it). We defined three points in which the model will generate timeseries. Let's check the results:
+As mentioned before, discharge time series can be produced directly from the model. The option `repDischargeTs` in the settings file must be active, and the variable `Gauges` must define the points of interest (in our case using the coordinates, but there are other ways to set it). We defined three points in which the model will generate time series. Let's check the results:
 
 
 ```python
-# import timeseries
-disWin = read_tss(f'{path_out}disWin.tss', xml=settings_file)
+# import time series
+disWin = read_tss(path_out / 'disWin.tss', xml=settings_file)
 
-# plot timeseries
+# plot time series
 fig, ax = plt.subplots(figsize=(12, 4))
 ax.plot(disWin, lw=.7, label=disWin.columns)
 
@@ -328,23 +320,23 @@ fig.legend(loc=8, ncol=4, bbox_to_anchor=[0.5, -0.15, .1, .1]);
     
 
 
-***Figure 6**. Discharge timeseries at the three points of interest.*
+***Figure 6**. Discharge time series at the three points of interest.*
 
-The _disWin.tss_ file includes the discharge timeseries for the three points we defined. Each point is assigned an identifier; in our case, the catchment outlet corresponds to point 3. For the sake of comparison, the plot includes as points the discharge timeseries at the outlet extracted from the discharge map stack (_dis.nc_) in section [Discharge](#3.1.3-Discharge); we check that the values of the TSS file are equal to those of the netCDF.
+The _disWin.tss_ file includes the discharge time series for the three points we defined. Each point is assigned an identifier; in our case, the catchment outlet corresponds to point 3. For the sake of comparison, the plot includes as points the discharge time series at the outlet extracted from the discharge map stack (_dis.nc_) in section [3.1.3 Discharge](#3.1.3-Discharge); we check that the values of the TSS file are equal to those of the netCDF.
 
 #### 3.2.2 Reservoirs
 
-As the option `repsimulateReservoirs` is active in the settings file, the simulation created three TSS files representing the inflow (_qresin.tss_), outflow (_qresout.tss_) and relative filling (_resfill.tss_) of the reservoirs. In our case, since there's only one reservoir in the catchment, only one timeseries is included in each of these TSS files. Let's load these timeseries and plot the reservoir simulation.
+We have activated the option `repsimulateReservoirs` in the settings file, so the simulation has created three TSS files representing the inflow (_qresin.tss_), outflow (_qresout.tss_) and relative filling (_resfill.tss_) of the reservoirs. In our case, since there's only one reservoir in the catchment, only one time series is included in each of these TSS files. Let's load these time series and plot the reservoir simulation.
 
 
 ```python
-# load reservoir timeseries
+# load reservoir time series
 timeseries = {'inflow': 'qresin',
-            'outflow': 'qresout',
-            'filling': 'resfill'}
+              'outflow': 'qresout',
+              'filling': 'resfill'}
 res_ts = {}
 for var, file in timeseries.items():
-    ts = read_tss(f'{path_out}/{file}.tss', xml=settings_file, squeeze=True)
+    ts = read_tss(path_out / f'{file}.tss', xml=settings_file, squeeze=True)
     res_ts[var] = ts
 res_ts = pd.DataFrame.from_dict(res_ts)
 
@@ -354,7 +346,7 @@ limits = {'conservative': 'c',
           'flood': 'f'}
 res_lim = {}
 for var, file in limits.items():
-    res_lim[var] = pd.read_csv(f'tables/reservoirs/r{file}lim.txt', delim_whitespace=True, header=None, index_col=0).iloc[0,0]
+    res_lim[var] = pd.read_csv(path_model / 'tables' / 'reservoirs' / f'r{file}lim.txt', delim_whitespace=True, header=None, index_col=0).iloc[0,0]
 
 # plot reservoir simulation
 plot_reservoir(res_ts, clim=res_lim['conservative'], nlim=res_lim['normal'], flim=res_lim['flood'])
@@ -370,4 +362,4 @@ plot_reservoir(res_ts, clim=res_lim['conservative'], nlim=res_lim['normal'], fli
 
 Conclusions from this plot:
 
-* The reservoir storage is kept between the normal and flooding limits throughout most of the simulation period. In 1994, 1995 and 1997 there are three exceptions in which the storage exceeded the flood limit.
+* The reservoir storage is kept between the normal and flood limits throughout most of the simulation period. In 1994, 1995 and 1997 there are three exceptions in which the storage exceeded the flood limit.
