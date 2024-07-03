@@ -26,8 +26,9 @@ The snippet below shows a part of the file [_settings_calibrated_run.xml_](../..
     FILE PATHS
     **************************************************************
     -->
-    <textvar name="PathOut" value="$(PathRoot)/out/run/calibrated"/>
-    <textvar name="PathInit" value="$(PathRoot)/initial/calibrated"/>
+    <textvar name="PathInit" value="$(PathRoot)/results/initial/calibrated"/>
+    <textvar name="PathWarm" value="$(PathRoot)/results/warmup/calibrated"/>
+    <textvar name="PathOut" value="$(PathRoot)/results/run/calibrated"/>
             
     <!--
     **************************************************************
@@ -68,7 +69,9 @@ import matplotlib.pyplot as plt
 from lisflood_read_plot import *
 
 path_model = Path('../../model/')
-path_out = path_model / 'out' / 'run'
+path_init = path_model / 'results' / 'initial'
+path_warmup = path_model / 'results' / 'warmup'
+path_run = path_model / 'results' / 'run'
 ```
 
 ## 2 Initialization
@@ -80,9 +83,9 @@ As explained in [Chapter 1 - Initialization](1_initialization.ipynb), this run i
 fig, ax = plt.subplots(ncols=2, nrows=2, figsize=(10, 9))
 
 for r, (var, cmap) in enumerate(zip(['lzavin', 'avgdis'], ['Blues', 'Greens'])):
-    non_calib = xr.open_dataarray(path_model / 'initial'/ f'{var}.nc')
+    non_calib = xr.open_dataarray(path_init / f'{var}.nc')
     non_calib.close()
-    calib = xr.open_dataarray(path_model / 'initial' / 'calibrated' / f'{var}.nc')
+    calib = xr.open_dataarray(path_init / 'calibrated' / f'{var}.nc')
     calib.close()
     
     vmin = min(non_calib.min(), calib.min())
@@ -95,6 +98,7 @@ for r, (var, cmap) in enumerate(zip(['lzavin', 'avgdis'], ['Blues', 'Greens'])):
 fig.text(.275, .9, 'Uncalibrated', fontsize=12, horizontalalignment='center')
 fig.text(.7, .9, 'Calibrated', fontsize=12, horizontalalignment='center');
 ```
+
 
     
 ![png](images/4_1.png)
@@ -121,10 +125,10 @@ The following figure compares the end state maps of the warmup run with default 
 init_cond = {'uncalibrated': {}, 'calibrated': {}}
 vmin, vmax = np.nan, np.nan
 for var in ['tha', 'thb', 'thc', 'uz', 'lz']:
-    da = xr.open_dataarray(path_model / 'initial' / f'{var}_end.nc')
+    da = xr.open_dataarray(path_warmup /  f'{var}_end.nc')
     da.close()
     init_cond['uncalibrated'][var] = da
-    da = xr.open_dataarray(path_model / 'initial' / 'calibrated' / f'{var}_end.nc')
+    da = xr.open_dataarray(path_warmup / 'calibrated' / f'{var}_end.nc')
     da.close()
     init_cond['calibrated'][var] = da
 
@@ -169,11 +173,11 @@ The following figure shows the timeseries of the average lower groundwater stora
 
 ```python
 # load map stack for the uncalibrated warmup
-lz = xr.open_dataarray(path_model / 'out' / 'warmup' / 'lz.nc')
+lz = xr.open_dataarray(path_warmup / 'lz.nc')
 lz.close()
 
 # load map stack for the calibrated warmup
-lz_cal = xr.open_dataarray(path_model / 'out' / 'warmup' / 'calibrated' / 'lz.nc')
+lz_cal = xr.open_dataarray(path_warmup / 'calibrated' / 'lz.nc')
 lz_cal.close()
 
 # plot comparison
@@ -209,10 +213,10 @@ settings = path_model / 'settings_run.xml'
 settings_cal = path_model / 'settings_calibrated_run.xml'
 
 # import non-calibrated discharge timeseries
-dis = read_tss(path_out / 'disWin.tss', xml=settings)
+dis = read_tss(path_run / 'disWin.tss', xml=settings)
 
 # import calibrated discharge timeseries
-dis_cal = read_tss(path_out / 'calibrated' / 'disWin.tss', xml=settings_cal)
+dis_cal = read_tss(path_run / 'calibrated' / 'disWin.tss', xml=settings_cal)
 
 # plot timeseries
 fig, ax = plt.subplots(figsize=(12, 4))

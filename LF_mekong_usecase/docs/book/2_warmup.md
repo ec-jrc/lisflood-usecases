@@ -21,6 +21,7 @@ from datetime import datetime, timedelta
 from lisflood_read_plot import *
 
 path_model = Path('../../model/')
+path_warmup = path_model / 'results' / 'warmup'
 ```
 
 ## 1 Settings file
@@ -61,21 +62,21 @@ With all this in mind, the most relevant changes on the settings file ([_setting
     <textvar name="DtSecChannel" value="14400"/>
     
     # paths
-    <textvar name="PathInit" value="$(PathRoot)/initial"/>
-    <textvar name="PathOut" value="$(PathRoot)/out/warmup"/>
+    <textvar name="PathInit" value="$(PathRoot)/results/initial"/>
+    <textvar name="PathWarm" value="$(PathRoot)/results/warmup"/>
     
     # files where the end state maps will be saved
     # (only a few of them are shown for the sake of brevity)
-    <textvar name="ReservoirFillEnd" value="$(PathInit)/rsfil"/>
-    <textvar name="Theta1End" value="$(PathInit)/tha_end"/>
-    <textvar name="Theta2End" value="$(PathInit)/thb_end"/>
-    <textvar name="Theta3End" value="$(PathInit)/thc_end"/>
-    <textvar name="UZEnd" value="$(PathInit)/uz_end"/>
-    <textvar name="LZEnd" value="$(PathInit)/lz_end"/>
+    <textvar name="ReservoirFillEnd" value="$(PathWarm)/rsfil"/>
+    <textvar name="Theta1End" value="$(PathWarm)/tha_end"/>
+    <textvar name="Theta2End" value="$(PathWarm)/thb_end"/>
+    <textvar name="Theta3End" value="$(PathWarm)/thc_end"/>
+    <textvar name="UZEnd" value="$(PathWarm)/uz_end"/>
+    <textvar name="LZEnd" value="$(PathWarm)/lz_end"/>
     # [...]
     
     # file where the output map stack will be saved
-    <textvar name="LZState" value="$(PathOut)/lz"/>
+    <textvar name="LZState" value="$(PathWarm)/lz"/>
     
     # [...]
     
@@ -122,7 +123,7 @@ The end state maps will be the initial conditions for the succeeding run. In thi
 # load some end state maps (initial conditions for the run)
 init_cond = {}
 for var in ['tha', 'thb', 'thc', 'uz', 'lz', 'rsfil']:
-    da = xr.open_dataarray(path_model / 'initial' / f'{var}_end.nc')
+    da = xr.open_dataarray(path_warmup / f'{var}_end.nc')
     da.close()
     init_cond[var] = da
 
@@ -175,7 +176,7 @@ This output differs from the end maps, since it has a temporal third dimension. 
 
 ```python
 # load map stacks of lower groundwater zone storage
-da = xr.open_dataarray(path_model / 'out' / 'warmup' / 'lz.nc')
+da = xr.open_dataarray(path_warmup / 'lz.nc')
 da.close()
 
 # plot map of average over time and timeseries of areal average

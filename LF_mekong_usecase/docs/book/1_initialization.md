@@ -26,7 +26,8 @@ from datetime import datetime, timedelta
 from matplotlib.gridspec import GridSpec
 from lisflood_read_plot import *
 
-path_init = Path('../../model/initial/')
+path_model = Path('../../model')
+path_init = path_model / 'results' / 'initial'
 ```
 
 ## 1 Settings file
@@ -60,7 +61,7 @@ In the following lines, a snippet of the settings file ([_settings_initializatio
     <textvar name="DtSecChannel" value="14400"/>
     
     # paths where the results will be saved
-    <textvar name="PathInit" value="$(PathRoot)/initial"/>
+    <textvar name="PathInit" value="$(PathRoot)/results/initial"/>
     <textvar name="LZAvInflowMap" value="$(PathInit)/lzavin"/>
     <textvar name="AvgDis" value="$(PathInit)/avgdis"/>
     
@@ -133,9 +134,13 @@ for ax, da in zip(axes, [lzavin, avgdis]):
     da.plot(ax=ax, cmap='Blues')
     ax.axis('off')
 ```
+
+
     
 ![png](images/1_1.png)
-  
+    
+
+
 ***Figure 1**. Output maps of the initialization run.*
 
 Both outputs represent an average flow rate, therefore, they have are a single map with no temporal dimension.
