@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Initialization run &#8212; A LISFLOOD catchment model - the Nam Ngum River</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Warmup run" href="2_warmup.html" />
+    <link rel="prev" title="Input and general settings" href="0_general_setup.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/header.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">A LISFLOOD catchment model - the Nam Ngum River</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0_general_setup.html">
+   Input and general settings
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Initialization run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_warmup.html">
+   Warmup run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_run.html">
+   Main run
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_following_steps.html">
+   Following steps
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/1_initialization.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#settings-file">
+   1 Settings file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-simulation">
+   2 Run the simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outputs">
+   3 Outputs
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Initialization run</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#settings-file">
+   1 Settings file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-simulation">
+   2 Run the simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outputs">
+   3 Outputs
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><img alt="header" src="_images/header.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="initialization-run">
+<h1>Initialization run<a class="headerlink" href="#initialization-run" title="Permalink to this headline">#</a></h1>
+<br>
+<br>
+<br>
+<p>A thorough explanation on the importance of the model initialization can be found in this section of the <a class="reference external" href="https://ec-jrc.github.io/lisflood-code/3_step5_model-initialisation/">User Guide</a>. To summarize, the purpose of this run is to estimate two rate variables required for the model initialization:</p>
+<ul class="simple">
+<li><p><em><a class="reference external" href="http://avgdis.nc">avgdis.nc</a></em>:  a map of the average discharge in the river network.</p></li>
+<li><p><em><a class="reference external" href="http://lzavin.nc">lzavin.nc</a></em>: a map of the average inflow into the lower groundwater zone.</p></li>
+</ul>
+<p>We will save these outputs in a specific subfolder (<em>initial</em>) within the project folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span> <span class="nn">lisflood_read_plot</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="settings-file">
+<h2>1 Settings file<a class="headerlink" href="#settings-file" title="Permalink to this headline">#</a></h2>
+<p>In the following lines, a snippet of the settings file (<em>settings_initialization.xml</em>) shows the most relevant lines in this file for the initializatin run.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lfoptions&gt;</span>
+    
+    # [...]
+    
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;InitLisflood&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;setoption</span> <span class="na">choice=</span><span class="s">&quot;0&quot;</span> <span class="na">name=</span><span class="s">&quot;InitLisfloodwithoutsplit&quot;</span><span class="nt">/&gt;</span>
+    
+    # [...]
+    
+<span class="nt">&lt;/lfoptions&gt;</span>
+
+<span class="nt">&lt;lfuser&gt;</span>
+    
+    # GENERAL SETUP
+    
+    # [...]
+    
+    # time-related variables
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;CalendarDayStart&quot;</span> <span class="na">value=</span><span class="s">&quot;02-01-1979 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;StepStart&quot;</span> <span class="na">value=</span><span class="s">&quot;02-01-1979 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;StepEnd&quot;</span> <span class="na">value=</span><span class="s">&quot;01-01-2020 00:00&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;timestepInit&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;DtSec&quot;</span> <span class="na">value=</span><span class="s">&quot;86400&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;DtSecChannel&quot;</span> <span class="na">value=</span><span class="s">&quot;14400&quot;</span><span class="nt">/&gt;</span>
+    
+    # PATHS WHERE THE RESULTS WILL BE SAVED
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;PathInit&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathRoot)/initial&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LZAvInflowMap&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/lzavin&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;AvgDis&quot;</span> <span class="na">value=</span><span class="s">&quot;$(PathInit)/avgdis&quot;</span><span class="nt">/&gt;</span>
+    
+    # [...]
+    
+    # INITIAL CONDITIONS
+    
+    # water balance
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;OFDirectInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;OFOtherInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+    [...]
+    
+    # channels
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;TotalCrossSectionAreaInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;CrossSection2AreaInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;PrevSideflowInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;PrevDischarge&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    
+    # reservoirs
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ReservoirInitialLevelValue&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    
+    # lakes (if simulateLakes = 1)
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LakeInitialLevelValue&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LakePrevInflowValue&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LakePrevOutflowValue&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>   
+    
+    # soils
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ThetaInit1Value&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ThetaInit2Value&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;ThetaInit3Value&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;textvar</span> <span class="na">name=</span><span class="s">&quot;LZInitValue&quot;</span> <span class="na">value=</span><span class="s">&quot;-9999&quot;</span><span class="nt">/&gt;</span>
+    [...]
+    
+<span class="nt">&lt;/lfuser&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In the element <code class="docutils literal notranslate"><span class="pre">&lt;lfoptions&gt;</span></code>, the option <code class="docutils literal notranslate"><span class="pre">InitLisflood</span></code> tells LISFLOOD that this run is an initialization. Since we are using as a routing module the split kinematic wave, we must deactivate the option <code class="docutils literal notranslate"><span class="pre">InitLisfloodwithoutsplit</span></code>; otherwise, the initialization run will not produce the file <em><a class="reference external" href="http://avgdis.nc">avgdis.nc</a></em> and we will not be able to initialize the routing module in suceeding runs.</p></li>
+<li><p>In the element <code class="docutils literal notranslate"><span class="pre">&lt;lfuser&gt;</span></code>, we must define the simulation period, the location of the output files, and the initial conditions.</p>
+<ul>
+<li><p>The initialization run spans from 01-01-1979 to 31-12-2019. Following the <a class="reference external" href="https://ec-jrc.github.io/lisflood-code/2_ESSENTIAL_time-management/">end of timestep naming convention</a> in LISFLOOD, the previous dates will be shifted forward by 1 day; that’s why in the settings file the <code class="docutils literal notranslate"><span class="pre">StepStart</span></code> and <code class="docutils literal notranslate"><span class="pre">StepEnd</span></code> are 02-01-1979 and 01-01-2020, respectively.</p></li>
+<li><p>We will save the two ouput files (<em><a class="reference external" href="http://lzavin.nc">lzavin.nc</a></em> and <em><a class="reference external" href="http://avgdis.nc">avgdis.nc</a></em>) in a folder named <em>initial</em>. It is not necessary to specify the extension of the NetCDF files.</p></li>
+<li><p>Regarding the initial conditions, those in the section water balance must be initialized with a value or a map (we define default values of 0 or 1), whereas the rest of the variables can be internally initialized by setting the value -9999.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="run-the-simulation">
+<h2>2 Run the simulation<a class="headerlink" href="#run-the-simulation" title="Permalink to this headline">#</a></h2>
+<p>To run the simulation, open a terminal, activate the Conda environment where you installed LISFLOOD and execute the <code class="docutils literal notranslate"><span class="pre">lisflood</span></code> function pointing at the appropriate settings file. For instance:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda activate your_lisflood_environment
+lisflood /home/user/your_path/settings_initialization.xml
+</pre></div>
+</div>
+</section>
+<section id="outputs">
+<h2>3 Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">#</a></h2>
+<p>The outputs are the two maps (NetCDF format) mentioned at the top of this notebook. In the settings file, we set that these files must be saved in the <em>initial</em> subfolder. Let’s load them and inspect them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load average inflow into the lower groundware zone</span>
+<span class="n">lzavin</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="s1">&#39;initial/lzavin.nc&#39;</span><span class="p">)</span>
+<span class="n">lzavin</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># load average discharge</span>
+<span class="n">avgdis</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="s1">&#39;initial/avgdis.nc&#39;</span><span class="p">)</span>
+<span class="n">avgdis</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># plot the maps</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">da</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="p">[</span><span class="n">lzavin</span><span class="p">,</span> <span class="n">avgdis</span><span class="p">]):</span>
+    <span class="n">da</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/1_1.png" /></p>
+<p><em><strong>Figure 1</strong>. Output maps of the initialization run.</em></p>
+<p>Both outputs represent an average flow rate, therefore, they have are a single map with no temporal dimension.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="0_general_setup.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Input and general settings</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2_warmup.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Warmup run</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joint Research Center - European Commission<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
