@@ -14,4 +14,4 @@
 **/*checkpoint.py
 
 # Ignore compiled Python bytecode
-__pycache__/
+**/__pycache__/
