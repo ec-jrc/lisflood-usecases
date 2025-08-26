@@ -17,4 +17,4 @@
 **/__pycache__/
 
 # Ignore meteo forcings
-LF_mekong_usecase/model/meteo/*.nc
+LF_mekong_usecase/meteo/*.nc
