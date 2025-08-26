@@ -1,0 +1,7 @@
+datetime
+jupyter_contrib_nbextensions
+matplotlib
+numpy
+pandas
+pathlib
+xarray
