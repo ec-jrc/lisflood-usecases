@@ -13,7 +13,7 @@ To run the model you need to have LISFLOOD installed in a Conda environment on *
 
 ## Tutorial
 
-We provide a detailed explanation of how to build the model, we explained the necessary input data, how to change the settings file and we visualize and comment on the results. You can follow this tutorial in two flavours:
+We provide a detailed explanation on how to build the model, where we explain the necessary input data, how to change the settings file and we visualize and comment on the results. You can follow this tutorial in two flavours:
 
 * A Jupyter [Book](https://ec-jrc.github.io/lisflood-usecases/), which is a simple and clean way of reading the tutorial.
 * [Jupyter Notebooks](https://github.com/ec-jrc/lisflood-usecases/tree/mekong_usecase/LF_mekong_usecase/docs/notebooks) that allow you to interact with the tutorial, explore the inputs and outputs, edit, etc.
