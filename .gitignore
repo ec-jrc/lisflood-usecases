@@ -7,7 +7,7 @@
 .idea/
 
 # ignore checkpoints
-*checkpoint.md
-*checkpoint.yml
-*checkpoint.ipynb
-*checkpoint.py
+**/checkpoint.md
+**/checkpoint.yml
+**/checkpoint.ipynb
+**/checkpoint.py
