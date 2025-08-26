@@ -1,6 +1,8 @@
 datetime
-jupyter_contrib_nbextensions
+jupyter-book
+jupyterlab
 matplotlib
+netcdf4
 numpy
 pandas
 pathlib
