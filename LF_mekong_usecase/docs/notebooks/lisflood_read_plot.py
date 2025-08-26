@@ -193,10 +193,15 @@ def plot_mapstacks(dct, agg='mean', **kwargs):
         # map
         r, c = int(i / ncols), i % ncols
         ax = fig.add_subplot(gs[r,c])
-        da.mean('time').plot(ax=ax, cmap=cmaps[i], vmin=kwargs.get('vmin', None), vmax=kwargs.get('vmax', None))
+        da.mean('time').plot(
+            ax=ax, 
+            cmap=cmaps[i], 
+            vmin=kwargs.get('vmin', None), 
+            vmax=kwargs.get('vmax', None),
+            cbar_kwargs={'shrink': 0.66},
+        )
         ax.axis('off')
         
-
         # timeserie
         if agg == 'mean':
             da.mean(['lat', 'lon']).plot(ax=ax_ts, color=colors[i], lw=.7, label=var)
