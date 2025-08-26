@@ -1,0 +1,30 @@
+name: Deploy Jupyter Book
+on:
+  push:
+    branches:
+      - mekong_usecase
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jupyter-book ghp-import
+
+      - name: Build the book
+        run: |
+          jupyter-book build docs/
+
+      - name: Deploy to GitHub Pages
+        run: |
+          ghp-import -n -p -f docs/_build/html
