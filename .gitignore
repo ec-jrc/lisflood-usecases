@@ -12,3 +12,6 @@
 **/*checkpoint.yml
 **/*checkpoint.ipynb
 **/*checkpoint.py
+
+# Ignore compiled Python bytecode
+__pycache__/
