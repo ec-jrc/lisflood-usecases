@@ -365,7 +365,7 @@ document.write(`
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">lisflood_read_plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_tss</span>
 
-<span class="n">path_model</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../LF_mekong_usecase/model/&#39;</span><span class="p">)</span>
+<span class="n">path_model</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../LF_mekong_usecase&#39;</span><span class="p">)</span>
 <span class="n">path_init</span> <span class="o">=</span> <span class="n">path_model</span> <span class="o">/</span> <span class="s1">&#39;results&#39;</span> <span class="o">/</span> <span class="s1">&#39;initial&#39;</span>
 <span class="n">path_warmup</span> <span class="o">=</span> <span class="n">path_model</span> <span class="o">/</span> <span class="s1">&#39;results&#39;</span> <span class="o">/</span> <span class="s1">&#39;warmup&#39;</span>
 <span class="n">path_run</span> <span class="o">=</span> <span class="n">path_model</span> <span class="o">/</span> <span class="s1">&#39;results&#39;</span> <span class="o">/</span> <span class="s1">&#39;run&#39;</span>
@@ -376,7 +376,7 @@ document.write(`
 <section id="settings-file">
 <h2>1 Settings file<a class="headerlink" href="#settings-file" title="Link to this heading">#</a></h2>
 <p>The repository includes three settings files (one for each of the runs) in which we have changed the calibration parameters according to the results of the calibration of the model (<code class="docutils literal notranslate"><span class="pre">lfuser</span></code> section in the settings file). Apart from the calibration parameters, we have changed the output directories, so the results won’t overwrite those of the previous runs. The results will be saved in subdirectories called <em>calibrated</em>; for instance, the initial conditions will be saved in the folder <em>initial/calibrated</em> instead of the folder <em>initial</em>.</p>
-<p>The snippet below shows a part of the file <a class="reference download internal" download="" href="_downloads/0cb0dc118402f5ea7c460938c805b83b/settings_calibrated_run.xml"><span class="xref download myst"><em>settings_calibrated_run.xml</em></span></a> that is used to run the final simulation of 30 years using calibrated parameters. It defines the paths to the initial conditions and where results will be saved, and the definition of the calibrated parameters.</p>
+<p>The snippet below shows a part of the file <a class="reference download internal" download="" href="_downloads/e30cd77fa8b577e6b4016820fefede5d/settings_calibrated_run.xml"><span class="xref download myst"><em>settings_calibrated_run.xml</em></span></a> that is used to run the final simulation of 30 years using calibrated parameters. It defines the paths to the initial conditions and where results will be saved, and the definition of the calibrated parameters.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lfuser&gt;</span>
 <span class="w">    </span>
 <span class="w">    </span>[...]
@@ -426,7 +426,7 @@ document.write(`
 <p>To run this simulation, open a terminal, activate the Conda environment where you have installed LISFLOOD and execute <code class="docutils literal notranslate"><span class="pre">lisflood</span></code> pointing at the appropriate settings file.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;your_lisflood_environment&gt;
 <span class="nb">cd</span><span class="w"> </span>&lt;path_where_you_saved_the_repository&gt;/lisflood-usecases
-lisflood<span class="w"> </span>LF_mekong_usecase/model/settings_calibrated_initialization.xml
+lisflood<span class="w"> </span>LF_mekong_usecase/settings_calibrated_initialization.xml
 </pre></div>
 </div>
 <p>Let’s see how these initialization maps change once we apply the calibration parameters.</p>
@@ -465,7 +465,7 @@ lisflood<span class="w"> </span>LF_mekong_usecase/model/settings_calibrated_init
 <p>To run this simulation, open a terminal and follow these steps:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;your_lisflood_environment&gt;
 <span class="nb">cd</span><span class="w"> </span>&lt;path_where_you_saved_the_repository&gt;/lisflood-usecases
-lisflood<span class="w"> </span>LF_mekong_usecase/model/settings_calibrated_warmup.xml
+lisflood<span class="w"> </span>LF_mekong_usecase/settings_calibrated_warmup.xml
 </pre></div>
 </div>
 <p>Let’s see how some of the outputs of this run have changed with the calibrated parameters and the new initialization maps.</p>
@@ -571,7 +571,7 @@ lisflood<span class="w"> </span>LF_mekong_usecase/model/settings_calibrated_warm
 <p>Now we are in a position to run our target simulation with a correct initialization and a calibrated model. To do so, open a terminal a follow these steps:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;your_lisflood_environment&gt;
 <span class="nb">cd</span><span class="w"> </span>&lt;path_where_you_saved_the_repository&gt;/lisflood-usecases
-lisflood<span class="w"> </span>LF_mekong_usecase/model/settings_calibrated_run.xml
+lisflood<span class="w"> </span>LF_mekong_usecase/settings_calibrated_run.xml
 </pre></div>
 </div>
 <p>The following figure compares the discharge simulated at the catchment outlet by both the uncalibrated and the calibrated models.</p>

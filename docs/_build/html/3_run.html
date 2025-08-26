@@ -377,7 +377,7 @@ document.write(`
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">lisflood_read_plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_mapstacks</span><span class="p">,</span> <span class="n">plot_reservoir</span><span class="p">,</span> <span class="n">read_tss</span>
 
-<span class="n">path_model</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../LF_mekong_usecase/model/&#39;</span><span class="p">)</span>
+<span class="n">path_model</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../LF_mekong_usecase&#39;</span><span class="p">)</span>
 <span class="n">path_run</span> <span class="o">=</span> <span class="n">path_model</span> <span class="o">/</span> <span class="s1">&#39;results&#39;</span> <span class="o">/</span> <span class="s1">&#39;run&#39;</span>
 </pre></div>
 </div>
@@ -385,7 +385,7 @@ document.write(`
 </div>
 <section id="settings-file">
 <h2>1 Settings file<a class="headerlink" href="#settings-file" title="Link to this heading">#</a></h2>
-<p>We will introduce a few changes in the settings file (<a class="reference download internal" download="" href="_downloads/16bef61b9a03c8099844c3ba0d61bc99/settings_run.xml"><span class="xref download myst"><em>settings_run.xml</em></span></a>) compared with the file used in the warmup:</p>
+<p>We will introduce a few changes in the settings file (<a class="reference download internal" download="" href="_downloads/9ded7408cfabd4e787074a8ce4460b34/settings_run.xml"><span class="xref download myst"><em>settings_run.xml</em></span></a>) compared with the file used in the warmup:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lfoptions&gt;</span>
 <span class="w">    </span>
 <span class="w">    </span>[...]
@@ -460,10 +460,10 @@ document.write(`
 </section>
 <section id="run-the-simulation">
 <h2>2 Run the simulation<a class="headerlink" href="#run-the-simulation" title="Link to this heading">#</a></h2>
-<p>This step is similar to the two previous runs, but pointing at the specific settings file (<a class="reference download internal" download="" href="_downloads/16bef61b9a03c8099844c3ba0d61bc99/settings_run.xml"><span class="xref download myst"><em>settings_run.xml</em></span></a>).</p>
+<p>This step is similar to the two previous runs, but pointing at the specific settings file (<a class="reference download internal" download="" href="_downloads/9ded7408cfabd4e787074a8ce4460b34/settings_run.xml"><span class="xref download myst"><em>settings_run.xml</em></span></a>).</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>your_lisflood_environment
 <span class="nb">cd</span><span class="w"> </span>&lt;path_where_you_saved_the_repository&gt;/lisflood-usecases
-lisflood<span class="w"> </span>LF_mekong_usecase/model/settings_run.xml
+lisflood<span class="w"> </span>LF_mekong_usecase/settings_run.xml
 </pre></div>
 </div>
 </section>

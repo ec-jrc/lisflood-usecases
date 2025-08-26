@@ -363,7 +363,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">path_model</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../LF_mekong_usecase/model/&#39;</span><span class="p">)</span>
+<span class="n">path_model</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../LF_mekong_usecase&#39;</span><span class="p">)</span>
 <span class="n">path_init</span> <span class="o">=</span> <span class="n">path_model</span> <span class="o">/</span> <span class="s1">&#39;results&#39;</span> <span class="o">/</span> <span class="s1">&#39;initial&#39;</span>
 </pre></div>
 </div>
@@ -371,7 +371,7 @@ document.write(`
 </div>
 <section id="settings-file">
 <h2>1 Settings file<a class="headerlink" href="#settings-file" title="Link to this heading">#</a></h2>
-<p>In the following lines, a snippet of the settings file (<a class="reference download internal" download="" href="_downloads/2c2e61876dd75465f72a582b464d7b0b/settings_initialization.xml"><span class="xref download myst"><em>settings_initialization.xml</em></span></a>) shows the most relevant lines to configure the initializatin run.</p>
+<p>In the following lines, a snippet of the settings file (<a class="reference download internal" download="" href="_downloads/e106805a5f4570f592bdcd1cb41c529b/settings_initialization.xml"><span class="xref download myst"><em>settings_initialization.xml</em></span></a>) shows the most relevant lines to configure the initializatin run.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lfoptions&gt;</span>
 <span class="w">    </span>
 <span class="w">    </span>#<span class="w"> </span>[...]
@@ -456,7 +456,7 @@ document.write(`
 <p>To run the simulation, open a terminal, activate the Conda environment where you have installed LISFLOOD and execute the <code class="docutils literal notranslate"><span class="pre">lisflood</span></code> function pointing at the appropriate settings file. For instance:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;your_lisflood_environment&gt;
 <span class="nb">cd</span><span class="w"> </span>&lt;path_where_you_saved_the_repository&gt;/lisflood-usecases
-lisflood<span class="w"> </span>LF_mekong_usecase/model/settings_initialization.xml
+lisflood<span class="w"> </span>LF_mekong_usecase/settings_initialization.xml
 </pre></div>
 </div>
 </section>
