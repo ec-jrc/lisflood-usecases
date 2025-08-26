@@ -14,7 +14,7 @@ execute:
 # HTML-specific settings
 html:
   home_page_in_navbar: false
-  # baseurl: /lisflood-usecases/
+  baseurl: /lisflood-usecases/
 
 # Interact link settings
 notebook_interface: "notebook"
@@ -26,8 +26,8 @@ repository:
   branch: mekong_usecase  # Which branch of the repository should be used when creating links (optional)
 
 binder:
-  binderhub_url               : "https://mybinder.org"
-  text                        : "Launch binder"
+  binderhub_url: "https://mybinder.org"
+  text: "Launch binder"
 
 # LaTeX settings
 latex:
