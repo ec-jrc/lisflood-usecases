@@ -1,4 +1,4 @@
-# A LISFLOOD use case: the Nam Ngum River Basin
+# A LISFLOOD use case:\nthe Nam Ngum River Basin
 
 This is a simple example of how a catchment model can be developed using the hydrological model LISFLOOD.
 
