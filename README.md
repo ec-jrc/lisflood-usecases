@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/master?urlpath=tree/lisflood-notebook.ipynb)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-blue.svg)](https://ec-jrc.github.io/lisflood-usecases/intro.html) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/master?urlpath=tree/lisflood-notebook.ipynb)
 
 # Lisflood use cases
 
