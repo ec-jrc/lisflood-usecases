@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - mekong_usecase
+    workflow_dispatch:
 
 jobs:
   build-and-deploy:
