@@ -71,8 +71,8 @@
         <setoption choice="0" name="repStressDays"/>
 
         <setoption choice="1" name="readNetcdfStack"/>
-        <setoption choice="0" name="writeNetcdfStack"/>
-        <setoption choice="0" name="writeNetcdf"/>
+        <setoption choice="1" name="writeNetcdfStack"/>
+        <setoption choice="1" name="writeNetcdf"/>
 
         <setoption choice="0" name="MonteCarlo"/>
         <setoption choice="0" name="EnKF"/>
@@ -1400,6 +1400,20 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
         <textvar name="NetCDFTimeChunks" value="auto"/>
 
         <textvar name="MapsCaching" value="False"/>
+        
+        <comment>
+
+            The option "OutputMapsChunks" may take the following values:
+                - "[positive integer number]"  : Dump outputs to disk every X steps (default 1) 
+        </comment>
+        <textvar name="OutputMapsChunks" value="1"/>
+
+        <comment>
+            The option "OutputMapsDataType" sets the output data type and may take the following values:
+                - "float64"
+                - "float32"
+        </comment>
+        <textvar name="OutputMapsDataType" value="float64"/>
 
         <textvar name="MaskMap" value="$(MaskMap)">
             <comment>
@@ -1871,7 +1885,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 **************************************************************
             </comment>
 
-            <textvar name="LZAvInflowMap" value="$(PathInit)/lzavin.map">
+            <textvar name="LZAvInflowMap" value="$(PathInit)/lzavin">
                 <comment>
                     $(PathInit)/lzavin.map
                     Reported map of average percolation rate from upper to
@@ -1879,7 +1893,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 </comment>
             </textvar>
 
-            <textvar name="AvgDis" value="$(PathInit)/avgdis.map">
+            <textvar name="AvgDis" value="$(PathInit)/avgdis">
                 <comment>
                     $(PathInit)/avgdis.map
                     CHANNEL split routing in two lines
