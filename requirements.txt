@@ -1,7 +1,6 @@
 datetime
 jupyterlab
 jupyter-book
-jupyter_contrib_nbextensions
 matplotlib
 netcdf4
 numpy
