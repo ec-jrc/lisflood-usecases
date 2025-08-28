@@ -18,3 +18,4 @@
 
 # Ignore meteo forcings
 LF_mekong_usecase/meteo/*.nc
+LF_mekong_usecase/maps/water_use/pop_daily.nc
