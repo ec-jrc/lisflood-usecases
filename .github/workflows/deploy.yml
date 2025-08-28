@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - mekong_usecase
-    workflow_dispatch:
+    
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -25,6 +26,10 @@ jobs:
       - name: Install notebook dependencies
         run: |
           pip install -r requirements.txt
+      
+      - name: Clean the book build
+        run: |
+          jupyter-book clean docs/
 
       - name: Build the book
         run: |
