@@ -25,10 +25,6 @@ jobs:
       - name: Install notebook dependencies
         run: |
           pip install -r requirements.txt
-          
-      - name: Clean build directory
-        run: |
-          jupyter-book clean docs/
 
       - name: Build the book
         run: |
