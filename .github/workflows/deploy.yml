@@ -25,6 +25,10 @@ jobs:
       - name: Install notebook dependencies
         run: |
           pip install -r requirements.txt
+          
+      - name: Clean build directory
+        run: |
+          jupyter-book clean docs/
 
       - name: Build the book
         run: |
@@ -32,4 +36,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          ghp-import -n -p -f docs/_build/html
+          ghp-import -n -p -c docs/_build/html
