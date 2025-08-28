@@ -1,0 +1,15 @@
+name: usecases
+channels:
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.11
+  - anaconda::numpy
+  - anaconda::pandas
+  - xarray
+  - matplotlib
+  - jupyterlab
+  - conda-forge::jupyter-book
+  - anaconda::pathlib
+  - conda-forge::netcdf4
