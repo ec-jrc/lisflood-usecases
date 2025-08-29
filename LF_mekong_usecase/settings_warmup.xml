@@ -378,7 +378,7 @@ You can use builtin path variables in this template and reference to other paths
 				</comment>
 			</textvar>
 
-			<textvar name="PathWarm" value="$(PathRoot)/results/warmup">
+			<textvar name="PathOut" value="$(PathRoot)/results/warmup">
 				<comment>
 				Output path (org=$(PathRoot)/out)
 				</comment>
@@ -923,19 +923,19 @@ You can use builtin path variables in this template and reference to other paths
 					</comment>
 				</textvar>
 
-				<textvar name="WaterUseMaps" value="$(PathWarm)/wuse">
+				<textvar name="WaterUseMaps" value="$(PathOut)/wuse">
 					<comment>
 					Reported water use [m3/s], depending on the availability of discharge
 					</comment>
 				</textvar>
 
-				<textvar name="WaterUseTS" value="$(PathWarm)/wateruseUps.tss">
+				<textvar name="WaterUseTS" value="$(PathOut)/wateruseUps.tss">
 					<comment>
 					Time series of upstream water use at gauging stations
 					</comment>
 				</textvar>
 
-				<textvar name="StepsWaterUseTS" value="$(PathWarm)/stepsWaterUse.tss">
+				<textvar name="StepsWaterUseTS" value="$(PathOut)/stepsWaterUse.tss">
 					<comment>
 					Number of sub-steps needed for water use routine
 					</comment>
@@ -1533,55 +1533,55 @@ You can use builtin path variables in this template and reference to other paths
 				PF MAPS
 				</comment>
 
-				<textvar name="PF1ForestMaps" value="$(PathWarm)/pf0_forest">
+				<textvar name="PF1ForestMaps" value="$(PathOut)/pf0_forest">
 					<comment>
 					Reported pF soil layer 1a, forest land use fraction
 					</comment>
 				</textvar>
 
-				<textvar name="PF2ForestMaps" value="$(PathWarm)/pf1_forest">
+				<textvar name="PF2ForestMaps" value="$(PathOut)/pf1_forest">
 					<comment>
 					Reported pF soil layer 1b, forest land use fraction
 					</comment>
 				</textvar>
 
-				<textvar name="PF3ForestMaps" value="$(PathWarm)/pf2_forest">
+				<textvar name="PF3ForestMaps" value="$(PathOut)/pf2_forest">
 					<comment>
 					Reported pF layer  2, forest land use fraction
 					</comment>
 				</textvar>
 
-				<textvar name="PF1IrrigationMaps" value="$(PathWarm)/pf0_irrig">
+				<textvar name="PF1IrrigationMaps" value="$(PathOut)/pf0_irrig">
 					<comment>
 					Reported pF soil layer 1a, irrigated land use fraction
 					</comment>
 				</textvar>
 
-				<textvar name="PF2IrrigationMaps" value="$(PathWarm)/pf1_irrig">
+				<textvar name="PF2IrrigationMaps" value="$(PathOut)/pf1_irrig">
 					<comment>
 					Reported pF soil layer 1b, irrigated land use fraction
 					</comment>
 				</textvar>
 
-				<textvar name="PF3IrrigationMaps" value="$(PathWarm)/pf2_irrig">
+				<textvar name="PF3IrrigationMaps" value="$(PathOut)/pf2_irrig">
 					<comment>
 					Reported pF soil layer 2, irrigated land use fraction
 					</comment>
 				</textvar>
 
-				<textvar name="PF1OtherMaps" value="$(PathWarm)/pf0_other">
+				<textvar name="PF1OtherMaps" value="$(PathOut)/pf0_other">
 					<comment>
 					Reported pF soil layer 1a for the other land use fraction
 					</comment>
 				</textvar>
 
-				<textvar name="PF2OtherMaps" value="$(PathWarm)/pf1_other">
+				<textvar name="PF2OtherMaps" value="$(PathOut)/pf1_other">
 					<comment>
 					Reported pF soil layer  1b for the other land use fraction
 					</comment>
 				</textvar>
 
-				<textvar name="PF3OtherMaps" value="$(PathWarm)/pf2_other">
+				<textvar name="PF3OtherMaps" value="$(PathOut)/pf2_other">
 					<comment>
 					Reported pF soil layer  2 for the other land use fraction
 					</comment>
@@ -1787,13 +1787,13 @@ You can use builtin path variables in this template and reference to other paths
 					</comment>
 				</textvar>
 
-				<textvar name="EvaOpenMaps" value="$(PathWarm)/evaop">
+				<textvar name="EvaOpenMaps" value="$(PathOut)/evaop">
 					<comment>
 					Reported evaporation from open water [mm]
 					</comment>
 				</textvar>
 
-				<textvar name="EvaOpenTS" value="$(PathWarm)/evaopenUps.tss">
+				<textvar name="EvaOpenTS" value="$(PathOut)/evaopenUps.tss">
 					<comment>
 					Time series of upstream water evaporation from open water at gauging stations
 					</comment>
@@ -2936,7 +2936,7 @@ You can use builtin path variables in this template and reference to other paths
 						</comment>
 					</textvar>
 
-					<textvar name="NoSubStepsChan" value="$(PathWarm)/NoSubStepsChannel.tss">
+					<textvar name="NoSubStepsChan" value="$(PathOut)/NoSubStepsChannel.tss">
 						<comment>
 						variable Number of sub steps for the kinematic wave routing
 						</comment>
@@ -3236,31 +3236,31 @@ You can use builtin path variables in this template and reference to other paths
 
 					<!--Output time series-->
 
-					<textvar name="ReservoirInflowTS" value="$(PathWarm)/qresin.tss">
+					<textvar name="ReservoirInflowTS" value="$(PathOut)/qresin.tss">
 						<comment>
 						name of output TSS file with Reservoir Inflow
 						</comment>
 					</textvar>
 
-					<textvar name="ReservoirOutflowTS" value="$(PathWarm)/qresout.tss">
+					<textvar name="ReservoirOutflowTS" value="$(PathOut)/qresout.tss">
 						<comment>
 						name of output TSS file with Reservoir Outflow
 						</comment>
 					</textvar>
 
-					<textvar name="ReservoirFillTS" value="$(PathWarm)/resfill.tss">
+					<textvar name="ReservoirFillTS" value="$(PathOut)/resfill.tss">
 						<comment>
 						name of output TSS file with Reservoir Filling
 						</comment>
 					</textvar>
 
-					<textvar name="ReservoirStorageM3TS" value="$(PathWarm)/resstor.tss">
+					<textvar name="ReservoirStorageM3TS" value="$(PathOut)/resstor.tss">
 						<comment>
 						name of output TSS file with Reservoir storage [m3]
 						</comment>
 					</textvar>
 
-					<textvar name="ReservoirFillState" value="$(PathWarm)/rsfil">
+					<textvar name="ReservoirFillState" value="$(PathOut)/rsfil">
 						<comment>
 						name of output map(s) with Reservoir Filling
 						</comment>
@@ -3342,38 +3342,38 @@ You can use builtin path variables in this template and reference to other paths
 
 					<!--Output time series-->
 
-					<textvar name="LakeInflowTS" value="$(PathWarm)/qLakeIn.tss">
+					<textvar name="LakeInflowTS" value="$(PathOut)/qLakeIn.tss">
 						<comment>
 						Output timeseries file with lake inflow [m3 /s]
 						</comment>
 					</textvar>
 
-					<textvar name="LakeOutflowTS" value="$(PathWarm)/qLakeOut.tss">
+					<textvar name="LakeOutflowTS" value="$(PathOut)/qLakeOut.tss">
 						<comment>
 						Output timeseries file with lake outflow [m3 /s]
 						</comment>
 					</textvar>
 
-					<textvar name="LakeLevelTS" value="$(PathWarm)/hLake.tss">
+					<textvar name="LakeLevelTS" value="$(PathOut)/hLake.tss">
 						<comment>
 						Output timeseries file with lake level [m]
 						</comment>
 					</textvar>
 
-					<textvar name="LakeLevelState" value="$(PathWarm)/lakeh">
+					<textvar name="LakeLevelState" value="$(PathOut)/lakeh">
 						<comment>
 						Output map(s) with lake level [m]
 						</comment>
 					</textvar>
 
-					<textvar name="LakePrevInflowState" value="$(PathWarm)/lakeprevinq">
+					<textvar name="LakePrevInflowState" value="$(PathOut)/lakeprevinq">
 						<comment>
 						Output map with lake inflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
 							-9999 sets initial value equal to PrevDischarge (ChanQ(t))
 						</comment>
 					</textvar>
 
-					<textvar name="LakePrevOutflowState" value="$(PathWarm)/lakeprevoutq">
+					<textvar name="LakePrevOutflowState" value="$(PathOut)/lakeprevoutq">
 						<comment>
 						Output map with lake outflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
 							-9999 sets initial value
@@ -3441,19 +3441,19 @@ You can use builtin path variables in this template and reference to other paths
 
 					<!--Output-->
 
-					<textvar name="PolderFluxTS" value="$(PathWarm)/qPolder.tss">
+					<textvar name="PolderFluxTS" value="$(PathOut)/qPolder.tss">
 						<comment>
 						name of output TSS file with polder flux [cu m / s]. Positive for flow from channel to polder, negative for polder to channel
 						</comment>
 					</textvar>
 
-					<textvar name="PolderLevelTS" value="$(PathWarm)/hPolder.tss">
+					<textvar name="PolderLevelTS" value="$(PathOut)/hPolder.tss">
 						<comment>
 						name of output TSS file with polder level [m]
 						</comment>
 					</textvar>
 
-					<textvar name="PolderLevelState" value="$(PathWarm)/hpol">
+					<textvar name="PolderLevelState" value="$(PathOut)/hpol">
 						<comment>
 						name of output map(s) with polder level
 						</comment>
@@ -3543,31 +3543,31 @@ You can use builtin path variables in this template and reference to other paths
 
 					<!--pF maps-->
 
-					<textvar name="PF1Maps" value="$(PathWarm)/pftop">
+					<textvar name="PF1Maps" value="$(PathOut)/pftop">
 						<comment>
 						Reported pF upper soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF2Maps" value="$(PathWarm)/pfsub">
+					<textvar name="PF2Maps" value="$(PathOut)/pfsub">
 						<comment>
 						Reported pF lower soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF3Maps" value="$(PathWarm)/pfbot">
+					<textvar name="PF3Maps" value="$(PathOut)/pfbot">
 						<comment>
 						Reported pF lower soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF1ForestMaps" value="$(PathWarm)/pfFoT">
+					<textvar name="PF1ForestMaps" value="$(PathOut)/pfFoT">
 						<comment>
 						Reported pF upper soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF2ForestMaps" value="$(PathWarm)/pfFoS">
+					<textvar name="PF2ForestMaps" value="$(PathOut)/pfFoS">
 						<comment>
 						Reported pF lower soil layer [-]
 						</comment>
@@ -3575,25 +3575,25 @@ You can use builtin path variables in this template and reference to other paths
 
 					<!--pF timeseries: values at SITES-->
 
-					<textvar name="PF1TS" value="$(PathWarm)/pFTop.tss">
+					<textvar name="PF1TS" value="$(PathOut)/pFTop.tss">
 						<comment>
 						Reported pF upper soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF2TS" value="$(PathWarm)/pFSub.tss">
+					<textvar name="PF2TS" value="$(PathOut)/pFSub.tss">
 						<comment>
 						Reported pF lower soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF1ForestTS" value="$(PathWarm)/pFForestTop.tss">
+					<textvar name="PF1ForestTS" value="$(PathOut)/pFForestTop.tss">
 						<comment>
 						Reported pF upper soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF2ForestTS" value="$(PathWarm)/pFForestSub.tss">
+					<textvar name="PF2ForestTS" value="$(PathOut)/pFForestSub.tss">
 						<comment>
 						Reported pF lower soil layer [-]
 						</comment>
@@ -3601,25 +3601,25 @@ You can use builtin path variables in this template and reference to other paths
 
 					<!--pF timeseries: average values upstream of gauges-->
 
-					<textvar name="PF1AvUpsTS" value="$(PathWarm)/pFTopUps.tss">
+					<textvar name="PF1AvUpsTS" value="$(PathOut)/pFTopUps.tss">
 						<comment>
 						Reported pF upper soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF2AvUpsTS" value="$(PathWarm)/pFSubUps.tss">
+					<textvar name="PF2AvUpsTS" value="$(PathOut)/pFSubUps.tss">
 						<comment>
 						Reported pF lower soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF1ForestAvUpsTS" value="$(PathWarm)/pFForestTopUps.tss">
+					<textvar name="PF1ForestAvUpsTS" value="$(PathOut)/pFForestTopUps.tss">
 						<comment>
 						Reported pF upper soil layer [-]
 						</comment>
 					</textvar>
 
-					<textvar name="PF2ForestAvUpsTS" value="$(PathWarm)/pFForestSubUps.tss">
+					<textvar name="PF2ForestAvUpsTS" value="$(PathOut)/pFForestSubUps.tss">
 						<comment>
 						Reported pF lower soil layer [-]
 						</comment>
@@ -3656,127 +3656,127 @@ You can use builtin path variables in this template and reference to other paths
 							</comment>
 						</textvar>
 
-						<textvar name="TotalAbsGroundwater" value="$(PathWarm)/tAbsGW">
+						<textvar name="TotalAbsGroundwater" value="$(PathOut)/tAbsGW">
 							<comment>
 							TotalAbstractionFromGroundwater [mm]
 							</comment>
 						</textvar>
 
-						<textvar name="TotalAbsSurface" value="$(PathWarm)/tAbsS">
+						<textvar name="TotalAbsSurface" value="$(PathOut)/tAbsS">
 							<comment>
 							TotalAbstractionFromSurfaceWater [mm]
 							</comment>
 						</textvar>
 
-						<textvar name="TotalAbsSurfaceRegion" value="$(PathWarm)/rAbsS">
+						<textvar name="TotalAbsSurfaceRegion" value="$(PathOut)/rAbsS">
 							<comment>
 							TotalAbstractionFromSurfaceWater [mm] summed up for water regions
 							</comment>
 						</textvar>
 
-						<textvar name="TotalAbsSurfaceGroundwaterRegion" value="$(PathWarm)/rAbsGW">
+						<textvar name="TotalAbsSurfaceGroundwaterRegion" value="$(PathOut)/rAbsGW">
 							<comment>
 							Total Abstraction From SurfaceWater and Groundwater [mm] summed up for water regions, montly values
 							</comment>
 						</textvar>
 
-						<textvar name="TotalPaddyRiceIrrigationAbstractionM3" value="$(PathWarm)/tAbsPdRc">
+						<textvar name="TotalPaddyRiceIrrigationAbstractionM3" value="$(PathOut)/tAbsPdRc">
 							<comment>
 							TotalPaddyRiceIrrigationAbstraction [m3]
 							</comment>
 						</textvar>
 
-						<textvar name="WEI_Cns" value="$(PathWarm)/WeiC">
+						<textvar name="WEI_Cns" value="$(PathOut)/WeiC">
 							<comment>
 							Water Exploitation Index - Consumption; for water regions (this is the official EU WEI+): consumption / internal and external availability
 							</comment>
 						</textvar>
 
-						<textvar name="WEI_Abs" value="$(PathWarm)/WeiA">
+						<textvar name="WEI_Abs" value="$(PathOut)/WeiA">
 							<comment>
 							Water Exploitation Index - Abstraction; for water regions: abstraction / internal and external availability
 							</comment>
 						</textvar>
 
-						<textvar name="WEI_Dem" value="$(PathWarm)/WeiD">
+						<textvar name="WEI_Dem" value="$(PathOut)/WeiD">
 							<comment>
 							Water Exploitation Index - Demand; for water regions: demand / internal and external availability
 							</comment>
 						</textvar>
 
-						<textvar name="WEI_Plus" value="$(PathWarm)/WeiPlus">
+						<textvar name="WEI_Plus" value="$(PathOut)/WeiPlus">
 							<comment>
 							Water Exploitation Index - Consumption; for water regions
 							</comment>
 						</textvar>
 
-						<textvar name="RegionMonthInternalFlowM3" value="$(PathWarm)/RgIn">
+						<textvar name="RegionMonthInternalFlowM3" value="$(PathOut)/RgIn">
 							<comment>
 							Internal available water
 							</comment>
 						</textvar>
 
-						<textvar name="RegionMonthExternalInflowM3" value="$(PathWarm)/RgEx">
+						<textvar name="RegionMonthExternalInflowM3" value="$(PathOut)/RgEx">
 							<comment>
 							External available water
 							</comment>
 						</textvar>
 
-						<textvar name="RegionMonthConsumptionRequiredM3" value="$(PathWarm)/RgWCR">
+						<textvar name="RegionMonthConsumptionRequiredM3" value="$(PathOut)/RgWCR">
 							<comment>
 							Region Water Consumption
 							</comment>
 						</textvar>
 
-						<textvar name="RegionMonthConsumptionActualM3" value="$(PathWarm)/RgWCA">
+						<textvar name="RegionMonthConsumptionActualM3" value="$(PathOut)/RgWCA">
 							<comment>
 							Region Water Consumption
 							</comment>
 						</textvar>
 
-						<textvar name="RegionMonthReservoirAndLakeStorageM3" value="$(PathWarm)/RsLk">
+						<textvar name="RegionMonthReservoirAndLakeStorageM3" value="$(PathOut)/RsLk">
 							<comment>
 							Reservoir and Lake storage in m3 at end of month
 							</comment>
 						</textvar>
 
-						<textvar name="RegionMonthWaterAbstractedfromLakesReservoirsM3" value="$(PathWarm)/RLAbs">
+						<textvar name="RegionMonthWaterAbstractedfromLakesReservoirsM3" value="$(PathOut)/RLAbs">
 							<comment>
 							Reservoir and Lake abstraction in m3
 							</comment>
 						</textvar>
 
-						<textvar name="RegionMonthIrrigationShortageM3" value="$(PathWarm)/IrSh">
+						<textvar name="RegionMonthIrrigationShortageM3" value="$(PathOut)/IrSh">
 							<comment>
 							Irrigation water shortage in m3 for month
 							</comment>
 						</textvar>
 
-						<textvar name="PotentialSurfaceWaterAvailabilityForIrrigationM3" value="$(PathWarm)/PotIrgM3">
+						<textvar name="PotentialSurfaceWaterAvailabilityForIrrigationM3" value="$(PathOut)/PotIrgM3">
 							<comment>
 							Surface water availability in m3 for potential irrigation for each day
 							</comment>
 						</textvar>
 
-						<textvar name="MonthETpotMM" value="$(PathWarm)/ETpot">
+						<textvar name="MonthETpotMM" value="$(PathOut)/ETpot">
 							<comment>
 							Monthly evapotranspiration deficit in mm
 							</comment>
 						</textvar>
 
-						<textvar name="MonthETactMM" value="$(PathWarm)/ETact">
+						<textvar name="MonthETactMM" value="$(PathOut)/ETact">
 							<comment>
 							Monthly evapotranspiration deficit in mm
 							</comment>
 						</textvar>
 
-						<textvar name="MonthETdifMM" value="$(PathWarm)/ETdif">
+						<textvar name="MonthETdifMM" value="$(PathOut)/ETdif">
 							<comment>
 							Monthly evapotranspiration deficit in mm
 							</comment>
 						</textvar>
 
-						<textvar name="WaterDependencyIndex" value="$(PathWarm)/WDI">
+						<textvar name="WaterDependencyIndex" value="$(PathOut)/WDI">
 							<comment>
 							Monthly Water Dependency Index (0-1) (De Roo 2015)
 							WDI = Upstream Inflow Actually Used / Total Water Demand
@@ -3784,7 +3784,7 @@ You can use builtin path variables in this template and reference to other paths
 							</comment>
 						</textvar>
 
-						<textvar name="WaterSecurityIndex" value="$(PathWarm)/WSI">
+						<textvar name="WaterSecurityIndex" value="$(PathOut)/WSI">
 							<comment>
 							Monthly Water Security Index (0-1) (De Roo 2015)
 							WSI = Upstream Inflow Actually Used / Upstream Inflow Available
@@ -3792,7 +3792,7 @@ You can use builtin path variables in this template and reference to other paths
 							</comment>
 						</textvar>
 
-						<textvar name="WaterSustainabilityIndex" value="$(PathWarm)/WTI">
+						<textvar name="WaterSustainabilityIndex" value="$(PathOut)/WTI">
 							<comment>
 							Monthly Water Sustainability Index (0-1) (De Roo 2015)
 							WTI = 1-SurfaceWaterDeficit / TotalWaterDemand
@@ -3801,137 +3801,137 @@ You can use builtin path variables in this template and reference to other paths
 							</comment>
 						</textvar>
 
-						<textvar name="FalkenmarkM3Capita1" value="$(PathWarm)/Fk1">
+						<textvar name="FalkenmarkM3Capita1" value="$(PathOut)/Fk1">
 							<comment>
 							Monthly Falkenmark 1 Index (tochanm3)
 							</comment>
 						</textvar>
 
-						<textvar name="FalkenmarkM3Capita2" value="$(PathWarm)/Fk2">
+						<textvar name="FalkenmarkM3Capita2" value="$(PathOut)/Fk2">
 							<comment>
 							Monthly Falkenmark 2 Index (tochanm3+reservoirlakeabstraction)
 							</comment>
 						</textvar>
 
-						<textvar name="FalkenmarkM3Capita3" value="$(PathWarm)/Fk3">
+						<textvar name="FalkenmarkM3Capita3" value="$(PathOut)/Fk3">
 							<comment>
 							Monthly Falkenmark 3 Index (tochanm3+reservoirlakeabstraction+externalinflow)
 							</comment>
 						</textvar>
 
-						<textvar name="TotalAbstractionFromGroundwaterM3" value="$(PathWarm)/TotAbsGW">
+						<textvar name="TotalAbstractionFromGroundwaterM3" value="$(PathOut)/TotAbsGW">
 							<comment>
 							Abstraction from groundwater in m3 per timestep
 							</comment>
 						</textvar>
 
-						<textvar name="TotalAbstractionFromSurfaceWaterM3" value="$(PathWarm)/TotAbsSW">
+						<textvar name="TotalAbstractionFromSurfaceWaterM3" value="$(PathOut)/TotAbsSW">
 							<comment>
 							Abstraction from surface water in m3 per timestep
 							</comment>
 						</textvar>
 
-						<textvar name="AreaTotalAbstractionFromSurfaceWaterM3" value="$(PathWarm)/ATAbsSW">
+						<textvar name="AreaTotalAbstractionFromSurfaceWaterM3" value="$(PathOut)/ATAbsSW">
 							<comment>
 							Region abstraction from surface water in m3 per timestep
 							</comment>
 						</textvar>
 
-						<textvar name="AreatotalWaterAbstractedfromLakesReservoirsM3" value="$(PathWarm)/ATAbsLR">
+						<textvar name="AreatotalWaterAbstractedfromLakesReservoirsM3" value="$(PathOut)/ATAbsLR">
 							<comment>
 							Region Total Abstraction From Lakes and Reservoirs in m3, per timestep
 							</comment>
 						</textvar>
 
-						<textvar name="LakeAbstractionM3" value="$(PathWarm)/LakesAbs">
+						<textvar name="LakeAbstractionM3" value="$(PathOut)/LakesAbs">
 							<comment>
 							Lake Abstraction per timestep in m3
 							</comment>
 						</textvar>
 
-						<textvar name="ReservoirAbstractionM3" value="$(PathWarm)/ResAbs">
+						<textvar name="ReservoirAbstractionM3" value="$(PathOut)/ResAbs">
 							<comment>
 							ReservoirAbstraction per timestep in M3
 							</comment>
 						</textvar>
 
-						<textvar name="ReservoirStorageM3" value="$(PathWarm)/ResStor">
+						<textvar name="ReservoirStorageM3" value="$(PathOut)/ResStor">
 							<comment>
 							ReservoirStorage in M3
 							</comment>
 						</textvar>
 
-						<textvar name="LakeStorageM3" value="$(PathWarm)/LakeStor">
+						<textvar name="LakeStorageM3" value="$(PathOut)/LakeStor">
 							<comment>
 							LakeStorage in M3
 							</comment>
 						</textvar>
 
-						<textvar name="AreatotalIrrigationUseM3" value="$(PathWarm)/ATIrgUse">
+						<textvar name="AreatotalIrrigationUseM3" value="$(PathOut)/ATIrgUse">
 							<comment>
 							AreatotalIrrigationUseM3
 							</comment>
 						</textvar>
 
-						<textvar name="FractionAbstractedFromChannels" value="$(PathWarm)/FrChan">
+						<textvar name="FractionAbstractedFromChannels" value="$(PathOut)/FrChan">
 							<comment>
 							FractionAbstractedFromChannels
 							</comment>
 						</textvar>
 
-						<textvar name="EFlowIndicator" value="$(PathWarm)/Eflow">
+						<textvar name="EFlowIndicator" value="$(PathOut)/Eflow">
 							<comment>
 							EFlowIndicator (1 on day with ChanQ smaller than EflowThreshold, 0 on normal days)
 							</comment>
 						</textvar>
 
-						<textvar name="consumption_required_domestic_M3MonthRegion" value="$(PathWarm)/consReqDomM3MonReg"/>
+						<textvar name="consumption_required_domestic_M3MonthRegion" value="$(PathOut)/consReqDomM3MonReg"/>
 
-						<textvar name="consumption_required_energy_M3MonthRegion" value="$(PathWarm)/consReqEneM3MonReg"/>
+						<textvar name="consumption_required_energy_M3MonthRegion" value="$(PathOut)/consReqEneM3MonReg"/>
 
-						<textvar name="consumption_required_industry_M3MonthRegion" value="$(PathWarm)/consReqIndM3MonReg"/>
+						<textvar name="consumption_required_industry_M3MonthRegion" value="$(PathOut)/consReqIndM3MonReg"/>
 
-						<textvar name="consumption_required_livestock_M3MonthRegion" value="$(PathWarm)/consReqLivM3MonReg"/>
+						<textvar name="consumption_required_livestock_M3MonthRegion" value="$(PathOut)/consReqLivM3MonReg"/>
 
-						<textvar name="consumption_required_irrigation_M3MonthRegion" value="$(PathWarm)/consReqIrrM3MonReg"/>
+						<textvar name="consumption_required_irrigation_M3MonthRegion" value="$(PathOut)/consReqIrrM3MonReg"/>
 
-						<textvar name="consumption_actual_irrigation_M3MonthRegion" value="$(PathWarm)/consActIrrM3MonReg"/>
+						<textvar name="consumption_actual_irrigation_M3MonthRegion" value="$(PathOut)/consActIrrM3MonReg"/>
 
-						<textvar name="abstraction_allSources_required_irrigation_M3MonthRegion" value="$(PathWarm)/absAllSrcReqIrrM3MonReg"/>
+						<textvar name="abstraction_allSources_required_irrigation_M3MonthRegion" value="$(PathOut)/absAllSrcReqIrrM3MonReg"/>
 
-						<textvar name="abstraction_allSources_actual_irrigation_M3MonthRegion" value="$(PathWarm)/absAllSrcActIrrM3MonReg"/>
+						<textvar name="abstraction_allSources_actual_irrigation_M3MonthRegion" value="$(PathOut)/absAllSrcActIrrM3MonReg"/>
 
-						<textvar name="abstraction_SwGw_required_irrigation_M3MonthRegion" value="$(PathWarm)/absSwGwReqIrrM3MonReg"/>
+						<textvar name="abstraction_SwGw_required_irrigation_M3MonthRegion" value="$(PathOut)/absSwGwReqIrrM3MonReg"/>
 
-						<textvar name="abstraction_SwGw_actual_irrigation_M3MonthRegion" value="$(PathWarm)/absSwGwActIrrM3MonReg"/>
+						<textvar name="abstraction_SwGw_actual_irrigation_M3MonthRegion" value="$(PathOut)/absSwGwActIrrM3MonReg"/>
 
-						<textvar name="UpstreamInflowM3" value="$(PathWarm)/upstreamInflowAvailableM3MonReg"/>
+						<textvar name="UpstreamInflowM3" value="$(PathOut)/upstreamInflowAvailableM3MonReg"/>
 
-						<textvar name="LocalFreshwaterM3" value="$(PathWarm)/localWaterAvailableMonReg"/>
+						<textvar name="LocalFreshwaterM3" value="$(PathOut)/localWaterAvailableMonReg"/>
 
-						<textvar name="LocalTotalWaterDemandM3" value="$(PathWarm)/localWaterDemandMonReg"/>
+						<textvar name="LocalTotalWaterDemandM3" value="$(PathOut)/localWaterDemandMonReg"/>
 
-						<textvar name="UpstreamInflowUsedM3" value="$(PathWarm)/upstreamInflowUsedMonReg"/>
+						<textvar name="UpstreamInflowUsedM3" value="$(PathOut)/upstreamInflowUsedMonReg"/>
 
-						<textvar name="FossilGroundwaterUsedM3" value="$(PathWarm)/fossilGroundwaterUsedMonReg"/>
+						<textvar name="FossilGroundwaterUsedM3" value="$(PathOut)/fossilGroundwaterUsedMonReg"/>
 
 					</group>
 
 					<!--Peter's addition-->
 					<group>
-						<textvar name="actETPUpsTS" value="$(PathWarm)/actEvapo.tss">
+						<textvar name="actETPUpsTS" value="$(PathOut)/actEvapo.tss">
 							<comment>
 							[mm]
 							</comment>
 						</textvar>
 
-						<textvar name="RunLossUpsTS" value="$(PathWarm)/runLoss.tss">
+						<textvar name="RunLossUpsTS" value="$(PathOut)/runLoss.tss">
 							<comment>
 							[mm]
 							</comment>
 						</textvar>
 
-						<textvar name="EvaOpenWaterAvUpsTS" value="$(PathWarm)/evaopen.tss">
+						<textvar name="EvaOpenWaterAvUpsTS" value="$(PathOut)/evaopen.tss">
 							<comment>
 							[mm]
 							</comment>
@@ -3955,37 +3955,37 @@ You can use builtin path variables in this template and reference to other paths
 			<!--MAPS-->
 			<group>
 
-				<textvar name="DischargeMaps" value="$(PathWarm)/dis">
+				<textvar name="DischargeMaps" value="$(PathOut)/dis">
 					<comment>
 					Reported discharge [cu m/s] (average over the model timesteps) (AvgDis)
 					</comment>
 					</textvar>
 
-				<textvar name="TopSoilMoistureMaps" value="$(PathWarm)/wt">
+				<textvar name="TopSoilMoistureMaps" value="$(PathOut)/wt">
 					<comment>
 					Reported Topsoil moisture [%]
 					</comment>
 				</textvar>
 
-				<textvar name="SurfaceSoilMoistureMaps" value="$(PathWarm)/wta">
+				<textvar name="SurfaceSoilMoistureMaps" value="$(PathOut)/wta">
 					<comment>
 					Reported Topsoil moisture [%]
 					</comment>
 				</textvar>
 
-				<textvar name="DisMaps" value="$(PathWarm)/q">
+				<textvar name="DisMaps" value="$(PathOut)/q">
 					<comment>
 					Reported discharge [cu m/s] at the end of a timestep
 					</comment>
 				</textvar>
 
-				<textvar name="MaskDischargeMaps" value="$(PathWarm)/dism">
+				<textvar name="MaskDischargeMaps" value="$(PathOut)/dism">
 					<comment>
 					Reported discharge [cu m/s] but cut by a discharge mask map
 					</comment>
 				</textvar>
 
-				<textvar name="WaterLevelMaps" value="$(PathWarm)/wl">
+				<textvar name="WaterLevelMaps" value="$(PathOut)/wl">
 					<comment>
 					Reported water level [m]  % False by default
 					</comment>
@@ -3999,226 +3999,226 @@ You can use builtin path variables in this template and reference to other paths
 						Only for initialisation of succeeding runs
 					</comment>
 
-					<textvar name="Theta1State" value="$(PathWarm)/tha">
+					<textvar name="Theta1State" value="$(PathOut)/tha">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2State" value="$(PathWarm)/thb">
+					<textvar name="Theta2State" value="$(PathOut)/thb">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1b (upper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3State" value="$(PathWarm)/thc">
+					<textvar name="Theta3State" value="$(PathOut)/thc">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 2 (lower layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="UZState" value="$(PathWarm)/uz">
+					<textvar name="UZState" value="$(PathOut)/uz">
 						<comment>
 						Reported storage in upper response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZState" value="$(PathWarm)/lz">
+					<textvar name="LZState" value="$(PathOut)/lz">
 						<comment>
 						Reported storage in lower response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRState" value="$(PathWarm)/dslr">
+					<textvar name="DSLRState" value="$(PathOut)/dslr">
 						<comment>
 						Reported days since last rain
 						</comment>
 					</textvar>
 
-					<textvar name="WaterDepthState" value="$(PathWarm)/wdept">
+					<textvar name="WaterDepthState" value="$(PathOut)/wdept">
 						<comment>
 						Reported water depth
 						</comment>
 					</textvar>
 
-					<textvar name="OFDirectState" value="$(PathWarm)/ofdir">
+					<textvar name="OFDirectState" value="$(PathOut)/ofdir">
 						<comment>
 						Reported overland flow water volume [m3] for direct fraction on catchment surface
 						</comment>
 					</textvar>
 
-					<textvar name="OFOtherState" value="$(PathWarm)/ofoth">
+					<textvar name="OFOtherState" value="$(PathOut)/ofoth">
 						<comment>
 						Reported overland flow water volume [m3] for other fraction on catchment surface
 						</comment>
 					</textvar>
 
-					<textvar name="OFForestState" value="$(PathWarm)/offor">
+					<textvar name="OFForestState" value="$(PathOut)/offor">
 						<comment>
 						Reported overland flow water volume [m3] for forest fraction on catchment surface
 						</comment>
 					</textvar>
 
-					<textvar name="ChanCrossSectionState" value="$(PathWarm)/chcro">
+					<textvar name="ChanCrossSectionState" value="$(PathOut)/chcro">
 						<comment>
 						Reported chan cross-section area [m2]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowCoverAState" value="$(PathWarm)/scova">
+					<textvar name="SnowCoverAState" value="$(PathOut)/scova">
 						<comment>
 						Reported snow cover in snow zone A [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowCoverBState" value="$(PathWarm)/scovb">
+					<textvar name="SnowCoverBState" value="$(PathOut)/scovb">
 						<comment>
 						Reported snow cover in snow zone B [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowCoverCState" value="$(PathWarm)/scovc">
+					<textvar name="SnowCoverCState" value="$(PathOut)/scovc">
 						<comment>
 						Reported snow cover in snow zone C [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="FrostIndexState" value="$(PathWarm)/frost">
+					<textvar name="FrostIndexState" value="$(PathOut)/frost">
 						<comment>
 						Reported frost index [degC/day]
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionState" value="$(PathWarm)/cum">
+					<textvar name="CumInterceptionState" value="$(PathOut)/cum">
 						<comment>
 						Reported interception storage [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="CrossSection2State" value="$(PathWarm)/ch2cr">
+					<textvar name="CrossSection2State" value="$(PathOut)/ch2cr">
 						<comment>
 						Reported cross section area 2nd line of routing [m2]
 						</comment>
 					</textvar>
 
-					<textvar name="ChSideState" value="$(PathWarm)/chside">
+					<textvar name="ChSideState" value="$(PathOut)/chside">
 						<comment>
 						Reported channel side flow [m2/s]
 						</comment>
 					</textvar>
 
-					<textvar name="ChanQState" value="$(PathWarm)/chanq">
+					<textvar name="ChanQState" value="$(PathOut)/chanq">
 						<comment>
 						Reported istantaneous discharge at end of computation step [cu m/s] ChanQ
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRForestState" value="$(PathWarm)/dslrf">
+					<textvar name="DSLRForestState" value="$(PathOut)/dslrf">
 						<comment>
 						Reported days since last rain
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionForestState" value="$(PathWarm)/cumf">
+					<textvar name="CumInterceptionForestState" value="$(PathOut)/cumf">
 						<comment>
 						Reported interception storage [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta1ForestState" value="$(PathWarm)/thfa">
+					<textvar name="Theta1ForestState" value="$(PathOut)/thfa">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2ForestState" value="$(PathWarm)/thfb">
+					<textvar name="Theta2ForestState" value="$(PathOut)/thfb">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1b (upper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3ForestState" value="$(PathWarm)/thfc">
+					<textvar name="Theta3ForestState" value="$(PathOut)/thfc">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 2 (lower layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="UZForestState" value="$(PathWarm)/uzf">
+					<textvar name="UZForestState" value="$(PathOut)/uzf">
 						<comment>
 						Reported storage in upper response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="CumIntSealedState" value="$(PathWarm)/cseal">
+					<textvar name="CumIntSealedState" value="$(PathOut)/cseal">
 						<comment>
 						cumulative interception [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRIrrigationState" value="$(PathWarm)/dslri">
+					<textvar name="DSLRIrrigationState" value="$(PathOut)/dslri">
 						<comment>
 						Reported days since last rain
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionIrrigationState" value="$(PathWarm)/cumi">
+					<textvar name="CumInterceptionIrrigationState" value="$(PathOut)/cumi">
 						<comment>
 						Reported interception storage [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta1IrrigationState" value="$(PathWarm)/thia">
+					<textvar name="Theta1IrrigationState" value="$(PathOut)/thia">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2IrrigationState" value="$(PathWarm)/thib">
+					<textvar name="Theta2IrrigationState" value="$(PathOut)/thib">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 1b (upper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3IrrigationState" value="$(PathWarm)/thic">
+					<textvar name="Theta3IrrigationState" value="$(PathOut)/thic">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 2 (lowerupper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="UZIrrigationState" value="$(PathWarm)/uzi">
+					<textvar name="UZIrrigationState" value="$(PathOut)/uzi">
 						<comment>
 						Reported storage in upper response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="TaOtherMaps" value="$(PathWarm)/Ta_other">
+					<textvar name="TaOtherMaps" value="$(PathOut)/Ta_other">
 						<comment>
 						Reported transpiration maps, other fraction [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="TaForestMapa" value="$(PathWarm)/Ta_forest">
+					<textvar name="TaForestMapa" value="$(PathOut)/Ta_forest">
 						<comment>
 						Reported transpiration maps, forest fraction [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="TaIrrigationMaps" value="$(PathWarm)/Ta_irr">
+					<textvar name="TaIrrigationMaps" value="$(PathOut)/Ta_irr">
 						<comment>
 						Reported transpiration maps, irrigated fraction [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="TaPixelMaps" value="$(PathWarm)/Ta_pixel">
+					<textvar name="TaPixelMaps" value="$(PathOut)/Ta_pixel">
 						<comment>
 						Reported transpiration maps, weighted sum over the fractions of each pixel [mm]
 						</comment>
@@ -4234,240 +4234,240 @@ You can use builtin path variables in this template and reference to other paths
 						Support for these "end" maps will most likely be discontinued some time soon
 					</comment>
 
-					<textvar name="Theta1End" value="$(PathWarm)/tha_end">
+					<textvar name="Theta1End" value="$(PathOut)/tha_end">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2End" value="$(PathWarm)/thb_end">
+					<textvar name="Theta2End" value="$(PathOut)/thb_end">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 1b (upper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3End" value="$(PathWarm)/thc_end">
+					<textvar name="Theta3End" value="$(PathOut)/thc_end">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 2 (lower layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="UZEnd" value="$(PathWarm)/uz_end">
+					<textvar name="UZEnd" value="$(PathOut)/uz_end">
 						<comment>
 						Reported storage in upper response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZEnd" value="$(PathWarm)/lz_end">
+					<textvar name="LZEnd" value="$(PathOut)/lz_end">
 						<comment>
 						Reported storage in lower response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="DSLREnd" value="$(PathWarm)/dslr_end">
+					<textvar name="DSLREnd" value="$(PathOut)/dslr_end">
 						<comment>
 						Reported days since last rain
 						</comment>
 					</textvar>
 
-					<textvar name="WaterDepthEnd" value="$(PathWarm)/wdept_end">
+					<textvar name="WaterDepthEnd" value="$(PathOut)/wdept_end">
 						<comment>
 						Reported water depth [m]
 						</comment>
 					</textvar>
 
-					<textvar name="OFDirectEnd" value="$(PathWarm)/ofdir_end">
+					<textvar name="OFDirectEnd" value="$(PathOut)/ofdir_end">
 						<comment>
 						Reported overland flow water volume [m3] for direct fraction on catchment surface
 						</comment>
 					</textvar>
 
-					<textvar name="OFOtherEnd" value="$(PathWarm)/ofoth_end">
+					<textvar name="OFOtherEnd" value="$(PathOut)/ofoth_end">
 						<comment>
 						Reported overland flow water volume [m3] for other fraction on catchment surface
 						</comment>
 					</textvar>
 
-					<textvar name="OFForestEnd" value="$(PathWarm)/offor_end">
+					<textvar name="OFForestEnd" value="$(PathOut)/offor_end">
 						<comment>
 						Reported overland flow water volume [m3] for forest fraction on catchment surface
 						</comment>
 					</textvar>
 
-					<textvar name="ChanCrossSectionEnd" value="$(PathWarm)/chcro_end">
+					<textvar name="ChanCrossSectionEnd" value="$(PathOut)/chcro_end">
 						<comment>
 						Reported chan cross-section area [m2]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowCoverAEnd" value="$(PathWarm)/scova_end">
+					<textvar name="SnowCoverAEnd" value="$(PathOut)/scova_end">
 						<comment>
 						Reported snow cover in snow zone A [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowCoverBEnd" value="$(PathWarm)/scovb_end">
+					<textvar name="SnowCoverBEnd" value="$(PathOut)/scovb_end">
 						<comment>
 						Reported snow cover in snow zone B [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowCoverCEnd" value="$(PathWarm)/scovc_end">
+					<textvar name="SnowCoverCEnd" value="$(PathOut)/scovc_end">
 						<comment>
 						Reported snow cover in snow zone C [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="FrostIndexEnd" value="$(PathWarm)/frost_end">
+					<textvar name="FrostIndexEnd" value="$(PathOut)/frost_end">
 						<comment>
 						Reported frost index [degC/day]
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionEnd" value="$(PathWarm)/cum_end">
+					<textvar name="CumInterceptionEnd" value="$(PathOut)/cum_end">
 						<comment>
 						Reported interception storage [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LakeLevelEnd" value="$(PathWarm)/lakeh_end">
+					<textvar name="LakeLevelEnd" value="$(PathOut)/lakeh_end">
 						<comment>
 						Reported lake level [m]
 						</comment>
 					</textvar>
 
-					<textvar name="LakePrevInflowEnd" value="$(PathWarm)/lakeprevinq_end">
+					<textvar name="LakePrevInflowEnd" value="$(PathOut)/lakeprevinq_end">
 						<comment>
 						Reported lake inflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
 						-9999 sets initial value equal to PrevDischarge (ChanQ(t))
 						</comment>
 					</textvar>
 
-					<textvar name="LakePrevOutflowEnd" value="$(PathWarm)/lakeprevoutq_end">
+					<textvar name="LakePrevOutflowEnd" value="$(PathOut)/lakeprevoutq_end">
 						<comment>
 						Reported lake outflow at previous routing sub-step (ChanQ(t-1)) [m3/s]
 						-9999 sets initial value
 						</comment>
 					</textvar>
 
-					<textvar name="LakeStorageM3" value="$(PathWarm)/lakest_end">
+					<textvar name="LakeStorageM3" value="$(PathOut)/lakest_end">
 						<comment>
 						Reported lake storage [m3]
 						</comment>
 					</textvar>
 
-					<textvar name="ReservoirFillEnd" value="$(PathWarm)/rsfil_end">
+					<textvar name="ReservoirFillEnd" value="$(PathOut)/rsfil_end">
 						<comment>
 						Reported reservoir filling [-]
 						</comment>
 					</textvar>
 
-					<textvar name="CrossSection2End" value="$(PathWarm)/ch2cr_end">
+					<textvar name="CrossSection2End" value="$(PathOut)/ch2cr_end">
 						<comment>
 						Reported cross section area 2nd line of rounting [m2]
 						</comment>
 					</textvar>
 
-					<textvar name="ChSideEnd" value="$(PathWarm)/chside_end">
+					<textvar name="ChSideEnd" value="$(PathOut)/chside_end">
 						<comment>
 						Reported channel side flow [m2/s]
 						</comment>
 					</textvar>
 
-					<textvar name="ChanQEnd" value="$(PathWarm)/chanq_end">
+					<textvar name="ChanQEnd" value="$(PathOut)/chanq_end">
 						<comment>
 						Reported istantaneous discharge at end of computation step [cu m/s] ChanQ
 						</comment>
 					</textvar>
 
-					<textvar name="DischargeEnd" value="$(PathWarm)/dis_end">
+					<textvar name="DischargeEnd" value="$(PathOut)/dis_end">
 						<comment>
 						Reported discharge [cu m/s] (average over the model timesteps) (AvgDis)
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRForestEnd" value="$(PathWarm)/dslrf_end">
+					<textvar name="DSLRForestEnd" value="$(PathOut)/dslrf_end">
 						<comment>
 						Reported days since last rain
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionForestEnd" value="$(PathWarm)/cumf_end">
+					<textvar name="CumInterceptionForestEnd" value="$(PathOut)/cumf_end">
 						<comment>
 						Reported interception storage [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta1ForestEnd" value="$(PathWarm)/thfa_end">
+					<textvar name="Theta1ForestEnd" value="$(PathOut)/thfa_end">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2ForestEnd" value="$(PathWarm)/thfb_end">
+					<textvar name="Theta2ForestEnd" value="$(PathOut)/thfb_end">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 1b (upper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3ForestEnd" value="$(PathWarm)/thfc_end">
+					<textvar name="Theta3ForestEnd" value="$(PathOut)/thfc_end">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 2 (lower layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="UZForestEnd" value="$(PathWarm)/uzf_end">
+					<textvar name="UZForestEnd" value="$(PathOut)/uzf_end">
 						<comment>
 						Reported storage in upper response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="CumIntSealedEnd" value="$(PathWarm)/cseal_end">
+					<textvar name="CumIntSealedEnd" value="$(PathOut)/cseal_end">
 						<comment>
 						cumulative interception [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRIrrigationEnd" value="$(PathWarm)/dslri_end">
+					<textvar name="DSLRIrrigationEnd" value="$(PathOut)/dslri_end">
 						<comment>
 						Reported days since last rain
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionIrrigationEnd" value="$(PathWarm)/cumi_end">
+					<textvar name="CumInterceptionIrrigationEnd" value="$(PathOut)/cumi_end">
 						<comment>
 						Reported interception storage [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta1IrrigationEnd" value="$(PathWarm)/thia_end">
+					<textvar name="Theta1IrrigationEnd" value="$(PathOut)/thia_end">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2IrrigationEnd" value="$(PathWarm)/thib_end">
+					<textvar name="Theta2IrrigationEnd" value="$(PathOut)/thib_end">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 1b (upper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3IrrigationEnd" value="$(PathWarm)/thic_end">
+					<textvar name="Theta3IrrigationEnd" value="$(PathOut)/thic_end">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 1c (lower layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="UZIrrigationEnd" value="$(PathWarm)/uzi_end">
+					<textvar name="UZIrrigationEnd" value="$(PathOut)/uzi_end">
 						<comment>
 						Reported storage in upper response box [mm]
 						</comment>
@@ -4485,31 +4485,31 @@ You can use builtin path variables in this template and reference to other paths
 					an intensity (as in meteo input!)
 					</comment>
 
-					<textvar name="PrecipitationMapsOut" value="$(PathWarm)/pr">
+					<textvar name="PrecipitationMapsOut" value="$(PathOut)/pr">
 						<comment>
 						Precipitation [mm per time step]
 						</comment>
 					</textvar>
 
-					<textvar name="TavgMapsOut" value="$(PathWarm)/tav">
+					<textvar name="TavgMapsOut" value="$(PathOut)/tav">
 						<comment>
 						Average DAILY temperature [degrees C]
 						</comment>
 					</textvar>
 
-					<textvar name="ETRefMapsOut" value="$(PathWarm)/et">
+					<textvar name="ETRefMapsOut" value="$(PathOut)/et">
 						<comment>
 						Potential reference evapotranspiration [mm per time step]
 						</comment>
 					</textvar>
 
-					<textvar name="ESRefMapsOut" value="$(PathWarm)/es">
+					<textvar name="ESRefMapsOut" value="$(PathOut)/es">
 						<comment>
 						Potential evaporation from bare soil surface [mm per time step]
 						</comment>
 					</textvar>
 
-					<textvar name="EWRefMapsOut" value="$(PathWarm)/ew">
+					<textvar name="EWRefMapsOut" value="$(PathOut)/ew">
 						<comment>
 						Potential evaporation from open water surface [mm per time step]
 						</comment>
@@ -4524,159 +4524,159 @@ You can use builtin path variables in this template and reference to other paths
 						default: all switched off
 					</comment>
 
-					<textvar name="Theta1Maps" value="$(PathWarm)/tha">
+					<textvar name="Theta1Maps" value="$(PathOut)/tha">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2Maps" value="$(PathWarm)/thb">
+					<textvar name="Theta2Maps" value="$(PathOut)/thb">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1b (upper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3Maps" value="$(PathWarm)/thc">
+					<textvar name="Theta3Maps" value="$(PathOut)/thc">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 2 (lower layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="ThetaMaps" value="$(PathWarm)/th">
+					<textvar name="ThetaMaps" value="$(PathOut)/th">
 						<comment>
 						Reported volumetric soil moisture content for  combined
 						soil layer 1 and 2 [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="UZMaps" value="$(PathWarm)/uz">
+					<textvar name="UZMaps" value="$(PathOut)/uz">
 						<comment>
 						Reported storage in upper response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZMaps" value="$(PathWarm)/lz">
+					<textvar name="LZMaps" value="$(PathOut)/lz">
 						<comment>
 						Reported storage in lower response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZMaps0" value="$(PathWarm)/lzn">
+					<textvar name="LZMaps0" value="$(PathOut)/lzn">
 						<comment>
 						Reported storage in lower response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZMaps1" value="$(PathWarm)/lz1">
+					<textvar name="LZMaps1" value="$(PathOut)/lz1">
 						<comment>
 						Reported storage in lower response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZMaps2" value="$(PathWarm)/lz2">
+					<textvar name="LZMaps2" value="$(PathOut)/lz2">
 						<comment>
 						Reported storage in lower response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZMaps3" value="$(PathWarm)/lz3">
+					<textvar name="LZMaps3" value="$(PathOut)/lz3">
 						<comment>
 						Reported storage in lower response box [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRMaps" value="$(PathWarm)/dslr">
+					<textvar name="DSLRMaps" value="$(PathOut)/dslr">
 						<comment>
 						Reported days since last rain
 						</comment>
 					</textvar>
 
-					<textvar name="WaterDepthMaps" value="$(PathWarm)/wdept">
+					<textvar name="WaterDepthMaps" value="$(PathOut)/wdept">
 						<comment>
 						Reported water depth [m]
 						</comment>
 					</textvar>
 
-					<textvar name="OFDirectMaps" value="$(PathWarm)/ofdir">
+					<textvar name="OFDirectMaps" value="$(PathOut)/ofdir">
 						<comment>
 						Reported overland flow water volume [m3] for direct runoff fraction on catchment surfac
 						</comment>
 					</textvar>
 
-					<textvar name="OFOtherMaps" value="$(PathWarm)/ofoth">
+					<textvar name="OFOtherMaps" value="$(PathOut)/ofoth">
 						<comment>
 						Reported overland flow water volume [m3] for other fraction on catchment surfac
 						</comment>
 					</textvar>
 
-					<textvar name="OFForestMaps" value="$(PathWarm)/offor">
+					<textvar name="OFForestMaps" value="$(PathOut)/offor">
 						<comment>
 						Reported overland flow water volume [m3] for forest fraction on catchment surfac
 						</comment>
 					</textvar>
 
-					<textvar name="ChanCrossSectionMaps" value="$(PathWarm)/chcro">
+					<textvar name="ChanCrossSectionMaps" value="$(PathOut)/chcro">
 						<comment>
 						Reported channel cross-section area [m2]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowCoverMaps" value="$(PathWarm)/scov">
+					<textvar name="SnowCoverMaps" value="$(PathOut)/scov">
 						<comment>
 						Reported snow cover [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="FrostIndexMaps" value="$(PathWarm)/frost">
+					<textvar name="FrostIndexMaps" value="$(PathOut)/frost">
 						<comment>
 						Reported frost index [degC/day]
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionMaps" value="$(PathWarm)/cum">
+					<textvar name="CumInterceptionMaps" value="$(PathOut)/cum">
 						<comment>
 						Reported interception storage, other fraction [mm]
 						</comment>
 					</textvar>
 
 
-					<textvar name="DSLRForestMaps" value="$(PathWarm)/dslrf">
+					<textvar name="DSLRForestMaps" value="$(PathOut)/dslrf">
 						<comment>
 						Reported days since last rain
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionForestMaps" value="$(PathWarm)/cumf">
+					<textvar name="CumInterceptionForestMaps" value="$(PathOut)/cumf">
 						<comment>
 						Reported interception storage, forest fraction [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta1ForestMaps" value="$(PathWarm)/thfa">
+					<textvar name="Theta1ForestMaps" value="$(PathOut)/thfa">
 						<comment>
 						Reported volumetric soil moisture content for
 						soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2ForestMaps" value="$(PathWarm)/thfb">
+					<textvar name="Theta2ForestMaps" value="$(PathOut)/thfb">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 1b (upper layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3ForestMaps" value="$(PathWarm)/thfc">
+					<textvar name="Theta3ForestMaps" value="$(PathOut)/thfc">
 						<comment>
 						Reported volumetric soil moisture content for both
 						soil layer 2 (lower layer) [V/V] [mm3/mm3]
 						</comment>
 					</textvar>
 
-					<textvar name="UZForestMaps" value="$(PathWarm)/uzF">
+					<textvar name="UZForestMaps" value="$(PathOut)/uzF">
 						<comment>
 						Reported storage in upper response box [mm]
 						</comment>
@@ -4692,297 +4692,297 @@ You can use builtin path variables in this template and reference to other paths
 						default: all switched off
 					</comment>
 
-					<textvar name="RainMaps" value="$(PathWarm)/rain">
+					<textvar name="RainMaps" value="$(PathOut)/rain">
 					<comment>
 					Reported rain (excluding snow)[mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SnowMaps" value="$(PathWarm)/snow">
+					<textvar name="SnowMaps" value="$(PathOut)/snow">
 					<comment>
 					Reported snow (excluding rain)[mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SnowMeltMaps" value="$(PathWarm)/smelt">
+					<textvar name="SnowMeltMaps" value="$(PathOut)/smelt">
 					<comment>
 					Reported snowmelt [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="InterceptionMaps" value="$(PathWarm)/int">
+					<textvar name="InterceptionMaps" value="$(PathOut)/int">
 					<comment>
 					Reported interception [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="TaMaps" value="$(PathWarm)/tact">
+					<textvar name="TaMaps" value="$(PathOut)/tact">
 					<comment>
 					Reported transpiration [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="ESActMaps" value="$(PathWarm)/esact">
+					<textvar name="ESActMaps" value="$(PathOut)/esact">
 					<comment>
 					Reported soil evaporation [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="EWIntMaps" value="$(PathWarm)/ewint">
+					<textvar name="EWIntMaps" value="$(PathOut)/ewint">
 					<comment>
 					Reported evaporation of intercepted water [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="ETActMaps" value="$(PathWarm)/etact">
+					<textvar name="ETActMaps" value="$(PathOut)/etact">
 					<comment>
 					Reported actual evapotranspiration [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="LeafDrainageMaps" value="$(PathWarm)/ldra">
+					<textvar name="LeafDrainageMaps" value="$(PathOut)/ldra">
 					<comment>
 					Reported leaf drainage [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="InfiltrationMaps" value="$(PathWarm)/inf">
+					<textvar name="InfiltrationMaps" value="$(PathOut)/inf">
 					<comment>
 					Reported infiltration [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="PrefFlowMaps" value="$(PathWarm)/pflow">
+					<textvar name="PrefFlowMaps" value="$(PathOut)/pflow">
 					<comment>
 					Reported preferential flow [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="Percolation1ato1bOtherMaps" value="$(PathWarm)/Percolation1ato1bOther">
+					<textvar name="Percolation1ato1bOtherMaps" value="$(PathOut)/Percolation1ato1bOther">
 					<comment>
 					Reported percolation from soil layer 1a to soil layer 1b, other fraction  [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="Percolation1ato1bForestMaps" value="$(PathWarm)/Percolation1ato1bForest">
+					<textvar name="Percolation1ato1bForestMaps" value="$(PathOut)/Percolation1ato1bForest">
 					<comment>
 					Reported percolation from soil layer 1a to soil layer 1b, forest fraction  [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="Percolation1ato1bIrrigationMaps" value="$(PathWarm)/Percolation1ato1bIrrigation">
+					<textvar name="Percolation1ato1bIrrigationMaps" value="$(PathOut)/Percolation1ato1bIrrigation">
 					<comment>
 					Reported percolation from soil layer 1a to soil layer 1b, irrigation fraction  [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="Percolation1bto2OtherMaps" value="$(PathWarm)/Percolation1bto2Other">
+					<textvar name="Percolation1bto2OtherMaps" value="$(PathOut)/Percolation1bto2Other">
 					<comment>
 					Reported percolation from soil layer 1b to soil layer 2, other fraction  [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="Percolation1bto2ForestMaps" value="$(PathWarm)/Percolation1bto2Forest">
+					<textvar name="Percolation1bto2ForestMaps" value="$(PathOut)/Percolation1bto2Forest">
 					<comment>
 					Reported percolation from soil layer 1b to soil layer 2, forest fraction  [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="Percolation1bto2IrrigationMaps" value="$(PathWarm)/Percolation1bto2Irrigation">
+					<textvar name="Percolation1bto2IrrigationMaps" value="$(PathOut)/Percolation1bto2Irrigation">
 					<comment>
 					Reported percolation from soil layer 1b to soil layer 2, irrigation fraction  [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SeepSubToGWOtherMaps" value="$(PathWarm)/sgwOther">
+					<textvar name="SeepSubToGWOtherMaps" value="$(PathOut)/sgwOther">
 					<comment>
 					Reported seepage to groundwater(from soil layer 2 to groundwater), other fraction [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SeepSubToGWForestMaps" value="$(PathWarm)/sgwForest">
+					<textvar name="SeepSubToGWForestMaps" value="$(PathOut)/sgwForest">
 					<comment>
 					Reported seepage to groundwater(from soil layer 2 to groundwater), forest fraction [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SeepSubToGWIrrigationMaps" value="$(PathWarm)/sgwIrrigation">
+					<textvar name="SeepSubToGWIrrigationMaps" value="$(PathOut)/sgwIrrigation">
 					<comment>
 					Reported seepage to groundwater(from soil layer 2 to groundwater), irrigation fraction [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SeepSubToGWMaps" value="$(PathWarm)/sgwPixel">
+					<textvar name="SeepSubToGWMaps" value="$(PathOut)/sgwPixel">
 					<comment>
 					Reported seepage to groundwater(from soil layer 2 to groundwater), weighted sum over the fraction of each pixel [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="AvailGWMaps" value="$(PathWarm)/agw">
+					<textvar name="AvailGWMaps" value="$(PathOut)/agw">
 						<comment>
 						Reported available groundwater LZ + GWLoss [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SurfaceRunoffMaps" value="$(PathWarm)/srun">
+					<textvar name="SurfaceRunoffMaps" value="$(PathOut)/srun">
 					<comment>
 					Reported surface runoff [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="UZOutflowMaps" value="$(PathWarm)/quz">
+					<textvar name="UZOutflowMaps" value="$(PathOut)/quz">
 					<comment>
 					Reported upper zone outflow [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="LZOutflowMaps" value="$(PathWarm)/qlz">
+					<textvar name="LZOutflowMaps" value="$(PathOut)/qlz">
 						<comment>
 						Reported lower zone outflow [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="FastRunoffMaps" value="$(PathWarm)/frun">
+					<textvar name="FastRunoffMaps" value="$(PathOut)/frun">
 					<comment>
 					Reported fast runoff = surface + UZ [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="GwLossMaps" value="$(PathWarm)/gwl">
+					<textvar name="GwLossMaps" value="$(PathOut)/gwl">
 					<comment>
 					Reported GWloss [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="TotalRunoffMaps" value="$(PathWarm)/trun">
+					<textvar name="TotalRunoffMaps" value="$(PathOut)/trun">
 					<comment>
 					Reported total runoff [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="TotalToChanMaps" value="$(PathWarm)/ttoc">
+					<textvar name="TotalToChanMaps" value="$(PathOut)/ttoc">
 					<comment>
 					Reported total runoff that enters the channel: groundwater + surface runoff [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="DirectRunoffMaps" value="$(PathWarm)/dirrun">
+					<textvar name="DirectRunoffMaps" value="$(PathOut)/dirrun">
 					<comment>
 					Reported Direct Runoff [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="FlowVelocityMSecMaps" value="$(PathWarm)/v">
+					<textvar name="FlowVelocityMSecMaps" value="$(PathOut)/v">
 					<comment>
 					Reported FlowVelocityMSecMaps [m/s]
 					</comment>
 					</textvar>
 
-					<textvar name="TravelDistanceMMaps" value="$(PathWarm)/trdistm">
+					<textvar name="TravelDistanceMMaps" value="$(PathOut)/trdistm">
 					<comment>
 					Reported TravelDistance [m]
 					</comment>
 					</textvar>
 
-					<textvar name="GwPercUZLZMaps" value="$(PathWarm)/uz2lz">
+					<textvar name="GwPercUZLZMaps" value="$(PathOut)/uz2lz">
 						<comment>
 						Reported percolation from upper to lower groundwater zone [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="EWIntForestMaps" value="$(PathWarm)/ewintF">
+					<textvar name="EWIntForestMaps" value="$(PathOut)/ewintF">
 					<comment>
 					Reported evaporation of intercepted water [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="ESActForestMaps" value="$(PathWarm)/esactF">
+					<textvar name="ESActForestMaps" value="$(PathOut)/esactF">
 					<comment>
 					Reported soil evaporation [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="LeafDrainageForestMaps" value="$(PathWarm)/ldraF">
+					<textvar name="LeafDrainageForestMaps" value="$(PathOut)/ldraF">
 					<comment>
 					Reported leaf drainage Forest[mm]
 					</comment>
 					</textvar>
 
-					<textvar name="InterceptionForestMaps" value="$(PathWarm)/intF">
+					<textvar name="InterceptionForestMaps" value="$(PathOut)/intF">
 					<comment>
 					Reported interception forest [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="InfiltrationForestMaps" value="$(PathWarm)/infF">
+					<textvar name="InfiltrationForestMaps" value="$(PathOut)/infF">
 					<comment>
 					Reported infiltration [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="TaForestMaps" value="$(PathWarm)/tactF">
+					<textvar name="TaForestMaps" value="$(PathOut)/tactF">
 					<comment>
 					Reported transpiration forest [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="PrefFlowForestMaps" value="$(PathWarm)/pflowF">
+					<textvar name="PrefFlowForestMaps" value="$(PathOut)/pflowF">
 					<comment>
 					Reported preferential flow [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="PercolationForestMaps" value="$(PathWarm)/to2suF">
+					<textvar name="PercolationForestMaps" value="$(PathOut)/to2suF">
 					<comment>
 					Reported percolation from 1st to 2nd soil layer [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SeepSubToGWForestMaps" value="$(PathWarm)/sgwF">
+					<textvar name="SeepSubToGWForestMaps" value="$(PathOut)/sgwF">
 					<comment>
 					Reported seepage to groundwater[mm]
 					</comment>
 					</textvar>
 
-					<textvar name="UZOutflowForestMaps" value="$(PathWarm)/quzF">
+					<textvar name="UZOutflowForestMaps" value="$(PathOut)/quzF">
 					<comment>
 					Reported upper zone outflow [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="GwPercUZLZForestMaps" value="$(PathWarm)/uz2lzF">
+					<textvar name="GwPercUZLZForestMaps" value="$(PathOut)/uz2lzF">
 						<comment>
 						Reported percolation from upper to lower zone [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="GwPercLossForestMaps" value="$(PathWarm)/lossF">
+					<textvar name="GwPercLossForestMaps" value="$(PathOut)/lossF">
 					<comment>
 					Reported loss from lower zone [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="GwPercLossMaps" value="$(PathWarm)/loss">
+					<textvar name="GwPercLossMaps" value="$(PathOut)/loss">
 					<comment>
 					Reported loss from lower zone [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="Theta1IrrigationMaps" value="$(PathWarm)/thia">
+					<textvar name="Theta1IrrigationMaps" value="$(PathOut)/thia">
 					<comment>
 					Reported volumetric soil moisture content for
 					soil layer 1a [V/V] [mm3/mm3]
 					</comment>
 					</textvar>
 
-					<textvar name="Theta2IrrigationMaps" value="$(PathWarm)/thib">
+					<textvar name="Theta2IrrigationMaps" value="$(PathOut)/thib">
 					<comment>
 					Reported volumetric soil moisture content for both
 					soil layer 1b [V/V] [mm3/mm3]
 					</comment>
 					</textvar>
 
-					<textvar name="Theta3IrrigationMaps" value="$(PathWarm)/thic">
+					<textvar name="Theta3IrrigationMaps" value="$(PathOut)/thic">
 					<comment>
 					Reported volumetric soil moisture content for both
 					soil layer 2 [V/V] [mm3/mm3]
@@ -4994,40 +4994,40 @@ You can use builtin path variables in this template and reference to other paths
 				<!--miscellaneous output maps and timeseries-->
 				<group>
 
-					<textvar name="LZAvInflowTS" value="$(PathWarm)/lzAvIn.tss">
+					<textvar name="LZAvInflowTS" value="$(PathOut)/lzAvIn.tss">
 						<comment>
 						Time series of average percolation rate from upper to
 						lower groundwater zone (reported at sites) [mm/day]
 						</comment>
 					</textvar>
 
-					<textvar name="LZAvInflowAvUpsTS" value="$(PathWarm)/lzAvInUps.tss">
+					<textvar name="LZAvInflowAvUpsTS" value="$(PathOut)/lzAvInUps.tss">
 						<comment>
 						Time series of average percolation rate from upper to
 						lower groundwater zone (average for upstream area of each gauge) [mm/day]
 						</comment>
 					</textvar>
 
-					<textvar name="SMStressMap" value="$(PathWarm)/smstress">
+					<textvar name="SMStressMap" value="$(PathOut)/smstress">
 						<comment>
 						Reported number of days in simulation with soil moisture stress [days]
 						</comment>
 					</textvar>
 
-					<textvar name="SMStressForestMap" value="$(PathWarm)/smstressForest">
+					<textvar name="SMStressForestMap" value="$(PathOut)/smstressForest">
 						<comment>
 						Reported number of days in simulation with soil moisture stress for forest fraction [days]
 						</comment>
 					</textvar>
 
-					<textvar name="RWSMaps" value="$(PathWarm)/rws">
+					<textvar name="RWSMaps" value="$(PathOut)/rws">
 						<comment>
 						Reported soil transpiration reduction factor [-] for other landuse
 						values below 1 indicate soil moisture stress
 						</comment>
 					</textvar>
 
-					<textvar name="RWSForestMaps" value="$(PathWarm)/rwsF">
+					<textvar name="RWSForestMaps" value="$(PathOut)/rwsF">
 						<comment>
 						Reported soil transpiration reduction factor [-]
 						values below 1 indicate soil moisture stress
@@ -5041,19 +5041,19 @@ You can use builtin path variables in this template and reference to other paths
 			<!--TIME SERIES-->
 			<group>
 
-				<textvar name="DisTS" value="$(PathWarm)/disWin.tss">
+				<textvar name="DisTS" value="$(PathOut)/disWin.tss">
 					<comment>
 					Reported discharge [cu m/s]
 					</comment>
 				</textvar>
 
-				<textvar name="ChanqTS" value="$(PathWarm)/chanqWin.tss">
+				<textvar name="ChanqTS" value="$(PathOut)/chanqWin.tss">
 					<comment>
 					Reported discharge over last routing sub-step [m3/s]
 					</comment>
 				</textvar>
 
-				<textvar name="WaterLevelTS" value="$(PathWarm)/waterLevel.tss">
+				<textvar name="WaterLevelTS" value="$(PathOut)/waterLevel.tss">
 					<comment>
 					Reported water level [m]
 					</comment>
@@ -5062,67 +5062,67 @@ You can use builtin path variables in this template and reference to other paths
 				<!--output at sites: state variables-->
 				<group>
 
-					<textvar name="WaterDepthTS" value="$(PathWarm)/wDepth.tss">
+					<textvar name="WaterDepthTS" value="$(PathOut)/wDepth.tss">
 						<comment>
 						Water depth on soil surface [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowCoverTS" value="$(PathWarm)/scov.tss">
+					<textvar name="SnowCoverTS" value="$(PathOut)/scov.tss">
 						<comment>
 						Depth of snow cover on soil surface [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionTS" value="$(PathWarm)/cumInt.tss">
+					<textvar name="CumInterceptionTS" value="$(PathOut)/cumInt.tss">
 						<comment>
 						Water stored as interception [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta1TS" value="$(PathWarm)/th1a.tss">
+					<textvar name="Theta1TS" value="$(PathOut)/th1a.tss">
 						<comment>
 						Soil moisture layer 1a [cu mm / cu mm]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta2TS" value="$(PathWarm)/th1b.tss">
+					<textvar name="Theta2TS" value="$(PathOut)/th1b.tss">
 						<comment>
 						Soil moisture layer 1b [cu mm / cu mm]
 						</comment>
 					</textvar>
 
-					<textvar name="Theta3TS" value="$(PathWarm)/th2.tss">
+					<textvar name="Theta3TS" value="$(PathOut)/th2.tss">
 						<comment>
 						Soil moisture layer 2 [cu mm / cu mm]
 						</comment>
 					</textvar>
 
-					<textvar name="UZTS" value="$(PathWarm)/uz.tss">
+					<textvar name="UZTS" value="$(PathOut)/uz.tss">
 						<comment>
 						Storage in upper groundwater zone [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZTS" value="$(PathWarm)/lz.tss">
+					<textvar name="LZTS" value="$(PathOut)/lz.tss">
 						<comment>
 						Storage in lower groundwater zone [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRTS" value="$(PathWarm)/dslr.tss">
+					<textvar name="DSLRTS" value="$(PathOut)/dslr.tss">
 						<comment>
 						Days since last rain [days]
 						</comment>
 					</textvar>
 
-					<textvar name="FrostIndexTS" value="$(PathWarm)/frost.tss">
+					<textvar name="FrostIndexTS" value="$(PathOut)/frost.tss">
 						<comment>
 						Frost index [degC/day]
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRTSForest" value="$(PathWarm)/dslrForest.tss">
+					<textvar name="DSLRTSForest" value="$(PathOut)/dslrForest.tss">
 						<comment>
 						Days since last rain [days]
 						</comment>
@@ -5133,109 +5133,109 @@ You can use builtin path variables in this template and reference to other paths
 				<!--output at sites: rate variables-->
 				<group>
 
-					<textvar name="RainTS" value="$(PathWarm)/rain.tss">
+					<textvar name="RainTS" value="$(PathOut)/rain.tss">
 						<comment>
 						Rain (excluding snow) [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowTS" value="$(PathWarm)/snow.tss">
+					<textvar name="SnowTS" value="$(PathOut)/snow.tss">
 						<comment>
 						Snow (excluding rain) [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SnowmeltTS" value="$(PathWarm)/snowMelt.tss">
+					<textvar name="SnowmeltTS" value="$(PathOut)/snowMelt.tss">
 						<comment>
 						Reported snowmelt [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="InterceptionTS" value="$(PathWarm)/interception.tss">
+					<textvar name="InterceptionTS" value="$(PathOut)/interception.tss">
 						<comment>
 						Reported interception [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="TaTS" value="$(PathWarm)/tAct.tss">
+					<textvar name="TaTS" value="$(PathOut)/tAct.tss">
 						<comment>
 						Reported transpiration [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="ESActTS" value="$(PathWarm)/esAct.tss">
+					<textvar name="ESActTS" value="$(PathOut)/esAct.tss">
 						<comment>
 						Reported soil evaporation [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="EWIntTS" value="$(PathWarm)/ewIntAct.tss">
+					<textvar name="EWIntTS" value="$(PathOut)/ewIntAct.tss">
 						<comment>
 						Reported evaporation from interception storage [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LeafDrainageTS" value="$(PathWarm)/leafDrainage.tss">
+					<textvar name="LeafDrainageTS" value="$(PathOut)/leafDrainage.tss">
 						<comment>
 						Reported leaf drainage [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="InfiltrationTS" value="$(PathWarm)/infiltration.tss">
+					<textvar name="InfiltrationTS" value="$(PathOut)/infiltration.tss">
 						<comment>
 						Reported infiltration [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="PrefFlowTS" value="$(PathWarm)/prefFlow.tss">
+					<textvar name="PrefFlowTS" value="$(PathOut)/prefFlow.tss">
 						<comment>
 						Reported preferential flow [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="PercolationTS" value="$(PathWarm)/dTopToSub.tss">
+					<textvar name="PercolationTS" value="$(PathOut)/dTopToSub.tss">
 						<comment>
 						Reported percolation from 1st to 2nd soil layer [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SeepSubToGWTS" value="$(PathWarm)/dSubToUz.tss">
+					<textvar name="SeepSubToGWTS" value="$(PathOut)/dSubToUz.tss">
 						<comment>
 						Reported seepage to groundwater[mm]
 						</comment>
 					</textvar>
 
-					<textvar name="SurfaceRunoffTS" value="$(PathWarm)/surfaceRunoff.tss">
+					<textvar name="SurfaceRunoffTS" value="$(PathOut)/surfaceRunoff.tss">
 						<comment>
 						Reported surface runoff [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="UZOutflowTS" value="$(PathWarm)/qUz.tss">
+					<textvar name="UZOutflowTS" value="$(PathOut)/qUz.tss">
 						<comment>
 						Reported upper zone outflow [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZOutflowTS" value="$(PathWarm)/qLz.tss">
+					<textvar name="LZOutflowTS" value="$(PathOut)/qLz.tss">
 						<comment>
 						Reported lower zone outflow [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="TotalRunoffTS" value="$(PathWarm)/totalRunoff.tss">
+					<textvar name="TotalRunoffTS" value="$(PathOut)/totalRunoff.tss">
 						<comment>
 						Reported total runoff [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="GwPercUZLZTS" value="$(PathWarm)/percUZLZ.tss">
+					<textvar name="GwPercUZLZTS" value="$(PathOut)/percUZLZ.tss">
 						<comment>
 						Reported percolation from upper to lower zone [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="GwLossTS" value="$(PathWarm)/loss.tss">
+					<textvar name="GwLossTS" value="$(PathOut)/loss.tss">
 						<comment>
 						Reported loss from lower zone [mm]
 						</comment>
@@ -5249,31 +5249,31 @@ You can use builtin path variables in this template and reference to other paths
 					only if repMeteoUpsGauges option is activated
 					</comment>
 
-					<textvar name="PrecipitationAvUpsTS" value="$(PathWarm)/precipUps.tss">
+					<textvar name="PrecipitationAvUpsTS" value="$(PathOut)/precipUps.tss">
 					<comment>
 					Precipitation [mm/time step]
 					</comment>
 					</textvar>
 
-					<textvar name="TavgAvUpsTS" value="$(PathWarm)/tAvgUps.tss">
+					<textvar name="TavgAvUpsTS" value="$(PathOut)/tAvgUps.tss">
 					<comment>
 					Average temperature  [deg C]
 					</comment>
 					</textvar>
 
-					<textvar name="ETRefAvUpsTS" value="$(PathWarm)/etUps.tss">
+					<textvar name="ETRefAvUpsTS" value="$(PathOut)/etUps.tss">
 					<comment>
 					Reference evapotranspiration [mm/time step]
 					</comment>
 					</textvar>
 
-					<textvar name="ESRefAvUpsTS" value="$(PathWarm)/esUps.tss">
+					<textvar name="ESRefAvUpsTS" value="$(PathOut)/esUps.tss">
 					<comment>
 					Potential soil evaporation [mm/time step]
 					</comment>
 					</textvar>
 
-					<textvar name="EWRefAvUpsTS" value="$(PathWarm)/ewUps.tss">
+					<textvar name="EWRefAvUpsTS" value="$(PathOut)/ewUps.tss">
 					<comment>
 					Potential open water evaporation [mm/time step]
 					</comment>
@@ -5287,61 +5287,61 @@ You can use builtin path variables in this template and reference to other paths
 					only if repStateUpsGauges option is activated
 					</comment>
 
-					<textvar name="WaterDepthAvUpsTS" value="$(PathWarm)/wDepthUps.tss">
+					<textvar name="WaterDepthAvUpsTS" value="$(PathOut)/wDepthUps.tss">
 					<comment>
 					Water depth on soil surface [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SnowCoverAvUpsTS" value="$(PathWarm)/scovUps.tss">
+					<textvar name="SnowCoverAvUpsTS" value="$(PathOut)/scovUps.tss">
 						<comment>
 						Depth of snow cover on soil surface [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="CumInterceptionAvUpsTS" value="$(PathWarm)/cumInterceptionUps.tss">
+					<textvar name="CumInterceptionAvUpsTS" value="$(PathOut)/cumInterceptionUps.tss">
 					<comment>
 					Water stored as interception [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="Theta1AvUpsTS" value="$(PathWarm)/thTopUps.tss">
+					<textvar name="Theta1AvUpsTS" value="$(PathOut)/thTopUps.tss">
 					<comment>
 					Soil moisture upper layer [mm3/mm3]
 					</comment>
 					</textvar>
 
-					<textvar name="Theta2AvUpsTS" value="$(PathWarm)/thSubUps.tss">
+					<textvar name="Theta2AvUpsTS" value="$(PathOut)/thSubUps.tss">
 					<comment>
 					Soil moisture lower layer [mm3/mm3]
 					</comment>
 					</textvar>
 
-					<textvar name="UZAvUpsTS" value="$(PathWarm)/uzUps.tss">
+					<textvar name="UZAvUpsTS" value="$(PathOut)/uzUps.tss">
 						<comment>
 						Storage in upper groundwater zone [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZAvUpsTS" value="$(PathWarm)/lzUps.tss">
+					<textvar name="LZAvUpsTS" value="$(PathOut)/lzUps.tss">
 						<comment>
 						Storage in lower groundwater zone [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="DSLRAvUpsTS" value="$(PathWarm)/dslrUps.tss">
+					<textvar name="DSLRAvUpsTS" value="$(PathOut)/dslrUps.tss">
 					<comment>
 					Days since last rain [days]
 					</comment>
 					</textvar>
 
-					<textvar name="FrostIndexAvUpsTS" value="$(PathWarm)/frostUps.tss">
+					<textvar name="FrostIndexAvUpsTS" value="$(PathOut)/frostUps.tss">
 					<comment>
 					Frost index [degC/day]
 					</comment>
 					</textvar>
 
-					<textvar name="DSLRForestAvUpsTS" value="$(PathWarm)/dslrUpsForest.tss">
+					<textvar name="DSLRForestAvUpsTS" value="$(PathOut)/dslrUpsForest.tss">
 					<comment>
 					Days since last rain [days]
 					</comment>
@@ -5356,109 +5356,109 @@ You can use builtin path variables in this template and reference to other paths
 					only if repRateUpsGauges option is activated
 					</comment>
 
-					<textvar name="RainAvUpsTS" value="$(PathWarm)/rainUps.tss">
+					<textvar name="RainAvUpsTS" value="$(PathOut)/rainUps.tss">
 					<comment>
 					Rain (excluding snow) [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SnowAvUpsTS" value="$(PathWarm)/snowUps.tss">
+					<textvar name="SnowAvUpsTS" value="$(PathOut)/snowUps.tss">
 					<comment>
 					Snow (excluding rain) [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SnowmeltAvUpsTS" value="$(PathWarm)/snowMeltUps.tss">
+					<textvar name="SnowmeltAvUpsTS" value="$(PathOut)/snowMeltUps.tss">
 					<comment>
 					Snow melt [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="InterceptionAvUpsTS" value="$(PathWarm)/interceptionUps.tss">
+					<textvar name="InterceptionAvUpsTS" value="$(PathOut)/interceptionUps.tss">
 					<comment>
 					Interception [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="TaAvUpsTS" value="$(PathWarm)/tActUps.tss">
+					<textvar name="TaAvUpsTS" value="$(PathOut)/tActUps.tss">
 					<comment>
 					Actual transpiration [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="ESActAvUpsTS" value="$(PathWarm)/esActUps.tss">
+					<textvar name="ESActAvUpsTS" value="$(PathOut)/esActUps.tss">
 					<comment>
 					Actual evaporation [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="EWIntAvUpsTS" value="$(PathWarm)/ewIntActUps.tss">
+					<textvar name="EWIntAvUpsTS" value="$(PathOut)/ewIntActUps.tss">
 					<comment>
 					Evaporation from interception storage [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="LeafDrainageAvUpsTS" value="$(PathWarm)/leafDrainageUps.tss">
+					<textvar name="LeafDrainageAvUpsTS" value="$(PathOut)/leafDrainageUps.tss">
 					<comment>
 					Leaf drainage [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="InfiltrationAvUpsTS" value="$(PathWarm)/infUps.tss">
+					<textvar name="InfiltrationAvUpsTS" value="$(PathOut)/infUps.tss">
 					<comment>
 					Infiltration [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="PrefFlowAvUpsTS" value="$(PathWarm)/prefFlowUps.tss">
+					<textvar name="PrefFlowAvUpsTS" value="$(PathOut)/prefFlowUps.tss">
 					<comment>
 					Preferential flow [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="PercolationAvUpsTS" value="$(PathWarm)/dTopToSubUps.tss">
+					<textvar name="PercolationAvUpsTS" value="$(PathOut)/dTopToSubUps.tss">
 					<comment>
 					Percolation upper to lower soil layer [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SeepSubToGWAvUpsTS" value="$(PathWarm)/dSubToUzUps.tss">
+					<textvar name="SeepSubToGWAvUpsTS" value="$(PathOut)/dSubToUzUps.tss">
 					<comment>
 					Seepage from lower soil layer to groundwater [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="SurfaceRunoffAvUpsTS" value="$(PathWarm)/surfaceRunoffUps.tss">
+					<textvar name="SurfaceRunoffAvUpsTS" value="$(PathOut)/surfaceRunoffUps.tss">
 						<comment>
 						Surface runoff [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="UZOutflowAvUpsTS" value="$(PathWarm)/qUzUps.tss">
+					<textvar name="UZOutflowAvUpsTS" value="$(PathOut)/qUzUps.tss">
 						<comment>
 						Outflow from upper groundwater zone (to channel) [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="LZOutflowAvUpsTS" value="$(PathWarm)/qLzUps.tss">
+					<textvar name="LZOutflowAvUpsTS" value="$(PathOut)/qLzUps.tss">
 						<comment>
 						Outflow from lower groundwater zone (to channel) [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="TotalRunoffAvUpsTS" value="$(PathWarm)/totalRunoffUps.tss">
+					<textvar name="TotalRunoffAvUpsTS" value="$(PathOut)/totalRunoffUps.tss">
 					<comment>
 					Total runoff [mm]
 					</comment>
 					</textvar>
 
-					<textvar name="GwPercUZLZAvUpsTS" value="$(PathWarm)/percUZLZUps.tss">
+					<textvar name="GwPercUZLZAvUpsTS" value="$(PathOut)/percUZLZUps.tss">
 						<comment>
 						Reported percolation from upper to lower groundwater zone [mm]
 						</comment>
 					</textvar>
 
-					<textvar name="GwLossAvUpsTS" value="$(PathWarm)/lossUps.tss">
+					<textvar name="GwLossAvUpsTS" value="$(PathOut)/lossUps.tss">
 						<comment>
 						Reported loss from lower zone [mm]
 						</comment>
@@ -5469,43 +5469,43 @@ You can use builtin path variables in this template and reference to other paths
 				<!--numerics-->
 				<group>
 
-					<textvar name="WaterMassBalanceTSS" value="$(PathWarm)/mbError.tss">
+					<textvar name="WaterMassBalanceTSS" value="$(PathOut)/mbError.tss">
 						<comment>
 						Reported mass balance error at outlet [cu m]
 						</comment>
 					</textvar>
 
-					<textvar name="MassBalanceMMTSS" value="$(PathWarm)/mbErrorMm.tss">
+					<textvar name="MassBalanceMMTSS" value="$(PathOut)/mbErrorMm.tss">
 						<comment>
 						Reported mass balance error at outlet (as mm water slice)
 						</comment>
 					</textvar>
 
-					<textvar name="MassBalanceErrorSplitRoutingTSS" value="$(PathWarm)/mbErrorSplitRoutingM3.tss">
+					<textvar name="MassBalanceErrorSplitRoutingTSS" value="$(PathOut)/mbErrorSplitRoutingM3.tss">
 						<comment>
 						Reported mass balance error due to the split routing module, for each catchment [m3]
 						</comment>
 					</textvar>
 
-					<textvar name="OutletDischargeErrorSplitRoutingTSS" value="$(PathWarm)/OutletDischargeErrorSplitRoutingM3S.tss">
+					<textvar name="OutletDischargeErrorSplitRoutingTSS" value="$(PathOut)/OutletDischargeErrorSplitRoutingM3S.tss">
 						<comment>
 						Reported discharge error at the outlet as a consequence of the mass balance error within the split routing module, for each catchment [m3/s]
 						</comment>
 					</textvar>
 
-					<textvar name="MBErrorStorageRatioTSS" value="$(PathWarm)/MBErrorStorageRatio.tss">
+					<textvar name="MBErrorStorageRatioTSS" value="$(PathOut)/MBErrorStorageRatio.tss">
 						<comment>
 						Reported ratio between the mass balance error and the water volume storage, for each catchment [m3/m3]
 						</comment>
 					</textvar>
 
-					<textvar name="AverageFractionsCatchmentTSS" value="$(PathWarm)/AverageFractionsCatchment.tss">
+					<textvar name="AverageFractionsCatchmentTSS" value="$(PathOut)/AverageFractionsCatchment.tss">
 						<comment>
 						Average value of the sum of the fractions within a catchment: this value must be 1.0 in order to avoid mass balace errors! [-]
 						</comment>
 					</textvar>
 
-					<textvar name="Th1LTResTS" value="$(PathWarm)/thTopLtRes.tss">
+					<textvar name="Th1LTResTS" value="$(PathOut)/thTopLtRes.tss">
 						<comment>
 						Number of cells with Theta lower than
 						residual soil moisture content
@@ -5515,7 +5515,7 @@ You can use builtin path variables in this template and reference to other paths
 						</comment>
 					</textvar>
 
-					<textvar name="Th2LTResTS" value="$(PathWarm)/thSubLtRes.tss">
+					<textvar name="Th2LTResTS" value="$(PathOut)/thSubLtRes.tss">
 						<comment>
 						Number of cells with Theta lower than
 						residual soil moisture content
@@ -5525,7 +5525,7 @@ You can use builtin path variables in this template and reference to other paths
 						</comment>
 					</textvar>
 
-					<textvar name="StepsSoilTS" value="$(PathWarm)/stepsSoil.tss">
+					<textvar name="StepsSoilTS" value="$(PathOut)/stepsSoil.tss">
 						<comment>
 						Number of sub-steps needed for soil moisture
 						routine
