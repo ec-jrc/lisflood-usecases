@@ -1,18 +1,3 @@
-<!--
-  ######################################################################
-
-  ##       ####  ######  ######## ##        #######   #######  ########
-  ##        ##  ##    ## ##       ##       ##     ## ##     ## ##     ##
-  ##        ##  ##       ##       ##       ##     ## ##     ## ##     ##
-  ##        ##   ######  ######   ##       ##     ## ##     ## ##     ##
-  ##        ##        ## ##       ##       ##     ## ##     ## ##     ##
-  ##        ##  ##    ## ##       ##       ##     ## ##     ## ##     ##
-  ######## ####  ######  ##       ########  #######   #######  ########
-
-  ######################################################################
--->
-
-
 <lfsettings>
 
     <lfoptions>
@@ -20,94 +5,97 @@
         # modelling and reporting options
         #-----------------------------------------------------------
         # options to turn hydrological modules on/off
-        <setoption choice="0" name="cropsEPIC"/>
+        <setoption choice="0" name="cropsEPIC" />
 
-        <setoption choice="1" name="wateruse"/>
-        <setoption choice="1" name="TransientWaterDemandChange"/>
-        <setoption choice="0" name="useWaterDemandAveYear"/>
-        <setoption choice="1" name="wateruseRegion"/>
+        <setoption choice="1" name="wateruse" />
+        <setoption choice="1" name="TransientWaterDemandChange" />
+        <setoption choice="0" name="useWaterDemandAveYear" />
+        <setoption choice="1" name="wateruseRegion" />
 
-        <setoption choice="1" name="groundwaterSmooth"/>
-        <setoption choice="1" name="wateruseRegion"/>
-        <setoption choice="1" name="drainedIrrigation"/>
-        <setoption choice="1" name="riceIrrigation"/>
-        <setoption choice="0" name="indicator"/>
+        <setoption choice="1" name="groundwaterSmooth" />
+        <setoption choice="1" name="wateruseRegion" />
+        <setoption choice="1" name="drainedIrrigation" />
+        <setoption choice="1" name="riceIrrigation" />
+        <setoption choice="0" name="indicator" />
 
-        <setoption choice="1" name="openwaterevapo"/>
-        <setoption choice="1" name="simulateLakes"/>
-        <setoption choice="1" name="simulateReservoirs"/>
+        <setoption choice="1" name="openwaterevapo" />
+        <setoption choice="1" name="simulateLakes" />
+        <setoption choice="1" name="simulateReservoirs" />
 
-        <setoption choice="1" name="simulateReservoirs"/>
+        <setoption choice="1" name="simulateReservoirs" />
 
-        <setoption choice="1" name="SplitRouting"/>
+        <setoption choice="1" name="SplitRouting" />
+
+        <setoption choice="0" name="gridSizeUserDefined" />
 
         # use inflow data
-        <setoption choice="1" name="inflow"/>
+        <setoption choice="1" name="inflow" />
 
         # option to initialize Lisflood
-        <setoption choice="1" name="InitLisflood"/>
+        <setoption choice="1" name="InitLisflood" />
+        <setoption choice="0" name="InitLisfloodwithoutSplit" />
 
         # option to compute indicators
-        <setoption choice="0" name="indicator"/>
+        <setoption choice="0" name="indicator" />
 
         # option to read/write NetCDF
-        <setoption choice="1" name="readNetcdfStack"/>
-        <setoption choice="1" name="writeNetcdfStack"/>
-        <setoption choice="1" name="writeNetcdf"/>
+        <setoption choice="1" name="readNetcdfStack" />
+        <setoption choice="1" name="writeNetcdfStack" />
+        <setoption choice="1" name="writeNetcdf" />
 
         #-----------------------------------------------------------
         # report time series
         #-----------------------------------------------------------
         # report discharge TS
-        <setoption choice="1" name="repDischargeTs"/>
+        <setoption choice="1" name="repDischargeTs" />
 
         # report gauges and sites
-        <setoption choice="0" name="repStateSites"/>
-        <setoption choice="0" name="repRateSites"/>
-        <setoption choice="0" name="repStateUpsGauges"/>
-        <setoption choice="0" name="repRateUpsGauges"/>
-        <setoption choice="0" name="repMeteoUpsGauges"/>
+        <setoption choice="0" name="repStateSites" />
+        <setoption choice="0" name="repRateSites" />
+        <setoption choice="0" name="repStateUpsGauges" />
+        <setoption choice="0" name="repRateUpsGauges" />
+        <setoption choice="0" name="repMeteoUpsGauges" />
 
         # report reservoirs and lakes
-        <setoption choice="1" name="repsimulateLakes"/>
-        <setoption choice="1" name="repsimulateReservoirs"/>
+        <setoption choice="0" name="repsimulateLakes" />
+        <setoption choice="0" name="repsimulateReservoirs" />
 
         #-----------------------------------------------------------
         # report maps
         #-----------------------------------------------------------
         # report state maps
-        <setoption choice="0" name="repStateMaps"/>
+        <setoption choice="0" name="repStateMaps" />
 
         # report end maps
-        <setoption choice="0" name="repEndMaps"/>
-        <setoption choice="0" name="repTopSoilMoistureMaps"/>
-        <setoption choice="0" name="repSurfaceSoilMoistureMaps"/>
-        <setoption choice="0" name="repDischargeMaps"/>
-        <setoption choice="0" name="repSurfaceRunoffMaps"/>
-        <setoption choice="0" name="repsimulateLakes"/>
-        <setoption choice="0" name="repsimulateReservoirs"/>
+        <setoption choice="0" name="repEndMaps" />
+        <setoption choice="0" name="repTopSoilMoistureMaps" />
+        <setoption choice="0" name="repSurfaceSoilMoistureMaps" />
+        <setoption choice="0" name="repDischargeMaps" />
+        <setoption choice="0" name="repSurfaceRunoffMaps" />
+        <setoption choice="0" name="repsimulateLakes" />
+        <setoption choice="0" name="repsimulateReservoirs" />
 
-        <setoption choice="0" name="repSnowMaps"/>
-        <setoption choice="0" name="repSnowCoverMaps"/>
-        <setoption choice="0" name="repRainMaps"/>
-        <setoption choice="0" name="repSnowMeltMaps"/>
-        <setoption choice="0" name="repPFMaps"/>
-        <setoption choice="0" name="repPFForestMaps"/>
-        <setoption choice="0" name="repThetaMaps"/>
-        <setoption choice="0" name="repThetaForestMaps"/>
-        <setoption choice="0" name="repThetaIrrigationMaps"/>
-        <setoption choice="0" name="repLZMaps"/>
-        <setoption choice="0" name="repUZMaps"/>
-        <setoption choice="0" name="repGwPercUZLZMaps"/>
-        <setoption choice="0" name="repRWS"/>
-        <setoption choice="0" name="repStressDays"/>
+        <setoption choice="0" name="repSnowMaps" />
+        <setoption choice="0" name="repSnowCoverMaps" />
+        <setoption choice="0" name="repRainMaps" />
+        <setoption choice="0" name="repSnowMeltMaps" />
+        <setoption choice="0" name="repPFMaps" />
+        <setoption choice="0" name="repPFForestMaps" />
+        <setoption choice="0" name="repThetaMaps" />
+        <setoption choice="0" name="repThetaForestMaps" />
+        <setoption choice="0" name="repThetaIrrigationMaps" />
+        <setoption choice="0" name="repLZMaps" />
+        <setoption choice="0" name="repUZMaps" />
+        <setoption choice="0" name="repGwPercUZLZMaps" />
+        <setoption choice="0" name="repRWS" />
+        <setoption choice="0" name="repStressDays" />
 
-        <setoption choice="0" name="repMBTs"/>
-        <setoption choice="0" name="repInternalCom"/>
+        <setoption choice="0" name="repMBTs" />
+        <setoption choice="0" name="repInternalCom" />
 
-        <setoption choice="0" name="repTotalAbs"/>
-        <setoption choice="0" name="repTotalWUse"/>
-        <setoption choice="0" name="repWIndex"/>
+        <setoption choice="0" name="repTotalAbs" />
+        <setoption choice="0" name="repTotalWUse" />
+        <setoption choice="0" name="repWIndex" />
 
     </lfoptions>
 
@@ -118,14 +106,8 @@
             **************************************************************
             PARALLELIZED KINEMATIC ROUTING
             **************************************************************
-            <!-- Parallelisation of the kinematic wave routing (via openMP multi-threading).
-The option "numberParallelThreadsKinematicWave" may take the following values:
-    - "0"           : auto-detection of the machine/node's number of CPUs
-                                (do not set it if other simulations are running on the same machine/node)
-    - "1"           : serial execution (not parallel)
-    - "2", "3", ... : manual setting of the number of parallel threads.
-                      (if exceeding the number of CPUs, the option is set to "0") -->
-            <textvar name="numCPUs_parallelKinematicWave" value="0"/>
+            
+            <textvar name="numCPUs_parallelKinematicWave" value="0" />
 
             <comment>
             **************************************************************
@@ -139,8 +121,8 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                                   (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
                 - "1"           : serial execution (not parallel)
                 - "2", "3", ... : manual setting of the number of parallel threads.
-                                  (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
-            <textvar name="numCPUs_parallelNumba" value="0"/>
+                                  (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) --&gt;
+            <textvar name="numCPUs_parallelNumba" value="0" />
 
             <comment>
                 **************************************************************
@@ -301,7 +283,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 </comment>
             </textvar>
 
-            <textvar name="LowerZoneTimeConstant" value="484.3363129236808">
+            <textvar name="LowerZoneTimeConstant" value="1000.0">
                 <comment>
                     default: 100
                     $(PathParams)/params_LowerZoneTimeConstant.nc
@@ -424,13 +406,13 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
                 **************************************************************
             </comment>
 
-            <textvar name="PathOut" value="$(PathRoot)/out">
+            <textvar name="PathOut" value="$(PathRoot)/results">
                 <comment>
                     Output path
                 </comment>
             </textvar>
 
-            <textvar name="PathInit" value="$(PathRoot)/out">
+            <textvar name="PathInit" value="$(PathRoot)/results">
                 <comment>
                     Path of the initial value maps e.g. lzavin.map
                 </comment>
@@ -1182,7 +1164,7 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
             <textvar name="WUsePercRemain" value="0.5">
                 <comment>
                     percentage of water which remains in the channel
-                    e.g. 0.2 -> 20 percent of discharge is not taken out
+                    e.g. 0.2 -&gt; 20 percent of discharge is not taken out
                 </comment>
             </textvar>
 
@@ -1514,15 +1496,9 @@ The option "numberParallelThreadsKinematicWave" may take the following values:
 
 
     <lfbinding>
-        <!--
-**************************************************************
-**************************************************************
-LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
-**************************************************************
-**************************************************************
--->
-        <textvar name="numCPUs_parallelKinematicWave" value="$(numCPUs_parallelKinematicWave)"/>
-        <textvar name="numCPUs_parallelNumba" value="$(numCPUs_parallelNumba)"/>
+        
+        <textvar name="numCPUs_parallelKinematicWave" value="$(numCPUs_parallelKinematicWave)" />
+        <textvar name="numCPUs_parallelNumba" value="$(numCPUs_parallelNumba)" />
         <textvar name="MaskMap" value="$(MaskMap)">
             <comment>
                 Clone map
@@ -1550,13 +1526,13 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 - "[positive integer number]"  : Dump outputs to disk every X steps (default 1) 
         </comment>
         
-        <textvar name="OutputMapsChunks" value="1"/>
+        <textvar name="OutputMapsChunks" value="1" />
             <comment>
                 The option "OutputMapsDataType" sets the output data type and may take the following values:
                     - "float64"
                     - "float32"
             </comment>
-        <textvar name="OutputMapsDataType" value="float64"/>
+        <textvar name="OutputMapsDataType" value="float64" />
 
         <textvar name="netCDFtemplate" value="$(netCDFtemplate)">
             <comment>
@@ -1578,7 +1554,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
                 **************************************************************
             </comment>
 
-            <textvar name="CalendarConvention" value="$(CalendarConvention)"/>
+            <textvar name="CalendarConvention" value="$(CalendarConvention)" />
 
             <textvar name="CalendarDayStart" value="$(CalendarDayStart)">
                 <comment>
@@ -2574,7 +2550,7 @@ LFBINDING: MORE LOW-LEVEL CONTROL OVER MODEL IN- AND OUTPUT
             <textvar name="WUsePercRemain" value="$(WUsePercRemain)">
                 <comment>
                     percentage of water which remains in the channel
-                    e.g. 0.2 -> 20 percent of discharge is not taken out
+                    e.g. 0.2 -&gt; 20 percent of discharge is not taken out
                 </comment>
             </textvar>
 
