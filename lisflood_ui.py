@@ -457,7 +457,12 @@ def on_processing_button_clicked(b, files_chosen):
     # Execute LISFLOOD pre-run and run
     print('\n--- LISFLOOD PRE-RUN ---')
     try:
-        subprocess.run(['lisflood', files_chosen[0].selected], check=True, capture_output=True, text=True)
+        subprocess.run(
+            ['lisflood', files_chosen[0].selected], 
+            check=True, 
+            capture_output=True, 
+            text=True
+        )
         print("PRE-RUN completed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error running LISFLOOD PRE-RUN:\n{e.stderr}")
@@ -465,7 +470,12 @@ def on_processing_button_clicked(b, files_chosen):
         
     print('\n--- LISFLOOD RUN ---')
     try:
-        subprocess.run(['lisflood', files_chosen[1].selected], check=True, capture_output=True, text=True)
+        subprocess.run(
+            ['lisflood', files_chosen[1].selected], 
+            check=True, 
+            capture_output=True, 
+            text=True
+        )
         print("RUN completed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error running LISFLOOD RUN:\n{e.stderr}")
@@ -550,7 +560,7 @@ def plot(chooser, output_dir):
     if output_dir:
         path = chooser.selected_path
     else:
-        path = os.path.join(chooser.selected_path, 'out')
+        path = os.path.join(chooser.selected_path, 'results')
 
     # checks whether output data is present
     if len(glob.glob('{}/*.nc'.format(path))) == 0 and len(glob.glob('{}/*.tss'.format(path))) == 0:
