@@ -1,9 +1,6 @@
 import datetime
 import functools
-import glob
-import os
 import subprocess
-import warnings
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Optional, Union
@@ -12,15 +9,13 @@ import altair as alt
 import ipyleaflet
 import ipywidgets
 import matplotlib.pyplot as plt
-import netCDF4
-import numpy as np
 import pandas as pd
 import xarray as xr
 import cartopy.crs as ccrs
 import cartopy.io.img_tiles as cimgt
 from ipyfilechooser import FileChooser
 from IPython.display import display
-from matplotlib import rc
+# from matplotlib import rc
 
 from docs.lisflood_read_plot import read_tss
 
