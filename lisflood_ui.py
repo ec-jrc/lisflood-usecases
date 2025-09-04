@@ -6,6 +6,7 @@ import subprocess
 import warnings
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from typing import Optional, Union
 
 import altair as alt
 import ipyleaflet
@@ -14,14 +15,17 @@ import matplotlib.pyplot as plt
 import netCDF4
 import numpy as np
 import pandas as pd
+import xarray as xr
 import cartopy.crs as ccrs
 import cartopy.io.img_tiles as cimgt
 from ipyfilechooser import FileChooser
 from IPython.display import display
 from matplotlib import rc
 
+from docs.lisflood_read_plot import read_tss
+
 # dictionary with editable calibration parameters including allowed data range
-parameters = {
+parameter_specs = {
     "SnowMeltCoef": {
         "label": "Snow melt coefficient",
         "min": 2.5, "max": 6.5, "step": 0.01, "format": ".2f", "units": "[mm/°C day]"
@@ -223,7 +227,7 @@ def _create_parameter_tab(root):
         return {}
 
     # Iterate through the desired order to create the sliders
-    for param_name, specs in parameters.items():
+    for param_name, specs in parameter_specs.items():
         element = parameter_xml[1].find(f".//textvar[@name='{param_name}']")
         if element is not None:
             slider_widget = ipywidgets.HBox([
@@ -293,7 +297,7 @@ def show_settings(chooser, files_chosen):
     global StepEnd_picker
 
     # Create output folder if it does not exist
-    out_dir = Path(files_chosen[1].selected_path) / "out"
+    out_dir = Path(files_chosen[1].selected_path) / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # opens settings file of PRE-RUN ([0]) and RUN ([1]) in list
@@ -356,132 +360,142 @@ def show_settings(chooser, files_chosen):
 
     # Display UI
     display(tabs)
+    
+    # Create an output area for logging
+    output_area = ipywidgets.Output()
 
     # Button to start processing method
-    processing_button = ipywidgets.Button(description="Start processing")
-    processing_button.on_click(functools.partial(on_processing_button_clicked, files_chosen=files_chosen))
+    processing_button = ipywidgets.Button(description="Start")
+    processing_button.on_click(
+        functools.partial(
+            on_processing_button_clicked, 
+            files_chosen=files_chosen, 
+            output_area=output_area
+        )
+    )
     display(processing_button)
 
 # callback function to write input data to XML files and start processing
-def on_processing_button_clicked(b, files_chosen):
+# callback function to write input data to XML files and start processing
+def on_processing_button_clicked(b, files_chosen, output_area):
     """
     Updates XML settings filºes with user input and executes the LISFLOOD simulation.
     """
-    print("Starting LISFLOOD processing...")
+    # Clear previous output before each run
+    output_area.clear_output()
 
-    global datasets
-    global parameter_xml
-    global parameter_sliders
-    global optional_modules_xml
-    global module_checkboxes
-    global tree
-    global StepStart
-    global StepEnd
-    global DtSec_xml
-    global DtSec_box
-    global coordinates
-    global marker
-    global StepStart_picker
-    global StepEnd_picker
+    with output_area:
+        print("Starting LISFLOOD processing...")
 
-    # Check if 'datasets' exists and close any open NetCDF files
-    print("Checking for previous datasets...")
-    if 'datasets' in globals():
-        for _, dataset in datasets:
-            dataset.close()
-        datasets.clear()
-        print("Closed and cleared previous datasets.")
-    else:
-        datasets = []
-        print("No previous datasets found.")
-    
-    # Update calibration parameter values in XML from sliders
-    print("\nUpdating calibration parameters...")
-    for root_xml in parameter_xml:
-        # Find all 'textvar' elements within the 'lfuser' group
-        textvar_elements = root_xml.findall(".//textvar")
-        for element in textvar_elements:
-            param_name = element.attrib['name']
-            if param_name in parameters:
-                new_value = str(parameter_sliders[param_name].children[0].value)
-                element.attrib['value'] = new_value
-                print(f"  - Parameter '{param_name}' set to value '{new_value}'")
+        global datasets
+        global parameter_xml
+        global parameter_sliders
+        global optional_modules_xml
+        global module_checkboxes
+        global tree
+        global StepStart
+        global StepEnd
+        global DtSec_xml
+        global DtSec_box
+        global coordinates
+        global marker
+        global StepStart_picker
+        global StepEnd_picker
 
-
-    # Update optional module choices in XML from checkboxes
-    print("\nUpdating optional modules...")
-    for root_xml in optional_modules_xml:
-        for element in root_xml:
-            if element.tag == 'setoption':
-                module_name = element.attrib['name']
-                new_choice = str(int(module_checkboxes[module_name].value))
-                element.attrib['choice'] = new_choice
-                print(f"  - Module '{module_name}' choice set to '{new_choice}'")
-
-    # Configure SplitRouting and InitLisflood options in both XML files
-    split_routing = module_checkboxes['SplitRouting'].value
-    print(f"\nConfiguring routing options (SplitRouting is {'enabled' if split_routing else 'disabled'})...")
-    for i, root_xml in enumerate(optional_modules_xml):  
-        # Determine and set the correct InitLisflood choice based on split_routing
-        init_lisflood_choice = str(int(split_routing and (i == 0)))
-        init_lisflood_without_split_choice = str(int(not split_routing and (i == 0)))
-
-        root_xml.findall("setoption[@name='SplitRouting']")[0].attrib['choice'] = str(int(split_routing))
-        root_xml.findall("setoption[@name='InitLisflood']")[0].attrib['choice'] = init_lisflood_choice
-        root_xml.findall("setoption[@name='InitLisfloodwithoutSplit']")[0].attrib['choice'] = init_lisflood_without_split_choice
-        print(f"  - File {i+1}: InitLisflood set to '{init_lisflood_choice}', InitLisfloodwithoutSplit set to '{init_lisflood_without_split_choice}'")
-
-    # Write simulation dates, timestep, and coordinates to both XML files
-    print("\nUpdating simulation dates, timestep, and coordinates...")
-    for i in range(len(tree)):
-        date_format_in = "%Y-%m-%d"
-        date_format_out = '%d/%m/%Y'
+        # Check if 'datasets' exists and close any open NetCDF files
+        print("Checking for previous datasets...")
+        if 'datasets' in globals():
+            for _, dataset in datasets:
+                dataset.close()
+            datasets.clear()
+            print("Closed and cleared previous datasets.")
+        else:
+            datasets = []
+            print("No previous datasets found.")
         
-        start_date_str = str(StepStart_picker[i].value)
-        start_date_formatted = datetime.datetime.strptime(start_date_str, date_format_in).strftime(date_format_out)
-        StepStart[i].attrib['value'] = f"{start_date_formatted} {StepStart[i].attrib['value'].split()[1]}"
+        # Update calibration parameter values in XML from sliders
+        print("\nUpdating calibration parameters...")
+        for root_xml in parameter_xml:
+            # Find all 'textvar' elements within the 'lfuser' group
+            textvar_elements = root_xml.findall(".//textvar")
+            for element in textvar_elements:
+                param_name = element.attrib['name']
+                if param_name in parameter_specs:
+                    new_value = str(parameter_sliders[param_name].children[0].value)
+                    element.attrib['value'] = new_value
+                    print(f"  - Parameter '{param_name}' set to value '{new_value}'")
 
-        end_date_str = str(StepEnd_picker[i].value)
-        end_date_formatted = datetime.datetime.strptime(end_date_str, date_format_in).strftime(date_format_out)
-        StepEnd[i].attrib['value'] = f"{end_date_formatted} {StepEnd[i].attrib['value'].split()[1]}"
 
-        DtSec_xml[i].attrib['value'] = str(DtSec_box.value)
+        # Update optional module choices in XML from checkboxes
+        print("\nUpdating optional modules...")
+        for root_xml in optional_modules_xml:
+            for element in root_xml:
+                if element.tag == 'setoption':
+                    module_name = element.attrib['name']
+                    new_choice = str(int(module_checkboxes[module_name].value))
+                    element.attrib['choice'] = new_choice
+                    print(f"  - Module '{module_name}' choice set to '{new_choice}'")
 
-        if module_checkboxes['repDischargeTs'].value:
-            coordinates[i].attrib['value'] = f"{marker.location[1]} {marker.location[0]}"
-        
-        print(f"  - Writing updated settings to {files_chosen[i].selected}...")
-        tree[i].write(files_chosen[i].selected)
-        print(f"  - Successfully wrote settings to {files_chosen[i].selected}.")
+        # Configure SplitRouting and InitLisflood options in both XML files
+        split_routing = module_checkboxes['SplitRouting'].value
+        print(f"\nConfiguring routing options (SplitRouting is {'enabled' if split_routing else 'disabled'})...")
+        for i, root_xml in enumerate(optional_modules_xml):  
+            # Determine and set the correct InitLisflood choice based on split_routing
+            init_lisflood_choice = str(int(split_routing and (i == 0)))
+            init_lisflood_without_split_choice = str(int(not split_routing and (i == 0)))
 
-    # Execute LISFLOOD pre-run and run
-    print('\n--- LISFLOOD PRE-RUN ---')
-    try:
-        subprocess.run(
-            ['lisflood', files_chosen[0].selected], 
-            check=True, 
-            capture_output=True, 
-            text=True
-        )
-        print("PRE-RUN completed successfully.")
-    except subprocess.CalledProcessError as e:
-        print(f"Error running LISFLOOD PRE-RUN:\n{e.stderr}")
-        return
-        
-    print('\n--- LISFLOOD RUN ---')
-    try:
-        subprocess.run(
-            ['lisflood', files_chosen[1].selected], 
-            check=True, 
-            capture_output=True, 
-            text=True
-        )
-        print("RUN completed successfully.")
-    except subprocess.CalledProcessError as e:
-        print(f"Error running LISFLOOD RUN:\n{e.stderr}")
-        return
-        
-    print("\nProcessing complete.")
+            root_xml.findall("setoption[@name='SplitRouting']")[0].attrib['choice'] = str(int(split_routing))
+            root_xml.findall("setoption[@name='InitLisflood']")[0].attrib['choice'] = init_lisflood_choice
+            root_xml.findall("setoption[@name='InitLisfloodwithoutSplit']")[0].attrib['choice'] = init_lisflood_without_split_choice
+            print(f"  - File {i+1}: InitLisflood set to '{init_lisflood_choice}', InitLisfloodwithoutSplit set to '{init_lisflood_without_split_choice}'")
+
+        # Write simulation dates, timestep, and coordinates to both XML files
+        print("\nUpdating simulation dates, timestep, and coordinates...")
+        for i in range(len(tree)):
+            date_format_in = "%Y-%m-%d"
+            date_format_out = '%d/%m/%Y'
+            
+            start_date_str = str(StepStart_picker[i].value)
+            start_date_formatted = datetime.datetime.strptime(start_date_str, date_format_in).strftime(date_format_out)
+            StepStart[i].attrib['value'] = f"{start_date_formatted} {StepStart[i].attrib['value'].split()[1]}"
+
+            end_date_str = str(StepEnd_picker[i].value)
+            end_date_formatted = datetime.datetime.strptime(end_date_str, date_format_in).strftime(date_format_out)
+            StepEnd[i].attrib['value'] = f"{end_date_formatted} {StepEnd[i].attrib['value'].split()[1]}"
+
+            DtSec_xml[i].attrib['value'] = str(DtSec_box.value)
+
+            if module_checkboxes['repDischargeTs'].value:
+                coordinates[i].attrib['value'] = f"{marker.location[1]} {marker.location[0]}"
+            
+            print(f"  - Writing updated settings to {files_chosen[i].selected}...")
+            tree[i].write(files_chosen[i].selected)
+            print(f"  - Successfully wrote settings to {files_chosen[i].selected}.")
+
+        # Execute LISFLOOD pre-run and run
+        print('\n--- LISFLOOD PRE-RUN ---')
+        try:
+            result = subprocess.run(['lisflood', files_chosen[0].selected], check=True, capture_output=True, text=True)
+            print("PRE-RUN completed successfully.")
+            if result.stdout:
+                print("LISFLOOD stdout:")
+                print(result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"Error running LISFLOOD PRE-RUN:\n{e.stderr}")
+            return
+            
+        print('\n--- LISFLOOD RUN ---')
+        try:
+            result = subprocess.run(['lisflood', files_chosen[1].selected], check=True, capture_output=True, text=True)
+            print("RUN completed successfully.")
+            if result.stdout:
+                print("LISFLOOD stdout:")
+                print(result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"Error running LISFLOOD RUN:\n{e.stderr}")
+            return
+            
+        print("\nProcessing complete.")
 
 # Callback function to change map visibility
 def on_rep_discharge_ts_clicked(change):
@@ -510,36 +524,38 @@ def on_split_routing_clicked(change):
         module_checkboxes['InitLisflood'].disabled = True
         module_checkboxes['InitLisfloodwithoutSplit'].value = True
 
-# returns element in NetCDF array
-def subfinder(mylist, parameter):
-    for i in range(len(mylist)):
-        if mylist[i][0] == parameter:
-            match = mylist[i][1]
-    return match
-
 # updates date of spatial plot from time slider
 def update_time(date):
+    """
+    Callback function to update the map based on the selected date.   
+    """
     global datasets
     global datevar
-    global mm
-    global parameter_dropdown
+    global im
+    global variable_dropdown
     
-    mm.set_array(subfinder(datasets, parameter_dropdown.value)[parameter_dropdown.value][:][date].ravel())
-    title = '{}: {}'.format(parameter_dropdown.value, datevar[0][date].strftime('%d %b %Y'))
-    plt.title(title, size='xx-large')
+    variable = variable_dropdown.value
+    im.set_array(datasets[variable].isel(time=date).data.ravel())
+    plt.title(
+        f'{variable}: {pd.to_datetime(datevar[date]).strftime("%d %b %Y")}',
+        size='xx-large'
+        )
     plt.draw()
 
 #  updates parameter of spatial plot from dropdown menu
-def update_parameter(parameter):
+def update_variable(variable):
+    """
+    Callback function to update the map based on the selected variable.
+    """
     global datasets
     global datevar
-    global mm
+    global im
     global cbar
     global date_slider
     
-    mm.set_array(subfinder(datasets, parameter)[parameter][:][date_slider.value].ravel())
-    mm.autoscale()
-    cbar.update_normal(mm)
+    im.set_array(datasets[variable].isel(time=date_slider.value).data.ravel())
+    im.autoscale()
+    cbar.update_normal(im)
     title = '{}: {}'.format(parameter, datevar[0][date_slider.value].strftime('%d %b %Y'))
     plt.title(title, size='xx-large')
     plt.draw()
@@ -555,139 +571,160 @@ def addData(df, path, setting):
     return pd.concat([df, df_temp], axis=0, ignore_index=True)
 
 # plots spatial and time series output data
-def plot(chooser, output_dir):
+def plot_results(
+        chooser, 
+        output_dir: Optional[Union[str, Path]] = None
+):
+    """
+    Plot results of the LISFLOOD simulation.
+    """
     # sets path to output directory depending on function parameters
     if output_dir:
-        path = chooser.selected_path
+        path_results = Path(chooser.selected_path)
+        settings_file = next(path_results.parent.glob('*Run.xml'))
     else:
-        path = os.path.join(chooser.selected_path, 'results')
+        path_model = Path(chooser.selected_path)
+        path_results = path_model / 'results'
+        settings_file = path_model / chooser.selected_filename
 
-    # checks whether output data is present
-    if len(glob.glob('{}/*.nc'.format(path))) == 0 and len(glob.glob('{}/*.tss'.format(path))) == 0:
-        print('No output files in {}.'.format(path))
+    # checks whether output data exists
+    if not (any(path_results.glob('*.nc')) and any(path_results.glob('*.tss'))):
+        print(f'No output files in {path_results}.')
+        return
 
     global datevar
-    
-    # checks for 'dis_run.tss' file
-    if os.path.isfile('{}/dis_run.tss'.format(path)):
-        # creates data frame and reads 'dis_run.tss'
-        df = pd.DataFrame()
-        df = addData(df, '{}/dis_run.tss'.format(path), 'Discharge')
-        # if output was generated using the processing section of this notebook,
-        # the calendar start day can be read from the XML file
-        if 'CalendarDayStart' in globals():
-            dates = []
-            # Fix: Check for DtSec_xml to avoid NameError
-            if 'DtSec_xml' in globals():
-                DtSec = datetime.timedelta(seconds=int(DtSec_xml[1].attrib['value']))
-                for factor in df['date']:
-                    dates.append(CalendarDayStart + (int(factor) - 1) * DtSec)
-                df['date'] = dates
-        elif 'datevar' in globals():
-            df['date'] = datevar[0].tolist()
-        # if not, x-axis can not be reformated
-        else:
-            print('No reference data on CalendarDayStart to format x-axis of time series plot.')
-        # plots data
-        selection = alt.selection_multi(fields=['setting'], bind='legend')
+
+    # discharge time series
+    tss_file = path_results / 'dis_run.tss'
+    if tss_file.is_file():
+        # read
+        df = read_tss(
+            tss=tss_file, 
+            xml=settings_file,
+            squeeze=False
+        )
+        df.columns = ['value']
+        df.index.name = 'date'
+        df.reset_index(inplace=True)
+        df['setting'] = 'discharge'
+
+        # plot
+        selection = alt.selection_point(fields=['setting'], bind='legend')
         chart = alt.Chart(df
                 ).mark_line(point=True
                 ).encode(x='date:T',
-                         y='value:Q',
-                         color=alt.Color('setting', legend=alt.Legend(title="Setting")),
-                         opacity=alt.condition(selection, alt.value(1), alt.value(0.2))
-                ).add_selection(selection
+                        y='value:Q',
+                        color=alt.Color('setting', legend=alt.Legend(title="Variable")),
+                        opacity=alt.condition(selection, alt.value(1), alt.value(0.2))
+                ).add_params(selection
                 ).interactive(bind_y=False
                 ).properties(width=800, height=300)
         # display outputs
-        display(ipywidgets.HTML(value = f"<center><b><font size=5>{'Discharge Time Series'}</b></center>"))
+        display(ipywidgets.HTML(value = f"<left><b><font size=5>{'Discharge Time Series'}</b></left>"))
         display(chart)
 
-    # check for spatial output files in output folder
-    if len(glob.glob('{}/*.nc'.format(path))) != 0:
+    # output maps
+    nc_files = nc_files = [file for file in path_results.glob('*.nc') if file.stem not in ['lzavin', 'avgdis']]
+    if len(nc_files) == 0:
+        print(f'No NetCDF files in the results folder: {path_results}.')
+        return
 
-        global datasets
-        global date_slider
-        global parameter_dropdown
-        global mm
-        global cbar
-        
-        # list of paths to  all spatial output files except avgdis and lzavin
-        paths_datasets = list(filter(lambda number: (not number.endswith('avgdis.nc') and not number.endswith('lzavin.nc')),
-                                     glob.glob('{}/*.nc'.format(path))))
-        
-        if 'datasets' in locals():
-            datasets.clear()
-        else:
-            datasets = []
+    global datasets
+    global date_slider
+    global variable_dropdown
+    global im
+    global cbar 
 
-        i = 0
-        # open netCDF datasets
-        for dataset in paths_datasets:
-            datasets.append([dataset.split('/')[-1].split('.')[0], netCDF4.Dataset(paths_datasets[i])])
-            i = i + 1
+    if 'datasets' in locals():
+        datasets.clear()
+    else:
+        datasets = []
 
-        # get dates from NetCDF file
-        try:
-            # get calendar
-            t_cal = datasets[0][1].variables['time'].calendar
-        except AttributeError:
-            t_cal = u"gregorian"
-        datevar = []
-        with warnings.catch_warnings():
-            warnings.filterwarnings("ignore")
-            datevar.append(netCDF4.num2date(datasets[0][1].variables['time'][:],  # get values
-                                        units=datasets[0][1].variables['time'].units,  # get unit
-                                        calendar=t_cal))
+    # read maps
+    datasets = {file.stem: xr.open_dataarray(file) for file in nc_files}
 
-        # create drowdown menu with all available outputs
-        parameter_dropdown = ipywidgets.Dropdown(options=[item[0] for item in datasets], description='Parameter:')
-        # create date slider for given time period
-        date_slider = ipywidgets.IntSlider(min=0, max=len(datasets[0][1].dimensions['time']) - 1, step=1, value=0,
-                                           description='Date:')
-        # create simulation controls
-        play = ipywidgets.Play(
-            min=0,
-            max=len(datasets[0][1].dimensions['time']) - 1,
-            step=1,
-            description="Press play",
-            disabled=False
+    # get dates from the datasets
+    first_key = next(iter(datasets))
+    datevar = datasets[first_key]['time'].data
+
+    # create drowdown menu with all available outputs
+    variable_dropdown = ipywidgets.Dropdown(
+        options=list(datasets), 
+        description='Variable:'
+    )
+    # create date slider for given time period
+    date_slider = ipywidgets.IntSlider(
+        min=0, 
+        max=len(datevar) - 1, 
+        step=1, 
+        value=0,
+        description='Date:'
+    )
+    # create simulation controls
+    play = ipywidgets.Play(
+        min=0,
+        max=len(datevar) - 1,
+        step=1,
+        description="Press play",
+        disabled=False
+    )
+
+    # plot the map
+    out_spatial = ipywidgets.Output()
+    with out_spatial:
+        # extract data array
+        variable = variable_dropdown.value
+        da = datasets[variable]
+
+        # Create a figure and axes with a Plate Carree projection.
+        fig, ax = plt.subplots(
+            figsize=(10, 6),
+            subplot_kw={'projection': ccrs.PlateCarree()}
         )
-        
-        # get chosen parameter
-        parameter = parameter_dropdown.value
-        # create figure
-        out_spatial = ipywidgets.Output()
-        with out_spatial:
-            # create figure with open street map
-            request = cimgt.OSM()
-            fig, ax = plt.subplots(figsize=(8,4), subplot_kw=dict(projection=request.crs))
-            ax.add_image(request, 8)
-            cmap = plt.cm.cool
-            vmin = np.min(subfinder(datasets, parameter)[parameter][:])
-            vmax = np.max(subfinder(datasets, parameter)[parameter][:])
-            #vmax = np.percentile(subfinder(datasets, parameter)[parameter][:], 97.5)
-            mm = ax.pcolormesh(subfinder(datasets, parameter)['lon'][:],
-                               subfinder(datasets, parameter)['lat'][:],
-                               subfinder(datasets, parameter)[parameter][:][0],
-                               vmin=vmin,
-                               vmax=vmax,
-                               transform=ccrs.PlateCarree(),
-                               cmap=cmap,
-                               alpha=0.5)
-            cbar = plt.colorbar(mm, shrink=0.7)
-            cbar.ax.tick_params(labelsize=17)
-            update_time(0)
-            
-        # update plot when user changes parameter in dropdown menu
-        ipywidgets.interactive(update_parameter, parameter=parameter_dropdown)
-        # update plot when user changes date slider
-        ipywidgets.interactive(update_time, date=date_slider)
-        # update plot when user starts simulation
-        ipywidgets.jslink((play, 'value'), (date_slider, 'value'))
 
-        # display outputs
-        display(ipywidgets.HTML(value = f"<center><b><font size=5>{'Spatial Outputs'}</b></center>"))
-        display(out_spatial)
-        display(ipywidgets.HBox([play, date_slider, parameter_dropdown]))
-        print('\n\n\n\n\n\n\n\n')
+        # Set the extent of the map based on the data's geographical bounds.
+        buffer = 0.5
+        extent = [
+                da.lon.min().item() - buffer,
+                da.lon.max().item() + buffer,
+                da.lat.min().item() - buffer,
+                da.lat.max().item() + buffer
+        ]
+        ax.set_extent(extent, crs=ccrs.PlateCarree())
+
+        # Add the map image tiles for geographical context.
+        request = cimgt.OSM()
+        ax.add_image(request, 6)
+    
+        # Add geographical features to provide more context.
+        ax.coastlines(resolution='50m', color='black', linewidth=1)
+        ax.gridlines(draw_labels=True, linestyle='--', color='gray', alpha=0.5)
+
+        # Plot the data.
+        im = ax.pcolormesh(
+            da.lon,
+            da.lat,
+            da.isel(time=0).data,
+            vmin=da.min().item(),
+            vmax=da.max().item(),
+            cmap=plt.cm.viridis_r,
+            alpha=0.6,
+            transform=ccrs.PlateCarree(),
+        )
+
+        # Add the color bar and set its label and font size.
+        cbar = plt.colorbar(im, shrink=0.5, pad=0.1)
+        cbar.set_label(da.attrs["units"], fontsize=12)
+        cbar.ax.tick_params(labelsize=12)
+
+        update_time(0)
+
+    # update variable, time or when a simulation is started
+    ipywidgets.interactive(update_variable, variable=variable_dropdown)
+    ipywidgets.interactive(update_time, date=date_slider)
+    ipywidgets.jslink((play, 'value'), (date_slider, 'value'))
+
+    # display outputs
+    display(ipywidgets.HTML(value = f"<left><b><font size=5>{'Spatial Outputs'}</b></left>"))
+    display(out_spatial)
+    display(ipywidgets.HBox([play, date_slider, variable_dropdown]))
