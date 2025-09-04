@@ -25,7 +25,7 @@ from matplotlib import rc
 from docs.lisflood_read_plot import read_tss
 
 # dictionary with editable calibration parameters including allowed data range
-parameter_specs = {
+parameter = {
     "SnowMeltCoef": {
         "label": "Snow melt coefficient",
         "min": 2.5, "max": 6.5, "step": 0.01, "format": ".2f", "units": "[mm/°C day]"
@@ -65,46 +65,74 @@ parameter_specs = {
 }
 
 # Map internal names to display names for clarity
-optional_module_labels = {
-    'InitLisflood': 'Initialize LISFLOOD',
-    'InitLisfloodwithoutSplit': 'Initialize without Split',
-    'gridSizeUserDefined': 'User-defined Grid Size',
-    'SplitRouting': 'Split Routing',
-    'inflow': 'External Inflow',
-    'simulateReservoirs': 'Simulate Reservoirs',
-    'simulateLakes': 'Simulate Lakes',
-    'openwaterevapo': 'Open Water Evaporation',
-    'drainedIrrigation': 'Drained Irrigation',
-    'riceIrrigation': 'Rice Irrigation',
-    'wateruse': 'Water Use',
-    'useWaterDemandAveYear': 'Use Average Water Demand',
-    'TransientWaterDemandChange': 'Transient Water Demand Change',
-    'wateruseRegion': 'Water Use Region',
-    'groundwaterSmooth': 'Groundwater Smoothing',
-    'indicator': 'Indicator',
-    'readNetcdfStack': 'Read NetCDF Stack',
-    'writeNetcdf': 'Write NetCDF',
-    'writeNetcdfStack': 'Write NetCDF Stack'
+optional_modules = {
+    'Initialization': {
+        'InitLisflood': 'Initialize LISFLOOD',
+        'InitLisfloodwithoutSplit': 'Initialize without split',
+    },
+    'Routing': {
+        'SplitRouting': 'Split routing',
+        'inflow': 'External inflow',
+    },
+    'Water bodies': {
+        'simulateReservoirs': 'Simulate reservoirs',
+        'simulateLakes': 'Simulate lakes',
+        'openwaterevapo': 'Evaporation from open water',
+    },
+    'Groundwater': {
+        'groundwaterSmooth': 'Groundwater smoothing',
+    },
+    'Irrigation': {
+        'riceIrrigation': 'Rice irrigation',
+        'drainedIrrigation': 'Drained irrigation',
+    },
+    'Water use': {
+        'wateruse': 'Water use',
+        'useWaterDemandAveYear': 'Use average water demand',
+        'TransientWaterDemandChange': 'Use transient water demand',
+        'wateruseRegion': 'Water use region',
+        'indicator': 'Compute indicators',
+    },
+    'Input-output': {
+        'readNetcdfStack': 'Read NetCDF stack',
+        'writeNetcdf': 'Write NetCDF',
+        'writeNetcdfStack': 'Write NetCDF stack'
+    },
 }
 
 # Helper function to create module checkboxes
 def _create_module_tab(root):
-    """Parses XML and creates module checkbox widgets."""
+    """
+    Parses XML and creates module checkbox widgets, organized by group,
+    using a single source of truth.
+    """
     global optional_modules_xml
     global module_checkboxes
 
     module_checkboxes = {}
     optional_modules_xml = [root[i].find("./lfoptions") for i in range(2)]
+
+    # First, create all the checkboxes and store them in the global dictionary
     for element in optional_modules_xml[1]:
         module_name = element.attrib['name']
-        display_name = optional_module_labels.get(module_name, module_name)
+        display_name = next((v for group in optional_modules.values() for k, v in group.items() if k == module_name), module_name)
         module_checkboxes[module_name] = ipywidgets.Checkbox(
             value=bool(int(element.attrib['choice'])),
             description=display_name,
             disabled=False,
-            style={'description_width': '0ex'}
-            )
-    return module_checkboxes
+            style={'description_width': 'initial'}
+        )
+
+    # Now, use the checkboxes to build the grouped VBoxes
+    grouped_vboxes = []
+    for group_title, group_modules in optional_modules.items():
+        vbox_content = [ipywidgets.HTML(value=f'<b>{group_title}:</b>')]
+        for module_name in group_modules:
+            if module_name in module_checkboxes:
+                vbox_content.append(module_checkboxes[module_name])
+        grouped_vboxes.append(ipywidgets.VBox(vbox_content))
+
+    return grouped_vboxes
 
 # Helper function to create the date picker widgets
 def _create_date_tab(root):
@@ -227,7 +255,7 @@ def _create_parameter_tab(root):
         return {}
 
     # Iterate through the desired order to create the sliders
-    for param_name, specs in parameter_specs.items():
+    for param_name, specs in parameter.items():
         element = parameter_xml[1].find(f".//textvar[@name='{param_name}']")
         if element is not None:
             slider_widget = ipywidgets.HBox([
@@ -274,12 +302,12 @@ def _link_observers(module_checkboxes, m):
     module_checkboxes['repDischargeTs'].observe(on_rep_discharge_ts_clicked, names='value')
 
 # Main function to show settings
-def show_settings(chooser, files_chosen):
+def show_settings(chooser, settings_files):
     """
     Reads XML settings, creates and displays an interactive UI
     for configuring a LISFLOOD simulation.
     """
-    if files_chosen[0].selected is None or files_chosen[1].selected is None:
+    if settings_files[0].selected is None or settings_files[1].selected is None:
         return
 
     global tree
@@ -297,11 +325,11 @@ def show_settings(chooser, files_chosen):
     global StepEnd_picker
 
     # Create output folder if it does not exist
-    out_dir = Path(files_chosen[1].selected_path) / "results"
+    out_dir = Path(settings_files[1].selected_path) / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # opens settings file of PRE-RUN ([0]) and RUN ([1]) in list
-    tree = [ET.parse(f.selected) for f in files_chosen]
+    tree = [ET.parse(f.selected) for f in settings_files]
     root = [t.getroot() for t in tree]
 
     # gets timestep
@@ -328,16 +356,16 @@ def show_settings(chooser, files_chosen):
     CalendarDayStart = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M')
 
     # Create UI widgets
-    module_checkboxes = _create_module_tab(root)
+    grouped_module_vboxes = _create_module_tab(root)
     StepStart_picker, StepEnd_picker = _create_date_tab(root)
     output_grid = _create_output_tab(module_checkboxes)
     parameter_sliders = _create_parameter_tab(root)
     m, marker = _create_map(root, module_checkboxes)
 
-    # Organize checkboxes for optional modules grid
+    # Organize grouped module vboxes into a single GridBox
     optional_modules_grid = ipywidgets.GridBox(
-        [module_checkboxes[name] for name in optional_module_labels.keys()],
-        layout=ipywidgets.Layout(grid_template_columns="33% 33% 33%")
+        grouped_module_vboxes,
+        layout=ipywidgets.Layout(grid_template_columns="repeat(2, 1fr) 1fr")
     )
 
     # Define UI layout and tabs
@@ -369,7 +397,7 @@ def show_settings(chooser, files_chosen):
     processing_button.on_click(
         functools.partial(
             on_processing_button_clicked, 
-            files_chosen=files_chosen, 
+            settings_files=settings_files, 
             output_area=output_area
         )
     )
@@ -377,7 +405,7 @@ def show_settings(chooser, files_chosen):
 
 # callback function to write input data to XML files and start processing
 # callback function to write input data to XML files and start processing
-def on_processing_button_clicked(b, files_chosen, output_area):
+def on_processing_button_clicked(b, settings_files, output_area):
     """
     Updates XML settings filºes with user input and executes the LISFLOOD simulation.
     """
@@ -420,7 +448,7 @@ def on_processing_button_clicked(b, files_chosen, output_area):
             textvar_elements = root_xml.findall(".//textvar")
             for element in textvar_elements:
                 param_name = element.attrib['name']
-                if param_name in parameter_specs:
+                if param_name in parameter:
                     new_value = str(parameter_sliders[param_name].children[0].value)
                     element.attrib['value'] = new_value
                     print(f"  - Parameter '{param_name}' set to value '{new_value}'")
@@ -468,14 +496,14 @@ def on_processing_button_clicked(b, files_chosen, output_area):
             if module_checkboxes['repDischargeTs'].value:
                 coordinates[i].attrib['value'] = f"{marker.location[1]} {marker.location[0]}"
             
-            print(f"  - Writing updated settings to {files_chosen[i].selected}...")
-            tree[i].write(files_chosen[i].selected)
-            print(f"  - Successfully wrote settings to {files_chosen[i].selected}.")
+            print(f"  - Writing updated settings to {settings_files[i].selected}...")
+            tree[i].write(settings_files[i].selected)
+            print(f"  - Successfully wrote settings to {settings_files[i].selected}.")
 
         # Execute LISFLOOD pre-run and run
         print('\n--- LISFLOOD PRE-RUN ---')
         try:
-            result = subprocess.run(['lisflood', files_chosen[0].selected], check=True, capture_output=True, text=True)
+            result = subprocess.run(['lisflood', settings_files[0].selected], check=True, capture_output=True, text=True)
             print("PRE-RUN completed successfully.")
             if result.stdout:
                 print("LISFLOOD stdout:")
@@ -486,7 +514,7 @@ def on_processing_button_clicked(b, files_chosen, output_area):
             
         print('\n--- LISFLOOD RUN ---')
         try:
-            result = subprocess.run(['lisflood', files_chosen[1].selected], check=True, capture_output=True, text=True)
+            result = subprocess.run(['lisflood', settings_files[1].selected], check=True, capture_output=True, text=True)
             print("RUN completed successfully.")
             if result.stdout:
                 print("LISFLOOD stdout:")
@@ -525,7 +553,7 @@ def on_split_routing_clicked(change):
         module_checkboxes['InitLisfloodwithoutSplit'].value = True
 
 # updates date of spatial plot from time slider
-def update_time(date):
+def _update_time(date):
     """
     Callback function to update the map based on the selected date.   
     """
@@ -543,7 +571,7 @@ def update_time(date):
     plt.draw()
 
 #  updates parameter of spatial plot from dropdown menu
-def update_variable(variable):
+def _update_variable(variable):
     """
     Callback function to update the map based on the selected variable.
     """
@@ -553,22 +581,21 @@ def update_variable(variable):
     global cbar
     global date_slider
     
-    im.set_array(datasets[variable].isel(time=date_slider.value).data.ravel())
-    im.autoscale()
+    new_data_array = datasets[variable]
+    
+    # Update the array data
+    im.set_array(new_data_array.isel(time=date_slider.value).data.ravel())
+    
+    # Update the color normalization based on the full range of the new variable
+    im.set_clim(vmin=new_data_array.min().item(), vmax=new_data_array.max().item())
+    
+    # Update the color bar's label
+    cbar.set_label(new_data_array.attrs["units"], fontsize=12)
     cbar.update_normal(im)
-    title = '{}: {}'.format(parameter, datevar[0][date_slider.value].strftime('%d %b %Y'))
+    
+    title = '{}: {}'.format(variable, datevar[date_slider.value].strftime('%d %b %Y'))
     plt.title(title, size='xx-large')
     plt.draw()
-
-# adds CSV data to time series data frame
-def addData(df, path, setting):
-    df_temp = pd.read_csv(path, delim_whitespace=True, header=None)
-    df_temp = df_temp.drop([0, 1, 2, 3], axis=0)
-    df_temp = df_temp.drop([2, 3, 4, 5, 6, 7, 8, 9], axis=1)
-    df_temp.columns = ['date', 'value']
-    df_temp.insert(0, 'setting', [setting] * len(df_temp.index), True)
-
-    return pd.concat([df, df_temp], axis=0, ignore_index=True)
 
 # plots spatial and time series output data
 def plot_results(
@@ -717,11 +744,11 @@ def plot_results(
         cbar.set_label(da.attrs["units"], fontsize=12)
         cbar.ax.tick_params(labelsize=12)
 
-        update_time(0)
+        _update_time(0)
 
     # update variable, time or when a simulation is started
-    ipywidgets.interactive(update_variable, variable=variable_dropdown)
-    ipywidgets.interactive(update_time, date=date_slider)
+    ipywidgets.interactive(_update_variable, variable=variable_dropdown)
+    ipywidgets.interactive(_update_time, date=date_slider)
     ipywidgets.jslink((play, 'value'), (date_slider, 'value'))
 
     # display outputs
