@@ -168,7 +168,7 @@
                 </comment>
             </textvar>
 
-            <textvar name="StepStart" value="01/01/2017 00:00">
+            <textvar name="StepStart" value="02/01/2016 00:00">
                 <comment>
                     Date of first time step in simulation
                 </comment>
