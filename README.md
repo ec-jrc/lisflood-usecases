@@ -1,4 +1,4 @@
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-blue.svg)](https://ec-jrc.github.io/lisflood-usecases/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/mekong_usecase?urlpath=%2Fdoc%2Ftree%2Flisflood-notebook.ipynb) ![Python](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-blue.svg)](https://ec-jrc.github.io/lisflood-usecases/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ec-jrc/lisflood-usecases/mekong_usecase?urlpath=%2Fdoc%2Ftree%2Flisflood-notebook.ipynb) ![Python](https://img.shields.io/badge/python-3.8-blue)
 
 # Lisflood use cases
 
