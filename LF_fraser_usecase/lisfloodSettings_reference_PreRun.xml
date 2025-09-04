@@ -1,7 +1,7 @@
 <lfsettings>
 
 <lfoptions>
-<setoption choice="0" name="cropsEPIC"/>
+<setoption choice="0" name="cropsEPIC" />
 #-----------------------------------------------------------
 # modelling and reporting options
 #-----------------------------------------------------------
@@ -24,25 +24,25 @@
 <setoption choice="1" name="SplitRouting" />
 
 # use inflow data
-<setoption choice="1" name="inflow" />
+<setoption choice="0" name="inflow" />
 
 # option to compute indicators
 <setoption choice="0" name="indicator" />
 
 # option to initialize Lisflood
-<setoption choice="0" name="InitLisflood" />
+<setoption choice="1" name="InitLisflood" />
 <setoption choice="0" name="InitLisfloodwithoutSplit" />
 
 # option to read/write NetCDF
 <setoption choice="1" name="readNetcdfStack" />
-<setoption choice="1" name="writeNetcdfStack" />
+<setoption choice="0" name="writeNetcdfStack" />
 <setoption choice="1" name="writeNetcdf" />
 
 #-----------------------------------------------------------
 # report time series
 #-----------------------------------------------------------
 # report discharge TS
-<setoption choice="1" name="repDischargeTs" />
+<setoption choice="0" name="repDischargeTs" />
 
 # report gauges and sites
 <setoption choice="0" name="repStateSites" />
@@ -72,16 +72,13 @@
 <setoption choice="0" name="repSnowCoverMaps" />
 <setoption choice="0" name="repSnowMeltMaps" />
 <setoption choice="0" name="repThetaMaps" />
-<setoption choice="1" name="repThetaForestMaps" />
-<setoption choice="1" name="repThetaIrrigationMaps" />
+<setoption choice="0" name="repThetaForestMaps" />
 <setoption choice="0" name="repLZMaps" />
 <setoption choice="0" name="repUZMaps" />
 <setoption choice="0" name="repGwPercUZLZMaps" />
 <setoption choice="0" name="repRWS" />
 <setoption choice="0" name="repPFMaps" />
 <setoption choice="0" name="repPFForestMaps" />
-<setoption choice="0" name="repE2O2" />
-<setoption choice="0" name="repE2O1" />
 
 
 <setoption choice="0" name="repTotalAbs" />
@@ -121,8 +118,8 @@ The option "numCPUs_parallelNumba" may take the following values:
                       (if NUMBA_NUM_THREADS is not set, will take the number of CPU cores determined by python's multiprocessing.cpu_count())
     - "1"           : serial execution (not parallel)
     - "2", "3", ... : manual setting of the number of parallel threads.
-                      (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) -->
-<textvar name="numCPUs_parallelNumba" value="0"/>
+                      (if exceeding NUMBA_NUM_THREADS, the value is set to NUMBA_NUM_THREADS) --&gt;
+<textvar name="numCPUs_parallelNumba" value="0" />
 
 
 
@@ -241,13 +238,13 @@ Within the model,the smallest out of DtSecChannel and DtSec is used
 </comment>
 </textvar>
 
-<textvar name="StepStart" value="01/01/2017 00:00">
+<textvar name="StepStart" value="01/01/2016 00:00">
 <comment>
 Number of first time step in simulation
 </comment>
 </textvar>
 
-<textvar name="StepEnd" value="01/03/2017 00:00">
+<textvar name="StepEnd" value="01/01/2018 00:00">
 <comment>
 Number of last time step in simulation
 </comment>
@@ -1165,20 +1162,20 @@ $(PathMaps)/leakage.map
 
 
 
-<textvar name="FirstDayOfMonth" value="$(PathTables)/firstdayofmonth.txt">
+<textvar name="FirstDayOfMonth" value="$(PathMaps)/firstdayofmonth.txt">
 <comment>
 table with days for each water use maps
 1st column: range of days; 2nd column: suffix of wuse map
 </comment>
 </textvar>
 
-<textvar name="MapIrrigationCropCoef" value="$(PathMaps)/cropcoef_i">
+<textvar name="MapIrrigationCropCoef" value="$(PathMaps)/cropcoef_i.map">
 <comment>
 Irrigation crop coefficient [-]
 </comment>
 </textvar>
 
-<textvar name="MapIrrigationCropGroupNumber" value="$(PathMaps)/cropgrpn_i">
+<textvar name="MapIrrigationCropGroupNumber" value="$(PathMaps)/cropgrpn_i.map">
 <comment>
 Irrigation crop group number [-]
 </comment>
@@ -1567,7 +1564,7 @@ otherwise doesn't influence model results at all)
 
 
 <textvar name="numCPUs_parallelKinematicWave" value="$(numCPUs_parallelKinematicWave)" />
-<textvar name="numCPUs_parallelNumba" value="$(numCPUs_parallelNumba)"/>
+<textvar name="numCPUs_parallelNumba" value="$(numCPUs_parallelNumba)" />
 
 <textvar name="proj4_params" value="$(proj4_params)">
 <comment>
@@ -1595,21 +1592,21 @@ Special values:
 Option designed for the calibration. All the static maps and forcings will be stored in a cache so that they don't have to be loaded by each lisflood instance. 
 This option sets the value of NetCDFTimeChunks to -1, meaning that the whole time series in the NetCDF inputs is loaded into memory.
 </comment>       
-</textvar>      
-    
+</textvar>          
+        
 <comment>
 
 The option "OutputMapsChunks" may take the following values:
 - "[positive integer number]"  : Dump outputs to disk every X steps (default 1) 
 </comment>
-<textvar name="OutputMapsChunks" value="1"/>
+<textvar name="OutputMapsChunks" value="1" />
 
 <comment>
 The option "OutputMapsDataType" sets the output data type and may take the following values:
 - "float64"
 - "float32"
 </comment>
-<textvar name="OutputMapsDataType" value="float64"/>
+<textvar name="OutputMapsDataType" value="float64" />
 
 <textvar name="netCDFtemplate" value="$(netCDFtemplate)">
 <comment>
@@ -3351,64 +3348,21 @@ Reported interception storage, forest fraction [mm]
 </comment>
 </textvar>
 
-<textvar name="Theta1Maps" value="$(PathOut)/theta_1a">
+<textvar name="Theta1ForestMaps" value="$(PathOut)/thfa">
 <comment>
 Reported volumetric soil moisture content for
 soil layer 1a (superficial layer) [V/V] [mm3/mm3]
 </comment>
 </textvar>
 
-<textvar name="Theta2Maps" value="$(PathOut)/theta_1b">
+<textvar name="Theta2ForestMaps" value="$(PathOut)/thfb">
 <comment>
 Reported volumetric soil moisture content for both
 soil layer 1b (upper layer) [V/V] [mm3/mm3]
 </comment>
 </textvar>
 
-<textvar name="Theta3Maps" value="$(PathOut)/theta_2">
-<comment>
-Reported volumetric soil moisture content for both
-soil layer 2 (lower layer) [V/V] [mm3/mm3]
-</comment>
-</textvar>
-
-
-<textvar name="Theta1ForestMaps" value="$(PathOut)/theta_forest_1a">
-<comment>
-Reported volumetric soil moisture content for
-soil layer 1a (superficial layer) [V/V] [mm3/mm3]
-</comment>
-</textvar>
-
-<textvar name="Theta2ForestMaps" value="$(PathOut)/theta_forest_1b">
-<comment>
-Reported volumetric soil moisture content for both
-soil layer 1b (upper layer) [V/V] [mm3/mm3]
-</comment>
-</textvar>
-
-<textvar name="Theta3ForestMaps" value="$(PathOut)/theta_forest_2">
-<comment>
-Reported volumetric soil moisture content for both
-soil layer 2 (lower layer) [V/V] [mm3/mm3]
-</comment>
-</textvar>
-
-<textvar name="Theta1IrrigationMaps" value="$(PathOut)/theta_irrig_1a">
-<comment>
-Reported volumetric soil moisture content for
-soil layer 1a (superficial layer) [V/V] [mm3/mm3]
-</comment>
-</textvar>
-
-<textvar name="Theta2IrrigationMaps" value="$(PathOut)/theta_irrig_1b">
-<comment>
-Reported volumetric soil moisture content for both
-soil layer 1b (upper layer) [V/V] [mm3/mm3]
-</comment>
-</textvar>
-
-<textvar name="Theta3IrrigationMaps" value="$(PathOut)/theta_irrig_2">
+<textvar name="Theta3ForestMaps" value="$(PathOut)/thfc">
 <comment>
 Reported volumetric soil moisture content for both
 soil layer 2 (lower layer) [V/V] [mm3/mm3]
@@ -3739,7 +3693,7 @@ REPORTED OUTPUT TIME SERIES
 **************************************************************
 </comment>
 
-<textvar name="DisTS" value="$(PathOut)/dis_run.tss">
+<textvar name="DisTS" value="$(PathOut)/dis_prerun.tss">
 <comment>
 Reported discharge [cu m/s]
 </comment>
@@ -4349,7 +4303,7 @@ LAND USE RELATED MAPS AND TABLES
 **************************************************************
 </comment>
 
-<textvar name="DirectRunoffFraction" value="$(PathMapsLanduse)/fracsealed.map">
+<textvar name="DirectRunoffFraction" value="$(PathMapsLanduse)/fracsealed">
 <comment>
 $(PathMapsLanduse)/fracsealed.map
 urban area (0-1)
