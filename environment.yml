@@ -13,6 +13,7 @@ dependencies:
   - ipyleaflet
   - ipyfilechooser
   - ipympl
+  - ipywidgets
   - jupyter_contrib_nbextensions
   - jupyterlab
   - jupyter-book
