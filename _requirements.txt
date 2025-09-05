@@ -1,0 +1,8 @@
+jupyterlab
+jupyter-book
+matplotlib
+netcdf4
+numpy
+pandas
+pathlib
+xarray

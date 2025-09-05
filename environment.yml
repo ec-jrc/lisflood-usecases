@@ -1,16 +1,26 @@
-name: lisflood
+name: lf_usecase
 channels:
   - conda-forge
-  - default
+  - anaconda
+  - defaults
 dependencies:
+  - python=3.8
+  - pip
   - pcraster
-  - jupyter_contrib_nbextensions
-  - ipyleaflet
+  - gdal
   - altair
   - cartopy
-  - matplotlib
+  - ipyleaflet
   - ipyfilechooser
   - ipympl
-  - pip
+  - ipywidgets
+  - jupyter_contrib_nbextensions
+  - jupyterlab
+  - jupyter-book
+  - matplotlib
+  - netcdf4
+  - numpy
+  - pandas
+  - xarray
   - pip:
     - lisflood-model

@@ -5,3 +5,18 @@
 
 # User-specific stuff
 .idea/
+
+# Ignore checkpoints
+**/.ipynb_checkpoints/
+**/*checkpoint.md
+**/*checkpoint.yml
+**/*checkpoint.ipynb
+**/*checkpoint.py
+
+# Ignore compiled Python bytecode
+**/__pycache__/
+
+# Ignore meteo forcings
+**/*.nc
+LF_mekong_usecase/meteo/*.nc
+LF_mekong_usecase/maps/water_use/pop_daily.nc

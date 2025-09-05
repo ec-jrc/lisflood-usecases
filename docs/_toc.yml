@@ -1,0 +1,9 @@
+format: jb-book
+root: README
+chapters:
+- file: 0_general_setup
+- file: 1_initialization
+- file: 2_warmup
+- file: 3_run
+- file: 4_calibration
+- file: 5_other_usecases
