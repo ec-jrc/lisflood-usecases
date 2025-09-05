@@ -1,9 +1,10 @@
-import datetime
+from datetime import datetime, date
 import functools
 import subprocess
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Optional, Union
+import logging
 
 import altair as alt
 import ipyleaflet
@@ -18,6 +19,9 @@ from IPython.display import display
 # from matplotlib import rc
 
 from docs.lisflood_read_plot import read_tss
+
+# Configure the logging to output messages to the console
+logging.basicConfig(level=logging.INFO)
 
 # dictionary with editable calibration parameters including allowed data range
 parameter = {
@@ -96,19 +100,19 @@ optional_modules = {
 }
 
 # Helper function to create module checkboxes
-def _create_module_tab(root):
+def _create_module_tab(roots):
     """
     Parses XML and creates module checkbox widgets, organized by group,
     using a single source of truth.
     """
-    global optional_modules_xml
+    global lfoptions_xml
     global module_checkboxes
 
     module_checkboxes = {}
-    optional_modules_xml = [root[i].find("./lfoptions") for i in range(2)]
+    lfoptions_xml = {run: root.find("./lfoptions") for run, root in roots.items()}
 
     # First, create all the checkboxes and store them in the global dictionary
-    for element in optional_modules_xml[1]:
+    for element in lfoptions_xml['run']:
         module_name = element.attrib['name']
         display_name = next((v for group in optional_modules.values() for k, v in group.items() if k == module_name), module_name)
         module_checkboxes[module_name] = ipywidgets.Checkbox(
@@ -130,50 +134,55 @@ def _create_module_tab(root):
     return grouped_vboxes
 
 # Helper function to create the date picker widgets
-def _create_date_tab(root):
+def _create_date_tab(roots):
     """Parses XML dates and creates date picker widgets."""
-    global StepStart
-    global StepEnd
+    global starts
+    global ends
     
     common_widget_style = {
         'layout': ipywidgets.Layout(width='40%'), 
         'style': {'description_width': '25ex'}
     }
+    run_names = {
+        'pre-run': 'Pre-run',
+        'run': 'Run'
+    }
 
-    StepStart = [root[i].find("./lfuser/group/textvar[@name='StepStart']") for i in range(2)]
-    StepStart_iso = [datetime.datetime.strptime(s.attrib['value'].split()[0], '%d/%m/%Y').strftime('%Y-%m-%d')
-                      for s in StepStart]
+    # extract, format and create picker for the start dates
+    starts = {
+        run: root.find("./lfuser/group/textvar[@name='StepStart']") 
+        for run, root in roots.items()
+    }
+    starts_iso = {
+        run: datetime.strptime(start.attrib['value'].split()[0], '%d/%m/%Y').strftime('%Y-%m-%d') 
+        for run, start in starts.items()
+    }
+    start_picker = {
+        run: ipywidgets.DatePicker(
+            description='{0:>7} | {1:<10}'.format(run_names[run], 'Start date'),
+            value=date.fromisoformat(start),
+            **common_widget_style
+        ) for run, start in starts_iso.items()
+    }
 
-    StepEnd = [root[i].find("./lfuser/group/textvar[@name='StepEnd']") for i in range(2)]
-    StepEnd_iso = [datetime.datetime.strptime(e.attrib['value'].split()[0], '%d/%m/%Y').strftime('%Y-%m-%d')
-                    for e in StepEnd]
-    
-    StepStart_picker = [
-        ipywidgets.DatePicker(
-            description='{0:>7} | {1:<10}'.format('Pre-run', 'Start date'),
-            value=datetime.date.fromisoformat(StepStart_iso[0]),
+    # extract, format and create picker for the end dates
+    ends = {
+        run: root.find("./lfuser/group/textvar[@name='StepEnd']") 
+        for run, root in roots.items()
+    }
+    ends_iso = {
+        run: datetime.strptime(end.attrib['value'].split()[0], '%d/%m/%Y').strftime('%Y-%m-%d')
+        for run, end in ends.items()
+    }
+    end_picker = {
+        run: ipywidgets.DatePicker(
+            description='{0:>7} | {1:<10}'.format(run_names[run], 'End date'),
+            value=date.fromisoformat(end),
             **common_widget_style
-        ),
-        ipywidgets.DatePicker(
-            description='{0:>7} | {1:<10}'.format('Run', 'Start date'),
-            value=datetime.date.fromisoformat(StepStart_iso[1]),
-            **common_widget_style
-        )
-    ]
-    
-    StepEnd_picker = [
-        ipywidgets.DatePicker(
-            description='{0:>7} | {1:<10}'.format('Pre-run', 'End date'),
-            value=datetime.date.fromisoformat(StepEnd_iso[0]),
-            **common_widget_style
-        ),
-        ipywidgets.DatePicker(
-            description='{0:>7} | {1:<10}'.format('Run', 'End date'),
-            value=datetime.date.fromisoformat(StepEnd_iso[1]),
-            **common_widget_style
-        )
-    ]
-    return StepStart_picker, StepEnd_picker
+        ) for run, end in ends_iso.items()
+    }
+
+    return start_picker, end_picker
 
 # Helper function to create the output grids
 def _create_output_tab(module_checkboxes):
@@ -238,20 +247,20 @@ def _create_output_tab(module_checkboxes):
     return output_grid
 
 # Helper function to create calibration sliders
-def _create_parameter_tab(root):
+def _create_parameter_tab(roots):
     """Parses XML and creates calibration slider widgets."""
-    global parameter_xml
+    global lfuser_xml
     global parameter_sliders
 
     parameter_sliders = {}
-    parameter_xml = [root[i].find("./lfuser") for i in range(2)]
-    if parameter_xml[1] is None:
-        print("Error: Could not find lfuser group in the RUN settings file.")
+    lfuser_xml = {run: root.find("./lfuser") for run, root in roots.items()}
+    if lfuser_xml['run'] is None:
+        logging.error("Could not find `lfuser` group in the RUN settings file")
         return {}
 
     # Iterate through the desired order to create the sliders
     for param_name, specs in parameter.items():
-        element = parameter_xml[1].find(f".//textvar[@name='{param_name}']")
+        element = lfuser_xml['run'].find(f".//textvar[@name='{param_name}']")
         if element is not None:
             slider_widget = ipywidgets.HBox([
                 ipywidgets.FloatSlider(
@@ -275,14 +284,14 @@ def _create_parameter_tab(root):
     return parameter_sliders
 
 # Helper function to create the map
-def _create_map(root, module_checkboxes):
+def _create_map(roots, module_checkboxes):
     """Initializes and configures the ipyleaflet map widget."""
     global m
     global marker
     global coordinates
 
-    coordinates = [root[i].findall("./lfuser/group/textvar/[@name='Gauges']")[0] for i in range(2)]
-    lon, lat = coordinates[1].attrib['value'].split()
+    coordinates = {run: root.findall("./lfuser/group/textvar/[@name='Gauges']")[0] for run, root in roots.items()}
+    lon, lat = coordinates['run'].attrib['value'].split()
     center = (float(lat), float(lon))
     m = ipyleaflet.Map(zoom=10, center=center, scroll_wheel_zoom=True)
     marker = ipyleaflet.Marker(location=center, draggable=True)
@@ -297,65 +306,65 @@ def _link_observers(module_checkboxes, m):
     module_checkboxes['repDischargeTs'].observe(on_rep_discharge_ts_clicked, names='value')
 
 # Main function to show settings
-def show_settings(chooser, settings_files):
+def lisflood_interface(chooser, settings_files):
     """
     Reads XML settings, creates and displays an interactive UI
     for configuring a LISFLOOD simulation.
     """
-    if settings_files[0].selected is None or settings_files[1].selected is None:
+    if settings_files['pre-run'].selected is None or settings_files['run'].selected is None:
         return
 
-    global tree
+    global trees
     global CalendarDayStart
-    global DtSec_xml
-    global DtSec_box
-    global optional_modules_xml
-    global parameter_xml
+    global timestep_xml
+    global timestep_box
+    global lfoptions_xml
+    global lfuser_xml
     global parameter_sliders
     global module_checkboxes
     global m
     global marker
     global coordinates
-    global StepStart_picker
-    global StepEnd_picker
+    global start_picker
+    global end_picker
 
     # Create output folder if it does not exist
-    out_dir = Path(settings_files[1].selected_path) / "results"
+    out_dir = Path(settings_files['run'].selected_path) / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # opens settings file of PRE-RUN ([0]) and RUN ([1]) in list
-    tree = [ET.parse(f.selected) for f in settings_files]
-    root = [t.getroot() for t in tree]
+    trees = {run: ET.parse(file.selected) for run, file in settings_files.items()}
+    roots = {run: tree.getroot() for run, tree in trees.items()}
 
     # gets timestep
-    DtSec_xml = [root[i].find("./lfuser/group/textvar[@name='DtSec']") for i in range(2)]
-    if DtSec_xml[0] is None:
-        print("Error: Could not find 'DtSec' in the PRE-RUN settings file. Please check the file and the XML path.")
+    timestep_xml = {run: root.find("./lfuser/group/textvar[@name='DtSec']") for run, root in roots.items()}
+    if timestep_xml['pre-run'] is None:
+        logging.error("Could not find 'DtSec' in the PRE-RUN settings file.\nPlease, check the file and the XML path.")
         return 
-    DtSec_box = ipywidgets.BoundedIntText(
-        value=DtSec_xml[0].attrib['value'],
+    timestep_box = ipywidgets.BoundedIntText(
+        value=timestep_xml['pre-run'].attrib['value'],
         min=1,
         max=31536000,
         step=60,
         description='Timestep [s]:',
         layout=ipywidgets.Layout(width='40%'),
         style={'description_width': '25ex'}
-        )
+    )
 
     # gets calendar day start
-    calendar_day_start_element = root[1].find("./lfuser/group/textvar[@name='CalendarDayStart']")
+    calendar_day_start_element = roots['run'].find("./lfuser/group/textvar[@name='CalendarDayStart']")
     if calendar_day_start_element is None:
-        print("Error: Could not find 'CalendarDayStart' in the RUN settings file. Please check the file and the XML path.")
+        logging.error("Could not find 'CalendarDayStart' in the RUN settings file.\nPlease, check the file and the XML path.")
         return
     date_time_str = calendar_day_start_element.attrib['value']
-    CalendarDayStart = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M')
+    CalendarDayStart = datetime.strptime(date_time_str, '%d/%m/%Y %H:%M')
 
     # Create UI widgets
-    grouped_module_vboxes = _create_module_tab(root)
-    StepStart_picker, StepEnd_picker = _create_date_tab(root)
+    grouped_module_vboxes = _create_module_tab(roots)
+    start_picker, end_picker = _create_date_tab(roots)
     output_grid = _create_output_tab(module_checkboxes)
-    parameter_sliders = _create_parameter_tab(root)
-    m, marker = _create_map(root, module_checkboxes)
+    parameter_sliders = _create_parameter_tab(roots)
+    m, marker = _create_map(roots, module_checkboxes)
 
     # Organize grouped module vboxes into a single GridBox
     optional_modules_grid = ipywidgets.GridBox(
@@ -367,7 +376,7 @@ def show_settings(chooser, settings_files):
     tabs = ipywidgets.Tab()
     tabs.children = [
         ipywidgets.VBox([optional_modules_grid]),
-        ipywidgets.VBox([StepStart_picker[0], StepEnd_picker[0], StepStart_picker[1], StepEnd_picker[1], DtSec_box]),
+        ipywidgets.VBox([start_picker['pre-run'], end_picker['pre-run'], start_picker['run'], end_picker['run'], timestep_box]),
         ipywidgets.VBox(list(parameter_sliders.values())),
         ipywidgets.VBox([output_grid, m]),
     ]
@@ -398,7 +407,9 @@ def show_settings(chooser, settings_files):
     )
     display(processing_button)
 
-# callback function to write input data to XML files and start processing
+    # display the output widget
+    display(output_area)
+
 # callback function to write input data to XML files and start processing
 def on_processing_button_clicked(b, settings_files, output_area):
     """
@@ -408,117 +419,130 @@ def on_processing_button_clicked(b, settings_files, output_area):
     output_area.clear_output()
 
     with output_area:
-        print("Starting LISFLOOD processing...")
+        print("Start processing.")
 
         global datasets
-        global parameter_xml
+        global lfuser_xml
         global parameter_sliders
-        global optional_modules_xml
+        global lfoptions_xml
         global module_checkboxes
-        global tree
-        global StepStart
-        global StepEnd
-        global DtSec_xml
-        global DtSec_box
+        global trees
+        global starts
+        global ends
+        global timestep_xml
+        global timestep_box
         global coordinates
         global marker
-        global StepStart_picker
-        global StepEnd_picker
+        global start_picker
+        global end_picker
 
         # Check if 'datasets' exists and close any open NetCDF files
-        print("Checking for previous datasets...")
+        logging.debug("Checking for previous datasets...")
         if 'datasets' in globals():
             for _, dataset in datasets:
                 dataset.close()
             datasets.clear()
-            print("Closed and cleared previous datasets.")
+            logging.warning("Closed and cleared previous datasets.")
         else:
             datasets = []
-            print("No previous datasets found.")
+            logging.debug("No previous datasets found.")
         
         # Update calibration parameter values in XML from sliders
-        print("\nUpdating calibration parameters...")
-        for root_xml in parameter_xml:
-            # Find all 'textvar' elements within the 'lfuser' group
+        print("\nUpdate calibration parameters:\n")
+        for run, root_xml in lfuser_xml.items():
             textvar_elements = root_xml.findall(".//textvar")
             for element in textvar_elements:
                 param_name = element.attrib['name']
                 if param_name in parameter:
-                    new_value = str(parameter_sliders[param_name].children[0].value)
-                    element.attrib['value'] = new_value
-                    print(f"  - Parameter '{param_name}' set to value '{new_value}'")
-
+                    new_value = parameter_sliders[param_name].children[0].value
+                    element.attrib['value'] = str(new_value)
+                    print(f"\t{param_name:>25} = {new_value:.3f}")
 
         # Update optional module choices in XML from checkboxes
-        print("\nUpdating optional modules...")
-        for root_xml in optional_modules_xml:
+        print('\nUpdate optional modules:\n')
+        for run, root_xml in lfoptions_xml.items():
             for element in root_xml:
                 if element.tag == 'setoption':
                     module_name = element.attrib['name']
-                    new_choice = str(int(module_checkboxes[module_name].value))
-                    element.attrib['choice'] = new_choice
-                    print(f"  - Module '{module_name}' choice set to '{new_choice}'")
+                    new_choice = int(module_checkboxes[module_name].value)
+                    element.attrib['choice'] = str(new_choice)
+                    if new_choice == 1:
+                        print(f"\t{module_name:>25} : active")
 
         # Configure SplitRouting and InitLisflood options in both XML files
         split_routing = module_checkboxes['SplitRouting'].value
-        print(f"\nConfiguring routing options (SplitRouting is {'enabled' if split_routing else 'disabled'})...")
-        for i, root_xml in enumerate(optional_modules_xml):  
+        print(f"\nUpdate routing options:\n")
+        for run, root_xml in lfoptions_xml.items():  
             # Determine and set the correct InitLisflood choice based on split_routing
-            init_lisflood_choice = str(int(split_routing and (i == 0)))
-            init_lisflood_without_split_choice = str(int(not split_routing and (i == 0)))
+            init_lisflood_choice = split_routing and (run == 'pre-run')
+            init_lisflood_without_split_choice = not split_routing and (run == 'run')
 
             root_xml.findall("setoption[@name='SplitRouting']")[0].attrib['choice'] = str(int(split_routing))
-            root_xml.findall("setoption[@name='InitLisflood']")[0].attrib['choice'] = init_lisflood_choice
-            root_xml.findall("setoption[@name='InitLisfloodwithoutSplit']")[0].attrib['choice'] = init_lisflood_without_split_choice
-            print(f"  - File {i+1}: InitLisflood set to '{init_lisflood_choice}', InitLisfloodwithoutSplit set to '{init_lisflood_without_split_choice}'")
+            root_xml.findall("setoption[@name='InitLisflood']")[0].attrib['choice'] = str(int(init_lisflood_choice))
+            root_xml.findall("setoption[@name='InitLisfloodwithoutSplit']")[0].attrib['choice'] = str(int(init_lisflood_without_split_choice))
+            print(
+                f"\t{run.upper()}:\n"
+                f"\t{'InitLisflood':>25} : {'active' if init_lisflood_choice else 'disabled'}\n"
+                f"\t{'InitLisfloodwithoutSplit':>25} : {'active' if init_lisflood_without_split_choice else 'disabled'}"
+            )
 
         # Write simulation dates, timestep, and coordinates to both XML files
-        print("\nUpdating simulation dates, timestep, and coordinates...")
-        for i in range(len(tree)):
+        print("\nUpdate simulation dates, timestep, and coordinates")
+        for run, tree in trees.items():
             date_format_in = "%Y-%m-%d"
             date_format_out = '%d/%m/%Y'
             
-            start_date_str = str(StepStart_picker[i].value)
-            start_date_formatted = datetime.datetime.strptime(start_date_str, date_format_in).strftime(date_format_out)
-            StepStart[i].attrib['value'] = f"{start_date_formatted} {StepStart[i].attrib['value'].split()[1]}"
+            start_date = start_picker[run].value
+            start_date_formatted = datetime.strptime(str(start_date), date_format_in).strftime(date_format_out)
+            starts[run].attrib['value'] = f"{start_date_formatted} {starts[run].attrib['value'].split()[1]}"
 
-            end_date_str = str(StepEnd_picker[i].value)
-            end_date_formatted = datetime.datetime.strptime(end_date_str, date_format_in).strftime(date_format_out)
-            StepEnd[i].attrib['value'] = f"{end_date_formatted} {StepEnd[i].attrib['value'].split()[1]}"
+            end_date = end_picker[run].value
+            end_date_formatted = datetime.strptime(str(end_date), date_format_in).strftime(date_format_out)
+            ends[run].attrib['value'] = f"{end_date_formatted} {ends[run].attrib['value'].split()[1]}"
 
-            DtSec_xml[i].attrib['value'] = str(DtSec_box.value)
+            timestep = timestep_box.value
+            timestep_xml[run].attrib['value'] = str(timestep)
 
             if module_checkboxes['repDischargeTs'].value:
-                coordinates[i].attrib['value'] = f"{marker.location[1]} {marker.location[0]}"
+                coordinates[run].attrib['value'] = f"{marker.location[1]} {marker.location[0]}"
+
+            print(
+                f"\n\t{run.upper()}:\n"
+                f"\t{'Start':>25} : {start_date}\n"
+                f"\t{'End':>25} : {end_date}\n"
+                f"\t{'Time step':>25} : {timestep} (s)\n"
+            )
             
-            print(f"  - Writing updated settings to {settings_files[i].selected}...")
-            tree[i].write(settings_files[i].selected)
-            print(f"  - Successfully wrote settings to {settings_files[i].selected}.")
+        # logging.info(f"  - Writing updated settings to {settings_files[run].selected}...")
+        print('\nUpdate settings files:\n')
+        for run, tree in trees.items():
+            tree.write(settings_files[run].selected)
+            print(f"\t{run.upper():>8} : {settings_files[run].selected}.")
 
         # Execute LISFLOOD pre-run and run
-        print('\n--- LISFLOOD PRE-RUN ---')
+        print('\n\n--- LISFLOOD PRE-RUN ---\n')
         try:
-            result = subprocess.run(['lisflood', settings_files[0].selected], check=True, capture_output=True, text=True)
+            result = subprocess.run(['lisflood', settings_files['pre-run'].selected], check=True, capture_output=True, text=True)
             print("PRE-RUN completed successfully.")
             if result.stdout:
                 print("LISFLOOD stdout:")
                 print(result.stdout)
         except subprocess.CalledProcessError as e:
-            print(f"Error running LISFLOOD PRE-RUN:\n{e.stderr}")
+            logging.error(f"Running LISFLOOD PRE-RUN:\n{e.stderr}")
             return
             
-        print('\n--- LISFLOOD RUN ---')
+        print('\n\n--- LISFLOOD RUN ---\n')
         try:
-            result = subprocess.run(['lisflood', settings_files[1].selected], check=True, capture_output=True, text=True)
+            result = subprocess.run(['lisflood', settings_files['run'].selected], check=True, capture_output=True, text=True)
             print("RUN completed successfully.")
             if result.stdout:
                 print("LISFLOOD stdout:")
                 print(result.stdout)
         except subprocess.CalledProcessError as e:
-            print(f"Error running LISFLOOD RUN:\n{e.stderr}")
+            logging.error(f"Running LISFLOOD RUN:\n{e.stderr}")
             return
             
-        print("\nProcessing complete.")
+        print("\nEnd of the processing.")
 
 # Callback function to change map visibility
 def on_rep_discharge_ts_clicked(change):
@@ -611,7 +635,7 @@ def plot_results(
 
     # checks whether output data exists
     if not (any(path_results.glob('*.nc')) and any(path_results.glob('*.tss'))):
-        print(f'No output files in {path_results}.')
+        logging.warning(f'No output files in {path_results}.')
         return
 
     global datevar
@@ -648,7 +672,7 @@ def plot_results(
     # output maps
     nc_files = nc_files = [file for file in path_results.glob('*.nc') if file.stem not in ['lzavin', 'avgdis']]
     if len(nc_files) == 0:
-        print(f'No NetCDF files in the results folder: {path_results}.')
+        logging.warning(f'No NetCDF files in the results folder: {path_results}.')
         return
 
     global datasets
